@@ -44,8 +44,8 @@ contract AircraftNFT is ERC1155PresetMinterPauser {
 
 	function mintComponent(address _to, uint256 _id, uint256 _amount) external onlyMinter {
 		require(
-			_id <= MAX_COMPONENT_ID && _id > LUCKY_BOX_ID,
-			"AircraftNFT: id must less than or equal to max component id"
+			_id < MAX_COMPONENT_ID && _id > LUCKY_BOX_ID,
+			"AircraftNFT: id must less than max component id"
 		);
 
 		_mint(_to, _id, _amount, "");
@@ -58,12 +58,12 @@ contract AircraftNFT is ERC1155PresetMinterPauser {
 	) external {
 		bool isValid = true;
 		for (uint256 i = 0; i < _ids.length; i++) {
-			if (_ids[i] > MAX_COMPONENT_ID || _ids[i] == LUCKY_BOX_ID) {
+			if (_ids[i] >= MAX_COMPONENT_ID || _ids[i] == LUCKY_BOX_ID) {
 				isValid = false;
 				break;
 			}
 		}
-		require(isValid, "AircraftNFT: id must less than or equal to max component id");
+		require(isValid, "AircraftNFT: id must less than max component id");
 
 		_mintBatch(_to, _ids, _amounts, "");
 	}
