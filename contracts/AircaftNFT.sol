@@ -81,22 +81,24 @@ contract AircraftNFT is Context, AccessControlEnumerable, ERC1155Pausable {
 		_mint(to, id, 1, "");
 	}
 
-	function upgrade(uint256 aircraftId, uint256 componentId) external {
+	function upgrade(address to, uint256 aircraftId, uint256 componentId) external onlyMinter {
 		require(aircraftId > MAX_COMPONENT_ID, "AircraftNFT: invalid aircraft id");
 		require(
 			componentId > LUCKY_BOX_ID && componentId < MAX_COMPONENT_ID,
 			"AircraftNFT: invalid component id"
 		);
-
-		address owner = aircraftIdToOwner[aircraftId];
-		require(_msgSender() == owner, "AircraftNFT: must be owner of aircraft");
 		require(
-			balanceOf(owner, componentId) > 0,
+			to == aircraftIdToOwner[aircraftId],
+			"AircraftNFT: must be owner of aircraft"
+		);
+		require(
+			balanceOf(to, componentId) > 0,
 			"AircraftNFT: must have component to upgrade"
 		);
-		_burn(owner, componentId, 1);
 
-		emit UpgradeAircraft(owner, aircraftId, componentId);
+		_burn(to, componentId, 1);
+
+		emit UpgradeAircraft(to, aircraftId, componentId);
 	}
 
 	function pause() public onlyPauser {
