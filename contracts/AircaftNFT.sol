@@ -1,70 +1,118 @@
 // SPDX-License-Identifier: UNLICENSED
-
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC1155/presets/ERC1155PresetMinterPauser.sol";
+import "@openzeppelin/contracts/utils/Context.sol";
+import "@openzeppelin/contracts/access/AccessControlEnumerable.sol";
+import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Pausable.sol";
 
-contract AircraftNFT is ERC1155PresetMinterPauser {
-	uint256 LUCKY_BOX_ID = 0;
-	uint256 MAX_COMPONENT_ID = 10000;
+contract AircraftNFT is Context, AccessControlEnumerable, ERC1155Pausable {
+	event UpgradeAircraft( address indexed operator, uint256 indexed aircraftId, uint256 indexed componentId);
+
+	bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
+	bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
+
+	uint256 public constant LUCKY_BOX_ID = 0;
+	uint256 public constant MAX_COMPONENT_ID = 10000;
 
 	uint256 currentId = 10000;
 
-	constructor(string memory _uri) ERC1155PresetMinterPauser(_uri) {}
+	mapping (uint256 => address) public aircraftIdToOwner;
 
-	modifier onlyMinter() {
+	constructor(string memory uri) ERC1155(uri) {
+		_setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
+		_setupRole(MINTER_ROLE, _msgSender());
+		_setupRole(PAUSER_ROLE, _msgSender());
+	}
+
+	modifier onlyAdmin() {
 		require(
-			hasRole(MINTER_ROLE, _msgSender()),
-			"AircraftNFT: must have minter role to mint"
+			hasRole(DEFAULT_ADMIN_ROLE, _msgSender()),
+			"AircraftNFT: must have admin role"
 		);
 		_;
 	}
 
-	function addMinter(address _minter) external {
+	modifier onlyMinter() {
 		require(
-			hasRole(DEFAULT_ADMIN_ROLE, _msgSender()),
-			"AircraftNFT: must have admin role to add minter"
+			hasRole(MINTER_ROLE, _msgSender()),
+			"AircraftNFT: must have minter role"
 		);
-
-		grantRole(MINTER_ROLE, _minter);
+		_;
 	}
 
-	function mintAircraft(address _to, uint256 _amount) external onlyMinter {
+	modifier onlyPauser() {
+		require(
+			hasRole(PAUSER_ROLE, _msgSender()),
+			"AircraftNFT: must have pauser role"
+		);
+		_;
+	}
+
+	function addMinter(address minter) external onlyAdmin {
+		grantRole(MINTER_ROLE, minter);
+	}
+
+	function mintAircraft(address to, uint256 amount) external onlyMinter {
 		uint256 startId = currentId;
-		currentId += _amount;
+		currentId += amount;
 
-		for (uint256 i = 1; i <= _amount; i++) {
-			_mint(_to, startId + i, 1, "");
+		for (uint256 i = 1; i <= amount; i++) {
+			uint256 id = startId + i;
+			_mint(to, id, 1, "");
+			aircraftIdToOwner[id] = to;
 		}
 	}
 
-	function mintLuckyBox(address _to, uint256 _amount) external onlyMinter {
-		_mint(_to, LUCKY_BOX_ID, _amount, "");
+	function mintLuckyBox(address to, uint256 amount) external onlyMinter {
+		_mint(to, LUCKY_BOX_ID, amount, "");
 	}
 
-	function mintComponent(address _to, uint256 _id, uint256 _amount) external onlyMinter {
+	function mintComponent(address to, uint256 id) external onlyMinter {
 		require(
-			_id < MAX_COMPONENT_ID && _id > LUCKY_BOX_ID,
-			"AircraftNFT: id must less than max component id"
+			balanceOf(to, LUCKY_BOX_ID) > 0,
+			"AircraftNFT: must have lucky box to mint component"
+		);
+		require(
+			id < MAX_COMPONENT_ID && id > LUCKY_BOX_ID,
+			"AircraftNFT: invalid component id"
 		);
 
-		_mint(_to, _id, _amount, "");
+		_burn(to, LUCKY_BOX_ID, 1);
+		_mint(to, id, 1, "");
 	}
 
-	function mintComponents(
-		address _to,
-		uint256[] memory _ids,
-		uint256[] memory _amounts
-	) external {
-		bool isValid = true;
-		for (uint256 i = 0; i < _ids.length; i++) {
-			if (_ids[i] >= MAX_COMPONENT_ID || _ids[i] == LUCKY_BOX_ID) {
-				isValid = false;
-				break;
-			}
-		}
-		require(isValid, "AircraftNFT: id must less than max component id");
+	function upgrade(uint256 aircraftId, uint256 componentId) external {
+		require(aircraftId > MAX_COMPONENT_ID, "AircraftNFT: invalid aircraft id");
+		require(
+			componentId > LUCKY_BOX_ID && componentId < MAX_COMPONENT_ID,
+			"AircraftNFT: invalid component id"
+		);
 
-		_mintBatch(_to, _ids, _amounts, "");
+		address owner = aircraftIdToOwner[aircraftId];
+		require(_msgSender() == owner, "AircraftNFT: must be owner of aircraft");
+		require(
+			balanceOf(owner, componentId) > 0,
+			"AircraftNFT: must have component to upgrade"
+		);
+		_burn(owner, componentId, 1);
+
+		emit UpgradeAircraft(owner, aircraftId, componentId);
+	}
+
+	function pause() public onlyPauser {
+		_pause();
+	}
+
+	function unpause() public onlyPauser {
+		_unpause();
+	}
+
+	function supportsInterface(bytes4 interfaceId)
+		public
+		view
+		override(AccessControlEnumerable, ERC1155)
+		returns (bool)
+	{
+		return super.supportsInterface(interfaceId);
 	}
 }
