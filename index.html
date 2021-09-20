@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@3.0.0/dist/web3.min.js"></script> -->
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+
+    <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'> -->
+    <!-- <script src='main.js'></script> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+</head>
+
+<body class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <button onclick="enable()" class="btn btn-primary">Enable</button>
+
+        </div>
+    </div>
+
+
+    <!-- Import the component -->
+    <!-- <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script> -->
+
+    <!-- Use it like any other HTML element -->
+    <!-- <model-viewer src="https://modelviewer.dev/shared-assets/models/shishkebab.glb" alt="A 3D model of an astronaut" ar ar-modes="webxr scene-viewer quick-look" environment-image="neutral" auto-rotate camera-controls></model-viewer> -->
+
+    <div class="row">
+        <div class="col">
+            <label class="form-label">Contract Address</label>
+            <input id="contractAddress" type="text" class="form-control" value="0x6cB47a3d3d524b9FE5F4A7d6A88AF4a20687Ca93">
+            <label>ABI</label>
+            <input id="contractABIUrl" type="url" class="form-control" value="/artifacts/contracts/CryptoTomNFT.sol/CryptoTomNFT.json">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button onclick="loadContract()" class="btn btn-primary">Load</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <ul id="funcList"></ul>
+        </div>
+    </div>
+
+
+    </ul>
+    <style>
+        model-viewer {
+            height: 1000px;
+            width: 1000px;
+        }
+        
+        #funcList li {
+            margin-bottom: 2px;
+        }
+    </style>
+
+    <script>
+        let contractData;
+        let abi;
+        let contractAddress = '0x3Bce080b858D6d680899e8F2045b56d74F6c7ac5';
+        let contract;
+        let provider;
+        let signer;
+        // fetch("/artifacts/contracts/CryptoTom.sol/CryptoTom.json").then(res => res.json()).then(data => {
+        //     contractData = data;
+        //     abi = contractData.abi;
+        // })
+
+
+        function enable() {
+            window.ethereum.enable();
+
+            ethereum.request({
+                method: 'eth_requestAccounts'
+            });
+
+            provider = new ethers.providers.Web3Provider(window.ethereum)
+
+            // The Metamask plugin also allows signing transactions to
+            // send ether and pay to change state within the blockchain.
+            // For this, you need the account signer...
+            signer = provider.getSigner()
+
+
+        }
+
+        // async function isEnable() {
+        //     if (window.ethereum) {
+
+        //         const accounts = web3.eth.accounts;
+        //         // window.web3 = new Web3(window.ethereum);
+        //         return true;
+        //     }
+        //     return false;
+        // }
+
+        async function loadContract() {
+            contractAddress = $("#contractAddress").val();
+            url = $("#contractABIUrl").val();
+            fetch(url).then(res => res.json()).then(data => {
+                contractData = data;
+                abi = contractData.abi;
+
+                contract = new ethers.Contract(contractAddress, abi, signer);
+
+                console.table(abi)
+                $("#funcList").empty();
+                abi.forEach(f => {
+                    console.log(f)
+                    if (f.name && f.type === 'function')
+                        $("#funcList").append(
+                            `<li><button class="btn btn-link btn-sm" onclick='callFn("${f.name}")'>${f.name}</button></li>`
+                        )
+                });
+
+            })
+
+
+
+
+            // contract = new web3.eth.Contract(abi, contractAddress)
+            // console.log(abi)
+            // console.log(contractAddress);
+
+            // contract.on("Transfer", (from, to, amount, event) => {
+            //     console.log(`${ from } sent ${ (amount) } to ${ to}`);
+            //     // The event object contains the verbatim log data, the
+            //     // EventFragment and functions to fetch the block,
+            //     // transaction and receipt and event functions
+            // });
+
+            // // A filter for when a specific address receives tokens
+            // myAddress = "0x8ba1f109551bD432803012645Ac136ddd64DBA72";
+            // filter = contract.filters.Transfer(null, myAddress)
+            //     // {
+            //     //   address: 'dai.tokens.ethers.eth',
+            //     //   topics: [
+            //     //     '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
+            //     //     null,
+            //     //     '0x0000000000000000000000008ba1f109551bd432803012645ac136ddd64dba72'
+            //     //   ]
+            //     // }
+
+            // // Receive an event when that filter occurs
+            // contract.on(filter, (from, to, amount, event) => {
+            //     // The to will always be "address"
+            //     console.log(`I got ${ formatEther(amount) } from ${ from }.`);
+            // });
+        }
+        async function callFn(fnName) {
+
+            let filter = abi.filter(x => x.name === fnName)
+            if (filter.length <= 0)
+                return alert("Not found")
+            let fn = filter[0]
+            let inputData = {};
+            let command = `contract.${fnName}(`;
+            if (fn.inputs.length > 0) {
+                fn.inputs.forEach(input => {
+                    inputData[input.name] = prompt('Enter ' + input.name)
+                    command += inputData[input.name] + ',';
+                })
+                command = command.slice(0, command.length - 1)
+            }
+
+            command += ").then(console.log)";
+
+            console.log(command);
+            eval(command)
+                // console.log(inputData)
+        }
+        async function greet() {
+            // await contract.methods.balanceOf(window.ethereum.selectedAddress).call(function(err, res) {
+            //     if (err) {
+            //         console.log("An error occured", err)
+            //         return
+            //     }
+            //     console.log("RES ", res)
+            // })
+            // console.log(await contract.methods.approve(window.ethereum.selectedAddress, '1487595000024000000').send({
+            //     from: window.ethereum.selectedAddress
+            // }))
+            // let data = await contract.methods.transferFrom(window.ethereum.selectedAddress, '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266', '1487595000024000000').send({
+            //     from: window.ethereum.selectedAddress
+            // })
+            let balance = ethers.utils.formatUnits(await contract.balanceOf(ethereum.selectedAddress), 18)
+            console.log(balance)
+
+            const daiWithSigner = contract.connect(signer);
+
+            // Each DAI has 18 decimal places
+            const dai = ethers.utils.parseUnits("1.0", 18);
+
+            // Send 1 DAI to "ricmoo.firefly.eth"
+            tx = daiWithSigner.transfer("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", dai);
+            // console.log(data)
+            // try {
+            //     const transactionHash = await ethereum.request({
+            //         method: 'eth_sendTransaction',
+            //         params: [{
+            //             to: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+            //             'from': ethereum.selectedAddress,
+            //             value: '1487595000024000000',
+            //             // And so on...
+            //         }, ],
+            //     });
+            //     // Handle the result
+            //     console.log(transactionHash);
+            // } catch (error) {
+            //     console.error(error);
+            // }
+
+
+
+        }
+    </script>
+</body>
+
+
+</html>
