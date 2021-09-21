@@ -1,22 +1,23 @@
 {
-  "name": "crypto-tom",
-  "version": "1.0.0",
-  "description": "Crypto Tom Coin",
-  "main": "index.js",
-  "scripts": {
-    "test": "npx hardhat test"
-  },
-  "author": "HiepNV",
-  "license": "UNLICENSED",
-  "devDependencies": {
-    "@nomiclabs/hardhat-ethers": "^2.0.2",
-    "@nomiclabs/hardhat-waffle": "^2.0.1",
-    "chai": "^4.3.4",
-    "ethereum-waffle": "^3.4.0",
-    "ethers": "^5.4.6",
-    "hardhat": "^2.6.2"
-  },
-  "dependencies": {
-    "@openzeppelin/contracts": "^4.3.1"
-  }
+    "name": "crypto-tom",
+    "version": "1.0.0",
+    "description": "Crypto Tom Coin",
+    "main": "index.js",
+    "scripts": {
+        "test": "npx hardhat test",
+        "build_air": "npx hardhat run ./scripts/deploy_aircraft_nft.js --network ganache"
+    },
+    "author": "HiepNV",
+    "license": "UNLICENSED",
+    "devDependencies": {
+        "@nomiclabs/hardhat-ethers": "^2.0.2",
+        "@nomiclabs/hardhat-waffle": "^2.0.1",
+        "chai": "^4.3.4",
+        "ethereum-waffle": "^3.4.0",
+        "ethers": "^5.4.6",
+        "hardhat": "^2.6.2"
+    },
+    "dependencies": {
+        "@openzeppelin/contracts": "^4.3.1"
+    }
 }
