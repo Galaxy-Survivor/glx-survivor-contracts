@@ -101,6 +101,25 @@ contract AircraftNFT is Context, AccessControlEnumerable, ERC1155Pausable {
 		emit UpgradeAircraft(to, aircraftId, componentId);
 	}
 
+	function getAircrafts(address account) external view returns (uint256[] memory) {
+		uint256 count;
+		for (uint256 i = MAX_COMPONENT_ID+1; i < currentId; i++) {
+			if (aircraftIdToOwner[i] == account) {
+				count++;
+			}
+		}
+
+		uint256[] memory res = new uint256[](count);
+		uint256 j;
+		for (uint256 i = MAX_COMPONENT_ID+1; i < currentId; i++) {
+			if (aircraftIdToOwner[i] == account) {
+				res[j] = i;
+				j++;
+			}
+		}
+		return res;
+	}
+
 	function pause() public onlyPauser {
 		_pause();
 	}
