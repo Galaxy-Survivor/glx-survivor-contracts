@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
+    <title>Contract Testing</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -36,7 +36,7 @@
     <div class="row">
         <div class="col">
             <label class="form-label">Contract Address</label>
-            <input id="contractAddress" type="text" class="form-control" value="0xE9cd533D12A5BCEA45770BB94984D79D7d5009BA">
+            <input id="contractAddress" type="text" class="form-control" value="0xd3bBA74777b79F281d99A25f89A7C3772B63F3D2">
             <!-- <input id="contractAddress" type="text" class="form-control" value="0x6cB47a3d3d524b9FE5F4A7d6A88AF4a20687Ca93"> -->
             <label>ABI</label>
             <!-- <input id="contractABIUrl" type="url" class="form-control" value="/artifacts/contracts/CryptoTomNFT.sol/CryptoTomNFT.json"> -->
@@ -87,12 +87,13 @@
             enable();
         })
 
-        function enable() {
+        async function enable() {
             window.ethereum.enable();
 
-            ethereum.request({
+            let addr = await ethereum.request({
                 method: 'eth_requestAccounts'
             });
+            console.table(addr)
 
             provider = new ethers.providers.Web3Provider(window.ethereum)
 
@@ -100,7 +101,7 @@
             // send ether and pay to change state within the blockchain.
             // For this, you need the account signer...
             signer = provider.getSigner()
-
+            console.log(signer)
 
         }
 
@@ -126,7 +127,7 @@
                 console.table(abi)
                 $("#funcList").empty();
                 abi.forEach(f => {
-                    console.log(f)
+                    // console.log(f)
                     if (f.name && f.type === 'function')
                         $("#funcList").append(
                             `<li><button class="btn btn-link btn-sm" onclick='callFn("${f.name}")'>${f.name}</button></li>`
