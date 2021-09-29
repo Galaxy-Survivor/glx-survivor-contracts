@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"math/big"
+	"os"
 	"strings"
 
 	NFT "app/nft"
@@ -17,15 +18,15 @@ import (
 )
 
 func main() {
-
-	client, err := ethclient.Dial("wss://rinkeby.infura.io/ws")
+	args := os.Args[1:]
+	client, err := ethclient.Dial(args[0])
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	contractAddress := common.HexToAddress("0x147B8eb97fD247D06C4006D269c90C1908Fb5D54")
+	contractAddress := common.HexToAddress(args[1])
 	query := ethereum.FilterQuery{
-		FromBlock: big.NewInt(2394201),
+		FromBlock: big.NewInt(3),
 		ToBlock:   big.NewInt(2394201),
 		Addresses: []common.Address{
 			contractAddress,
@@ -43,22 +44,26 @@ func main() {
 	}
 
 	for _, vLog := range logs {
-		fmt.Println(vLog.BlockHash.Hex()) // 0x3404b8c050aa0aacd0223e91b5c32fee6400f357764771d0684fa7b3f448f1a8
-		fmt.Println(vLog.BlockNumber)     // 2394201
-		fmt.Println(vLog.TxHash.Hex())    // 0x280201eda63c9ff6f305fcee51d5eb86167fab40ca3108ec784e8652a0e2b1a6
+		fmt.Println("\n\n********************************")
+		fmt.Println("BlockHash", vLog.BlockHash.Hex()) // 0x3404b8c050aa0aacd0223e91b5c32fee6400f357764771d0684fa7b3f448f1a8
+		fmt.Println("BlockNumber", vLog.BlockNumber)   // 2394201
+		fmt.Println("TxHash", vLog.TxHash.Hex())       // 0x280201eda63c9ff6f305fcee51d5eb86167fab40ca3108ec784e8652a0e2b1a6
+		fmt.Println("Data", vLog.Data)                 // 0x280201eda63c9ff6f305fcee51d5eb86167fab40ca3108ec784e8652a0e2b1a6
 
-		// event := struct {
-		// 	Key   [32]byte
-		// 	Value [32]byte
-		// }{}
-		interfaces, err := contractAbi.Unpack("event_MintedAircraft", vLog.Data)
+		var eventRet struct {
+			address common.Address
+			id      *big.Int
+		}
+
+		err := contractAbi.UnpackIntoInterface(&eventRet, "event_MintedAircraft", vLog.Data)
 		if err != nil {
-			log.Fatal(err)
+			fmt.Println(err)
+			continue
 		}
-		for i := range interfaces {
-			fmt.Println((interfaces[i])) // bar
-		}
-		fmt.Println(interfaces) // foo
+		// for i := range interfaces {
+		// 	fmt.Println((interfaces[i])) // bar
+		// }
+		fmt.Printf("Address %v - ID %v\n", eventRet.address.Hash(), eventRet.id) // foo
 		// fmt.Println(string(inter.Value[:])) // bar
 
 		var topics [4]string
