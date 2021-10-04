@@ -1,7 +1,7 @@
 // Code generated - DO NOT EDIT.
 // This file is a generated binding and any manual changes will be lost.
 
-package nft
+package NFT
 
 import (
 	"errors"
@@ -28,113 +28,113 @@ var (
 	_ = event.NewSubscription
 )
 
-// AircraftNFTMetaData contains all meta data concerning the AircraftNFT contract.
-var AircraftNFTMetaData = &bind.MetaData{
+// NFTMetaData contains all meta data concerning the NFT contract.
+var NFTMetaData = &bind.MetaData{
 	ABI: "[{\"inputs\":[{\"internalType\":\"string\",\"name\":\"uri\",\"type\":\"string\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"approved\",\"type\":\"bool\"}],\"name\":\"ApprovalForAll\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Paused\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"previousAdminRole\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"newAdminRole\",\"type\":\"bytes32\"}],\"name\":\"RoleAdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleGranted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256[]\",\"name\":\"ids\",\"type\":\"uint256[]\"},{\"indexed\":false,\"internalType\":\"uint256[]\",\"name\":\"values\",\"type\":\"uint256[]\"}],\"name\":\"TransferBatch\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"TransferSingle\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"URI\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Unpaused\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"aircraftId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"componentId\",\"type\":\"uint256\"}],\"name\":\"UpgradeAircraft\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"aircraftId\",\"type\":\"uint256\"}],\"name\":\"event_MintedAircraft\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"DEFAULT_ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"LUCKY_BOX_ID\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MAX_COMPONENT_ID\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MINTER_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"PAUSER_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"minter\",\"type\":\"address\"}],\"name\":\"addMinter\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"aircraftIdToOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"accounts\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"ids\",\"type\":\"uint256[]\"}],\"name\":\"balanceOfBatch\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"getAircrafts\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleAdmin\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"getRoleMember\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleMemberCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"grantRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"hasRole\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"isApprovedForAll\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"mintAircraft\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"mintComponent\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"mintLuckyBox\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pause\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"paused\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"renounceRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"revokeRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256[]\",\"name\":\"ids\",\"type\":\"uint256[]\"},{\"internalType\":\"uint256[]\",\"name\":\"amounts\",\"type\":\"uint256[]\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"safeBatchTransferFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"safeTransferFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"approved\",\"type\":\"bool\"}],\"name\":\"setApprovalForAll\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"unpause\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"aircraftId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"componentId\",\"type\":\"uint256\"}],\"name\":\"upgrade\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"uri\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
 }
 
-// AircraftNFTABI is the input ABI used to generate the binding from.
-// Deprecated: Use AircraftNFTMetaData.ABI instead.
-var AircraftNFTABI = AircraftNFTMetaData.ABI
+// NFTABI is the input ABI used to generate the binding from.
+// Deprecated: Use NFTMetaData.ABI instead.
+var NFTABI = NFTMetaData.ABI
 
-// AircraftNFT is an auto generated Go binding around an Ethereum contract.
-type AircraftNFT struct {
-	AircraftNFTCaller     // Read-only binding to the contract
-	AircraftNFTTransactor // Write-only binding to the contract
-	AircraftNFTFilterer   // Log filterer for contract events
+// NFT is an auto generated Go binding around an Ethereum contract.
+type NFT struct {
+	NFTCaller     // Read-only binding to the contract
+	NFTTransactor // Write-only binding to the contract
+	NFTFilterer   // Log filterer for contract events
 }
 
-// AircraftNFTCaller is an auto generated read-only Go binding around an Ethereum contract.
-type AircraftNFTCaller struct {
+// NFTCaller is an auto generated read-only Go binding around an Ethereum contract.
+type NFTCaller struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// AircraftNFTTransactor is an auto generated write-only Go binding around an Ethereum contract.
-type AircraftNFTTransactor struct {
+// NFTTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type NFTTransactor struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// AircraftNFTFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
-type AircraftNFTFilterer struct {
+// NFTFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type NFTFilterer struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// AircraftNFTSession is an auto generated Go binding around an Ethereum contract,
+// NFTSession is an auto generated Go binding around an Ethereum contract,
 // with pre-set call and transact options.
-type AircraftNFTSession struct {
-	Contract     *AircraftNFT      // Generic contract binding to set the session for
+type NFTSession struct {
+	Contract     *NFT              // Generic contract binding to set the session for
 	CallOpts     bind.CallOpts     // Call options to use throughout this session
 	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
 }
 
-// AircraftNFTCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// NFTCallerSession is an auto generated read-only Go binding around an Ethereum contract,
 // with pre-set call options.
-type AircraftNFTCallerSession struct {
-	Contract *AircraftNFTCaller // Generic contract caller binding to set the session for
-	CallOpts bind.CallOpts      // Call options to use throughout this session
+type NFTCallerSession struct {
+	Contract *NFTCaller    // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts // Call options to use throughout this session
 }
 
-// AircraftNFTTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// NFTTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
 // with pre-set transact options.
-type AircraftNFTTransactorSession struct {
-	Contract     *AircraftNFTTransactor // Generic contract transactor binding to set the session for
-	TransactOpts bind.TransactOpts      // Transaction auth options to use throughout this session
+type NFTTransactorSession struct {
+	Contract     *NFTTransactor    // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
 }
 
-// AircraftNFTRaw is an auto generated low-level Go binding around an Ethereum contract.
-type AircraftNFTRaw struct {
-	Contract *AircraftNFT // Generic contract binding to access the raw methods on
+// NFTRaw is an auto generated low-level Go binding around an Ethereum contract.
+type NFTRaw struct {
+	Contract *NFT // Generic contract binding to access the raw methods on
 }
 
-// AircraftNFTCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
-type AircraftNFTCallerRaw struct {
-	Contract *AircraftNFTCaller // Generic read-only contract binding to access the raw methods on
+// NFTCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type NFTCallerRaw struct {
+	Contract *NFTCaller // Generic read-only contract binding to access the raw methods on
 }
 
-// AircraftNFTTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
-type AircraftNFTTransactorRaw struct {
-	Contract *AircraftNFTTransactor // Generic write-only contract binding to access the raw methods on
+// NFTTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type NFTTransactorRaw struct {
+	Contract *NFTTransactor // Generic write-only contract binding to access the raw methods on
 }
 
-// NewAircraftNFT creates a new instance of AircraftNFT, bound to a specific deployed contract.
-func NewAircraftNFT(address common.Address, backend bind.ContractBackend) (*AircraftNFT, error) {
-	contract, err := bindAircraftNFT(address, backend, backend, backend)
+// NewNFT creates a new instance of NFT, bound to a specific deployed contract.
+func NewNFT(address common.Address, backend bind.ContractBackend) (*NFT, error) {
+	contract, err := bindNFT(address, backend, backend, backend)
 	if err != nil {
 		return nil, err
 	}
-	return &AircraftNFT{AircraftNFTCaller: AircraftNFTCaller{contract: contract}, AircraftNFTTransactor: AircraftNFTTransactor{contract: contract}, AircraftNFTFilterer: AircraftNFTFilterer{contract: contract}}, nil
+	return &NFT{NFTCaller: NFTCaller{contract: contract}, NFTTransactor: NFTTransactor{contract: contract}, NFTFilterer: NFTFilterer{contract: contract}}, nil
 }
 
-// NewAircraftNFTCaller creates a new read-only instance of AircraftNFT, bound to a specific deployed contract.
-func NewAircraftNFTCaller(address common.Address, caller bind.ContractCaller) (*AircraftNFTCaller, error) {
-	contract, err := bindAircraftNFT(address, caller, nil, nil)
+// NewNFTCaller creates a new read-only instance of NFT, bound to a specific deployed contract.
+func NewNFTCaller(address common.Address, caller bind.ContractCaller) (*NFTCaller, error) {
+	contract, err := bindNFT(address, caller, nil, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &AircraftNFTCaller{contract: contract}, nil
+	return &NFTCaller{contract: contract}, nil
 }
 
-// NewAircraftNFTTransactor creates a new write-only instance of AircraftNFT, bound to a specific deployed contract.
-func NewAircraftNFTTransactor(address common.Address, transactor bind.ContractTransactor) (*AircraftNFTTransactor, error) {
-	contract, err := bindAircraftNFT(address, nil, transactor, nil)
+// NewNFTTransactor creates a new write-only instance of NFT, bound to a specific deployed contract.
+func NewNFTTransactor(address common.Address, transactor bind.ContractTransactor) (*NFTTransactor, error) {
+	contract, err := bindNFT(address, nil, transactor, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &AircraftNFTTransactor{contract: contract}, nil
+	return &NFTTransactor{contract: contract}, nil
 }
 
-// NewAircraftNFTFilterer creates a new log filterer instance of AircraftNFT, bound to a specific deployed contract.
-func NewAircraftNFTFilterer(address common.Address, filterer bind.ContractFilterer) (*AircraftNFTFilterer, error) {
-	contract, err := bindAircraftNFT(address, nil, nil, filterer)
+// NewNFTFilterer creates a new log filterer instance of NFT, bound to a specific deployed contract.
+func NewNFTFilterer(address common.Address, filterer bind.ContractFilterer) (*NFTFilterer, error) {
+	contract, err := bindNFT(address, nil, nil, filterer)
 	if err != nil {
 		return nil, err
 	}
-	return &AircraftNFTFilterer{contract: contract}, nil
+	return &NFTFilterer{contract: contract}, nil
 }
 
-// bindAircraftNFT binds a generic wrapper to an already deployed contract.
-func bindAircraftNFT(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
-	parsed, err := abi.JSON(strings.NewReader(AircraftNFTABI))
+// bindNFT binds a generic wrapper to an already deployed contract.
+func bindNFT(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := abi.JSON(strings.NewReader(NFTABI))
 	if err != nil {
 		return nil, err
 	}
@@ -145,46 +145,46 @@ func bindAircraftNFT(address common.Address, caller bind.ContractCaller, transac
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_AircraftNFT *AircraftNFTRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
-	return _AircraftNFT.Contract.AircraftNFTCaller.contract.Call(opts, result, method, params...)
+func (_NFT *NFTRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _NFT.Contract.NFTCaller.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_AircraftNFT *AircraftNFTRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.AircraftNFTTransactor.contract.Transfer(opts)
+func (_NFT *NFTRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _NFT.Contract.NFTTransactor.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_AircraftNFT *AircraftNFTRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.AircraftNFTTransactor.contract.Transact(opts, method, params...)
+func (_NFT *NFTRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _NFT.Contract.NFTTransactor.contract.Transact(opts, method, params...)
 }
 
 // Call invokes the (constant) contract method with params as input values and
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_AircraftNFT *AircraftNFTCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
-	return _AircraftNFT.Contract.contract.Call(opts, result, method, params...)
+func (_NFT *NFTCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _NFT.Contract.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_AircraftNFT *AircraftNFTTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.contract.Transfer(opts)
+func (_NFT *NFTTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _NFT.Contract.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_AircraftNFT *AircraftNFTTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.contract.Transact(opts, method, params...)
+func (_NFT *NFTTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _NFT.Contract.contract.Transact(opts, method, params...)
 }
 
 // DEFAULTADMINROLE is a free data retrieval call binding the contract method 0xa217fddf.
 //
 // Solidity: function DEFAULT_ADMIN_ROLE() view returns(bytes32)
-func (_AircraftNFT *AircraftNFTCaller) DEFAULTADMINROLE(opts *bind.CallOpts) ([32]byte, error) {
+func (_NFT *NFTCaller) DEFAULTADMINROLE(opts *bind.CallOpts) ([32]byte, error) {
 	var out []interface{}
-	err := _AircraftNFT.contract.Call(opts, &out, "DEFAULT_ADMIN_ROLE")
+	err := _NFT.contract.Call(opts, &out, "DEFAULT_ADMIN_ROLE")
 
 	if err != nil {
 		return *new([32]byte), err
@@ -199,23 +199,23 @@ func (_AircraftNFT *AircraftNFTCaller) DEFAULTADMINROLE(opts *bind.CallOpts) ([3
 // DEFAULTADMINROLE is a free data retrieval call binding the contract method 0xa217fddf.
 //
 // Solidity: function DEFAULT_ADMIN_ROLE() view returns(bytes32)
-func (_AircraftNFT *AircraftNFTSession) DEFAULTADMINROLE() ([32]byte, error) {
-	return _AircraftNFT.Contract.DEFAULTADMINROLE(&_AircraftNFT.CallOpts)
+func (_NFT *NFTSession) DEFAULTADMINROLE() ([32]byte, error) {
+	return _NFT.Contract.DEFAULTADMINROLE(&_NFT.CallOpts)
 }
 
 // DEFAULTADMINROLE is a free data retrieval call binding the contract method 0xa217fddf.
 //
 // Solidity: function DEFAULT_ADMIN_ROLE() view returns(bytes32)
-func (_AircraftNFT *AircraftNFTCallerSession) DEFAULTADMINROLE() ([32]byte, error) {
-	return _AircraftNFT.Contract.DEFAULTADMINROLE(&_AircraftNFT.CallOpts)
+func (_NFT *NFTCallerSession) DEFAULTADMINROLE() ([32]byte, error) {
+	return _NFT.Contract.DEFAULTADMINROLE(&_NFT.CallOpts)
 }
 
 // LUCKYBOXID is a free data retrieval call binding the contract method 0xd2bcd2dd.
 //
 // Solidity: function LUCKY_BOX_ID() view returns(uint256)
-func (_AircraftNFT *AircraftNFTCaller) LUCKYBOXID(opts *bind.CallOpts) (*big.Int, error) {
+func (_NFT *NFTCaller) LUCKYBOXID(opts *bind.CallOpts) (*big.Int, error) {
 	var out []interface{}
-	err := _AircraftNFT.contract.Call(opts, &out, "LUCKY_BOX_ID")
+	err := _NFT.contract.Call(opts, &out, "LUCKY_BOX_ID")
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -230,23 +230,23 @@ func (_AircraftNFT *AircraftNFTCaller) LUCKYBOXID(opts *bind.CallOpts) (*big.Int
 // LUCKYBOXID is a free data retrieval call binding the contract method 0xd2bcd2dd.
 //
 // Solidity: function LUCKY_BOX_ID() view returns(uint256)
-func (_AircraftNFT *AircraftNFTSession) LUCKYBOXID() (*big.Int, error) {
-	return _AircraftNFT.Contract.LUCKYBOXID(&_AircraftNFT.CallOpts)
+func (_NFT *NFTSession) LUCKYBOXID() (*big.Int, error) {
+	return _NFT.Contract.LUCKYBOXID(&_NFT.CallOpts)
 }
 
 // LUCKYBOXID is a free data retrieval call binding the contract method 0xd2bcd2dd.
 //
 // Solidity: function LUCKY_BOX_ID() view returns(uint256)
-func (_AircraftNFT *AircraftNFTCallerSession) LUCKYBOXID() (*big.Int, error) {
-	return _AircraftNFT.Contract.LUCKYBOXID(&_AircraftNFT.CallOpts)
+func (_NFT *NFTCallerSession) LUCKYBOXID() (*big.Int, error) {
+	return _NFT.Contract.LUCKYBOXID(&_NFT.CallOpts)
 }
 
 // MAXCOMPONENTID is a free data retrieval call binding the contract method 0x6320ccfd.
 //
 // Solidity: function MAX_COMPONENT_ID() view returns(uint256)
-func (_AircraftNFT *AircraftNFTCaller) MAXCOMPONENTID(opts *bind.CallOpts) (*big.Int, error) {
+func (_NFT *NFTCaller) MAXCOMPONENTID(opts *bind.CallOpts) (*big.Int, error) {
 	var out []interface{}
-	err := _AircraftNFT.contract.Call(opts, &out, "MAX_COMPONENT_ID")
+	err := _NFT.contract.Call(opts, &out, "MAX_COMPONENT_ID")
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -261,23 +261,23 @@ func (_AircraftNFT *AircraftNFTCaller) MAXCOMPONENTID(opts *bind.CallOpts) (*big
 // MAXCOMPONENTID is a free data retrieval call binding the contract method 0x6320ccfd.
 //
 // Solidity: function MAX_COMPONENT_ID() view returns(uint256)
-func (_AircraftNFT *AircraftNFTSession) MAXCOMPONENTID() (*big.Int, error) {
-	return _AircraftNFT.Contract.MAXCOMPONENTID(&_AircraftNFT.CallOpts)
+func (_NFT *NFTSession) MAXCOMPONENTID() (*big.Int, error) {
+	return _NFT.Contract.MAXCOMPONENTID(&_NFT.CallOpts)
 }
 
 // MAXCOMPONENTID is a free data retrieval call binding the contract method 0x6320ccfd.
 //
 // Solidity: function MAX_COMPONENT_ID() view returns(uint256)
-func (_AircraftNFT *AircraftNFTCallerSession) MAXCOMPONENTID() (*big.Int, error) {
-	return _AircraftNFT.Contract.MAXCOMPONENTID(&_AircraftNFT.CallOpts)
+func (_NFT *NFTCallerSession) MAXCOMPONENTID() (*big.Int, error) {
+	return _NFT.Contract.MAXCOMPONENTID(&_NFT.CallOpts)
 }
 
 // MINTERROLE is a free data retrieval call binding the contract method 0xd5391393.
 //
 // Solidity: function MINTER_ROLE() view returns(bytes32)
-func (_AircraftNFT *AircraftNFTCaller) MINTERROLE(opts *bind.CallOpts) ([32]byte, error) {
+func (_NFT *NFTCaller) MINTERROLE(opts *bind.CallOpts) ([32]byte, error) {
 	var out []interface{}
-	err := _AircraftNFT.contract.Call(opts, &out, "MINTER_ROLE")
+	err := _NFT.contract.Call(opts, &out, "MINTER_ROLE")
 
 	if err != nil {
 		return *new([32]byte), err
@@ -292,23 +292,23 @@ func (_AircraftNFT *AircraftNFTCaller) MINTERROLE(opts *bind.CallOpts) ([32]byte
 // MINTERROLE is a free data retrieval call binding the contract method 0xd5391393.
 //
 // Solidity: function MINTER_ROLE() view returns(bytes32)
-func (_AircraftNFT *AircraftNFTSession) MINTERROLE() ([32]byte, error) {
-	return _AircraftNFT.Contract.MINTERROLE(&_AircraftNFT.CallOpts)
+func (_NFT *NFTSession) MINTERROLE() ([32]byte, error) {
+	return _NFT.Contract.MINTERROLE(&_NFT.CallOpts)
 }
 
 // MINTERROLE is a free data retrieval call binding the contract method 0xd5391393.
 //
 // Solidity: function MINTER_ROLE() view returns(bytes32)
-func (_AircraftNFT *AircraftNFTCallerSession) MINTERROLE() ([32]byte, error) {
-	return _AircraftNFT.Contract.MINTERROLE(&_AircraftNFT.CallOpts)
+func (_NFT *NFTCallerSession) MINTERROLE() ([32]byte, error) {
+	return _NFT.Contract.MINTERROLE(&_NFT.CallOpts)
 }
 
 // PAUSERROLE is a free data retrieval call binding the contract method 0xe63ab1e9.
 //
 // Solidity: function PAUSER_ROLE() view returns(bytes32)
-func (_AircraftNFT *AircraftNFTCaller) PAUSERROLE(opts *bind.CallOpts) ([32]byte, error) {
+func (_NFT *NFTCaller) PAUSERROLE(opts *bind.CallOpts) ([32]byte, error) {
 	var out []interface{}
-	err := _AircraftNFT.contract.Call(opts, &out, "PAUSER_ROLE")
+	err := _NFT.contract.Call(opts, &out, "PAUSER_ROLE")
 
 	if err != nil {
 		return *new([32]byte), err
@@ -323,23 +323,23 @@ func (_AircraftNFT *AircraftNFTCaller) PAUSERROLE(opts *bind.CallOpts) ([32]byte
 // PAUSERROLE is a free data retrieval call binding the contract method 0xe63ab1e9.
 //
 // Solidity: function PAUSER_ROLE() view returns(bytes32)
-func (_AircraftNFT *AircraftNFTSession) PAUSERROLE() ([32]byte, error) {
-	return _AircraftNFT.Contract.PAUSERROLE(&_AircraftNFT.CallOpts)
+func (_NFT *NFTSession) PAUSERROLE() ([32]byte, error) {
+	return _NFT.Contract.PAUSERROLE(&_NFT.CallOpts)
 }
 
 // PAUSERROLE is a free data retrieval call binding the contract method 0xe63ab1e9.
 //
 // Solidity: function PAUSER_ROLE() view returns(bytes32)
-func (_AircraftNFT *AircraftNFTCallerSession) PAUSERROLE() ([32]byte, error) {
-	return _AircraftNFT.Contract.PAUSERROLE(&_AircraftNFT.CallOpts)
+func (_NFT *NFTCallerSession) PAUSERROLE() ([32]byte, error) {
+	return _NFT.Contract.PAUSERROLE(&_NFT.CallOpts)
 }
 
 // AircraftIdToOwner is a free data retrieval call binding the contract method 0xd2411f57.
 //
 // Solidity: function aircraftIdToOwner(uint256 ) view returns(address)
-func (_AircraftNFT *AircraftNFTCaller) AircraftIdToOwner(opts *bind.CallOpts, arg0 *big.Int) (common.Address, error) {
+func (_NFT *NFTCaller) AircraftIdToOwner(opts *bind.CallOpts, arg0 *big.Int) (common.Address, error) {
 	var out []interface{}
-	err := _AircraftNFT.contract.Call(opts, &out, "aircraftIdToOwner", arg0)
+	err := _NFT.contract.Call(opts, &out, "aircraftIdToOwner", arg0)
 
 	if err != nil {
 		return *new(common.Address), err
@@ -354,23 +354,23 @@ func (_AircraftNFT *AircraftNFTCaller) AircraftIdToOwner(opts *bind.CallOpts, ar
 // AircraftIdToOwner is a free data retrieval call binding the contract method 0xd2411f57.
 //
 // Solidity: function aircraftIdToOwner(uint256 ) view returns(address)
-func (_AircraftNFT *AircraftNFTSession) AircraftIdToOwner(arg0 *big.Int) (common.Address, error) {
-	return _AircraftNFT.Contract.AircraftIdToOwner(&_AircraftNFT.CallOpts, arg0)
+func (_NFT *NFTSession) AircraftIdToOwner(arg0 *big.Int) (common.Address, error) {
+	return _NFT.Contract.AircraftIdToOwner(&_NFT.CallOpts, arg0)
 }
 
 // AircraftIdToOwner is a free data retrieval call binding the contract method 0xd2411f57.
 //
 // Solidity: function aircraftIdToOwner(uint256 ) view returns(address)
-func (_AircraftNFT *AircraftNFTCallerSession) AircraftIdToOwner(arg0 *big.Int) (common.Address, error) {
-	return _AircraftNFT.Contract.AircraftIdToOwner(&_AircraftNFT.CallOpts, arg0)
+func (_NFT *NFTCallerSession) AircraftIdToOwner(arg0 *big.Int) (common.Address, error) {
+	return _NFT.Contract.AircraftIdToOwner(&_NFT.CallOpts, arg0)
 }
 
 // BalanceOf is a free data retrieval call binding the contract method 0x00fdd58e.
 //
 // Solidity: function balanceOf(address account, uint256 id) view returns(uint256)
-func (_AircraftNFT *AircraftNFTCaller) BalanceOf(opts *bind.CallOpts, account common.Address, id *big.Int) (*big.Int, error) {
+func (_NFT *NFTCaller) BalanceOf(opts *bind.CallOpts, account common.Address, id *big.Int) (*big.Int, error) {
 	var out []interface{}
-	err := _AircraftNFT.contract.Call(opts, &out, "balanceOf", account, id)
+	err := _NFT.contract.Call(opts, &out, "balanceOf", account, id)
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -385,23 +385,23 @@ func (_AircraftNFT *AircraftNFTCaller) BalanceOf(opts *bind.CallOpts, account co
 // BalanceOf is a free data retrieval call binding the contract method 0x00fdd58e.
 //
 // Solidity: function balanceOf(address account, uint256 id) view returns(uint256)
-func (_AircraftNFT *AircraftNFTSession) BalanceOf(account common.Address, id *big.Int) (*big.Int, error) {
-	return _AircraftNFT.Contract.BalanceOf(&_AircraftNFT.CallOpts, account, id)
+func (_NFT *NFTSession) BalanceOf(account common.Address, id *big.Int) (*big.Int, error) {
+	return _NFT.Contract.BalanceOf(&_NFT.CallOpts, account, id)
 }
 
 // BalanceOf is a free data retrieval call binding the contract method 0x00fdd58e.
 //
 // Solidity: function balanceOf(address account, uint256 id) view returns(uint256)
-func (_AircraftNFT *AircraftNFTCallerSession) BalanceOf(account common.Address, id *big.Int) (*big.Int, error) {
-	return _AircraftNFT.Contract.BalanceOf(&_AircraftNFT.CallOpts, account, id)
+func (_NFT *NFTCallerSession) BalanceOf(account common.Address, id *big.Int) (*big.Int, error) {
+	return _NFT.Contract.BalanceOf(&_NFT.CallOpts, account, id)
 }
 
 // BalanceOfBatch is a free data retrieval call binding the contract method 0x4e1273f4.
 //
 // Solidity: function balanceOfBatch(address[] accounts, uint256[] ids) view returns(uint256[])
-func (_AircraftNFT *AircraftNFTCaller) BalanceOfBatch(opts *bind.CallOpts, accounts []common.Address, ids []*big.Int) ([]*big.Int, error) {
+func (_NFT *NFTCaller) BalanceOfBatch(opts *bind.CallOpts, accounts []common.Address, ids []*big.Int) ([]*big.Int, error) {
 	var out []interface{}
-	err := _AircraftNFT.contract.Call(opts, &out, "balanceOfBatch", accounts, ids)
+	err := _NFT.contract.Call(opts, &out, "balanceOfBatch", accounts, ids)
 
 	if err != nil {
 		return *new([]*big.Int), err
@@ -416,23 +416,23 @@ func (_AircraftNFT *AircraftNFTCaller) BalanceOfBatch(opts *bind.CallOpts, accou
 // BalanceOfBatch is a free data retrieval call binding the contract method 0x4e1273f4.
 //
 // Solidity: function balanceOfBatch(address[] accounts, uint256[] ids) view returns(uint256[])
-func (_AircraftNFT *AircraftNFTSession) BalanceOfBatch(accounts []common.Address, ids []*big.Int) ([]*big.Int, error) {
-	return _AircraftNFT.Contract.BalanceOfBatch(&_AircraftNFT.CallOpts, accounts, ids)
+func (_NFT *NFTSession) BalanceOfBatch(accounts []common.Address, ids []*big.Int) ([]*big.Int, error) {
+	return _NFT.Contract.BalanceOfBatch(&_NFT.CallOpts, accounts, ids)
 }
 
 // BalanceOfBatch is a free data retrieval call binding the contract method 0x4e1273f4.
 //
 // Solidity: function balanceOfBatch(address[] accounts, uint256[] ids) view returns(uint256[])
-func (_AircraftNFT *AircraftNFTCallerSession) BalanceOfBatch(accounts []common.Address, ids []*big.Int) ([]*big.Int, error) {
-	return _AircraftNFT.Contract.BalanceOfBatch(&_AircraftNFT.CallOpts, accounts, ids)
+func (_NFT *NFTCallerSession) BalanceOfBatch(accounts []common.Address, ids []*big.Int) ([]*big.Int, error) {
+	return _NFT.Contract.BalanceOfBatch(&_NFT.CallOpts, accounts, ids)
 }
 
 // GetAircrafts is a free data retrieval call binding the contract method 0xd77fea6e.
 //
 // Solidity: function getAircrafts(address account) view returns(uint256[])
-func (_AircraftNFT *AircraftNFTCaller) GetAircrafts(opts *bind.CallOpts, account common.Address) ([]*big.Int, error) {
+func (_NFT *NFTCaller) GetAircrafts(opts *bind.CallOpts, account common.Address) ([]*big.Int, error) {
 	var out []interface{}
-	err := _AircraftNFT.contract.Call(opts, &out, "getAircrafts", account)
+	err := _NFT.contract.Call(opts, &out, "getAircrafts", account)
 
 	if err != nil {
 		return *new([]*big.Int), err
@@ -447,23 +447,23 @@ func (_AircraftNFT *AircraftNFTCaller) GetAircrafts(opts *bind.CallOpts, account
 // GetAircrafts is a free data retrieval call binding the contract method 0xd77fea6e.
 //
 // Solidity: function getAircrafts(address account) view returns(uint256[])
-func (_AircraftNFT *AircraftNFTSession) GetAircrafts(account common.Address) ([]*big.Int, error) {
-	return _AircraftNFT.Contract.GetAircrafts(&_AircraftNFT.CallOpts, account)
+func (_NFT *NFTSession) GetAircrafts(account common.Address) ([]*big.Int, error) {
+	return _NFT.Contract.GetAircrafts(&_NFT.CallOpts, account)
 }
 
 // GetAircrafts is a free data retrieval call binding the contract method 0xd77fea6e.
 //
 // Solidity: function getAircrafts(address account) view returns(uint256[])
-func (_AircraftNFT *AircraftNFTCallerSession) GetAircrafts(account common.Address) ([]*big.Int, error) {
-	return _AircraftNFT.Contract.GetAircrafts(&_AircraftNFT.CallOpts, account)
+func (_NFT *NFTCallerSession) GetAircrafts(account common.Address) ([]*big.Int, error) {
+	return _NFT.Contract.GetAircrafts(&_NFT.CallOpts, account)
 }
 
 // GetRoleAdmin is a free data retrieval call binding the contract method 0x248a9ca3.
 //
 // Solidity: function getRoleAdmin(bytes32 role) view returns(bytes32)
-func (_AircraftNFT *AircraftNFTCaller) GetRoleAdmin(opts *bind.CallOpts, role [32]byte) ([32]byte, error) {
+func (_NFT *NFTCaller) GetRoleAdmin(opts *bind.CallOpts, role [32]byte) ([32]byte, error) {
 	var out []interface{}
-	err := _AircraftNFT.contract.Call(opts, &out, "getRoleAdmin", role)
+	err := _NFT.contract.Call(opts, &out, "getRoleAdmin", role)
 
 	if err != nil {
 		return *new([32]byte), err
@@ -478,23 +478,23 @@ func (_AircraftNFT *AircraftNFTCaller) GetRoleAdmin(opts *bind.CallOpts, role [3
 // GetRoleAdmin is a free data retrieval call binding the contract method 0x248a9ca3.
 //
 // Solidity: function getRoleAdmin(bytes32 role) view returns(bytes32)
-func (_AircraftNFT *AircraftNFTSession) GetRoleAdmin(role [32]byte) ([32]byte, error) {
-	return _AircraftNFT.Contract.GetRoleAdmin(&_AircraftNFT.CallOpts, role)
+func (_NFT *NFTSession) GetRoleAdmin(role [32]byte) ([32]byte, error) {
+	return _NFT.Contract.GetRoleAdmin(&_NFT.CallOpts, role)
 }
 
 // GetRoleAdmin is a free data retrieval call binding the contract method 0x248a9ca3.
 //
 // Solidity: function getRoleAdmin(bytes32 role) view returns(bytes32)
-func (_AircraftNFT *AircraftNFTCallerSession) GetRoleAdmin(role [32]byte) ([32]byte, error) {
-	return _AircraftNFT.Contract.GetRoleAdmin(&_AircraftNFT.CallOpts, role)
+func (_NFT *NFTCallerSession) GetRoleAdmin(role [32]byte) ([32]byte, error) {
+	return _NFT.Contract.GetRoleAdmin(&_NFT.CallOpts, role)
 }
 
 // GetRoleMember is a free data retrieval call binding the contract method 0x9010d07c.
 //
 // Solidity: function getRoleMember(bytes32 role, uint256 index) view returns(address)
-func (_AircraftNFT *AircraftNFTCaller) GetRoleMember(opts *bind.CallOpts, role [32]byte, index *big.Int) (common.Address, error) {
+func (_NFT *NFTCaller) GetRoleMember(opts *bind.CallOpts, role [32]byte, index *big.Int) (common.Address, error) {
 	var out []interface{}
-	err := _AircraftNFT.contract.Call(opts, &out, "getRoleMember", role, index)
+	err := _NFT.contract.Call(opts, &out, "getRoleMember", role, index)
 
 	if err != nil {
 		return *new(common.Address), err
@@ -509,23 +509,23 @@ func (_AircraftNFT *AircraftNFTCaller) GetRoleMember(opts *bind.CallOpts, role [
 // GetRoleMember is a free data retrieval call binding the contract method 0x9010d07c.
 //
 // Solidity: function getRoleMember(bytes32 role, uint256 index) view returns(address)
-func (_AircraftNFT *AircraftNFTSession) GetRoleMember(role [32]byte, index *big.Int) (common.Address, error) {
-	return _AircraftNFT.Contract.GetRoleMember(&_AircraftNFT.CallOpts, role, index)
+func (_NFT *NFTSession) GetRoleMember(role [32]byte, index *big.Int) (common.Address, error) {
+	return _NFT.Contract.GetRoleMember(&_NFT.CallOpts, role, index)
 }
 
 // GetRoleMember is a free data retrieval call binding the contract method 0x9010d07c.
 //
 // Solidity: function getRoleMember(bytes32 role, uint256 index) view returns(address)
-func (_AircraftNFT *AircraftNFTCallerSession) GetRoleMember(role [32]byte, index *big.Int) (common.Address, error) {
-	return _AircraftNFT.Contract.GetRoleMember(&_AircraftNFT.CallOpts, role, index)
+func (_NFT *NFTCallerSession) GetRoleMember(role [32]byte, index *big.Int) (common.Address, error) {
+	return _NFT.Contract.GetRoleMember(&_NFT.CallOpts, role, index)
 }
 
 // GetRoleMemberCount is a free data retrieval call binding the contract method 0xca15c873.
 //
 // Solidity: function getRoleMemberCount(bytes32 role) view returns(uint256)
-func (_AircraftNFT *AircraftNFTCaller) GetRoleMemberCount(opts *bind.CallOpts, role [32]byte) (*big.Int, error) {
+func (_NFT *NFTCaller) GetRoleMemberCount(opts *bind.CallOpts, role [32]byte) (*big.Int, error) {
 	var out []interface{}
-	err := _AircraftNFT.contract.Call(opts, &out, "getRoleMemberCount", role)
+	err := _NFT.contract.Call(opts, &out, "getRoleMemberCount", role)
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -540,23 +540,23 @@ func (_AircraftNFT *AircraftNFTCaller) GetRoleMemberCount(opts *bind.CallOpts, r
 // GetRoleMemberCount is a free data retrieval call binding the contract method 0xca15c873.
 //
 // Solidity: function getRoleMemberCount(bytes32 role) view returns(uint256)
-func (_AircraftNFT *AircraftNFTSession) GetRoleMemberCount(role [32]byte) (*big.Int, error) {
-	return _AircraftNFT.Contract.GetRoleMemberCount(&_AircraftNFT.CallOpts, role)
+func (_NFT *NFTSession) GetRoleMemberCount(role [32]byte) (*big.Int, error) {
+	return _NFT.Contract.GetRoleMemberCount(&_NFT.CallOpts, role)
 }
 
 // GetRoleMemberCount is a free data retrieval call binding the contract method 0xca15c873.
 //
 // Solidity: function getRoleMemberCount(bytes32 role) view returns(uint256)
-func (_AircraftNFT *AircraftNFTCallerSession) GetRoleMemberCount(role [32]byte) (*big.Int, error) {
-	return _AircraftNFT.Contract.GetRoleMemberCount(&_AircraftNFT.CallOpts, role)
+func (_NFT *NFTCallerSession) GetRoleMemberCount(role [32]byte) (*big.Int, error) {
+	return _NFT.Contract.GetRoleMemberCount(&_NFT.CallOpts, role)
 }
 
 // HasRole is a free data retrieval call binding the contract method 0x91d14854.
 //
 // Solidity: function hasRole(bytes32 role, address account) view returns(bool)
-func (_AircraftNFT *AircraftNFTCaller) HasRole(opts *bind.CallOpts, role [32]byte, account common.Address) (bool, error) {
+func (_NFT *NFTCaller) HasRole(opts *bind.CallOpts, role [32]byte, account common.Address) (bool, error) {
 	var out []interface{}
-	err := _AircraftNFT.contract.Call(opts, &out, "hasRole", role, account)
+	err := _NFT.contract.Call(opts, &out, "hasRole", role, account)
 
 	if err != nil {
 		return *new(bool), err
@@ -571,23 +571,23 @@ func (_AircraftNFT *AircraftNFTCaller) HasRole(opts *bind.CallOpts, role [32]byt
 // HasRole is a free data retrieval call binding the contract method 0x91d14854.
 //
 // Solidity: function hasRole(bytes32 role, address account) view returns(bool)
-func (_AircraftNFT *AircraftNFTSession) HasRole(role [32]byte, account common.Address) (bool, error) {
-	return _AircraftNFT.Contract.HasRole(&_AircraftNFT.CallOpts, role, account)
+func (_NFT *NFTSession) HasRole(role [32]byte, account common.Address) (bool, error) {
+	return _NFT.Contract.HasRole(&_NFT.CallOpts, role, account)
 }
 
 // HasRole is a free data retrieval call binding the contract method 0x91d14854.
 //
 // Solidity: function hasRole(bytes32 role, address account) view returns(bool)
-func (_AircraftNFT *AircraftNFTCallerSession) HasRole(role [32]byte, account common.Address) (bool, error) {
-	return _AircraftNFT.Contract.HasRole(&_AircraftNFT.CallOpts, role, account)
+func (_NFT *NFTCallerSession) HasRole(role [32]byte, account common.Address) (bool, error) {
+	return _NFT.Contract.HasRole(&_NFT.CallOpts, role, account)
 }
 
 // IsApprovedForAll is a free data retrieval call binding the contract method 0xe985e9c5.
 //
 // Solidity: function isApprovedForAll(address account, address operator) view returns(bool)
-func (_AircraftNFT *AircraftNFTCaller) IsApprovedForAll(opts *bind.CallOpts, account common.Address, operator common.Address) (bool, error) {
+func (_NFT *NFTCaller) IsApprovedForAll(opts *bind.CallOpts, account common.Address, operator common.Address) (bool, error) {
 	var out []interface{}
-	err := _AircraftNFT.contract.Call(opts, &out, "isApprovedForAll", account, operator)
+	err := _NFT.contract.Call(opts, &out, "isApprovedForAll", account, operator)
 
 	if err != nil {
 		return *new(bool), err
@@ -602,23 +602,23 @@ func (_AircraftNFT *AircraftNFTCaller) IsApprovedForAll(opts *bind.CallOpts, acc
 // IsApprovedForAll is a free data retrieval call binding the contract method 0xe985e9c5.
 //
 // Solidity: function isApprovedForAll(address account, address operator) view returns(bool)
-func (_AircraftNFT *AircraftNFTSession) IsApprovedForAll(account common.Address, operator common.Address) (bool, error) {
-	return _AircraftNFT.Contract.IsApprovedForAll(&_AircraftNFT.CallOpts, account, operator)
+func (_NFT *NFTSession) IsApprovedForAll(account common.Address, operator common.Address) (bool, error) {
+	return _NFT.Contract.IsApprovedForAll(&_NFT.CallOpts, account, operator)
 }
 
 // IsApprovedForAll is a free data retrieval call binding the contract method 0xe985e9c5.
 //
 // Solidity: function isApprovedForAll(address account, address operator) view returns(bool)
-func (_AircraftNFT *AircraftNFTCallerSession) IsApprovedForAll(account common.Address, operator common.Address) (bool, error) {
-	return _AircraftNFT.Contract.IsApprovedForAll(&_AircraftNFT.CallOpts, account, operator)
+func (_NFT *NFTCallerSession) IsApprovedForAll(account common.Address, operator common.Address) (bool, error) {
+	return _NFT.Contract.IsApprovedForAll(&_NFT.CallOpts, account, operator)
 }
 
 // Paused is a free data retrieval call binding the contract method 0x5c975abb.
 //
 // Solidity: function paused() view returns(bool)
-func (_AircraftNFT *AircraftNFTCaller) Paused(opts *bind.CallOpts) (bool, error) {
+func (_NFT *NFTCaller) Paused(opts *bind.CallOpts) (bool, error) {
 	var out []interface{}
-	err := _AircraftNFT.contract.Call(opts, &out, "paused")
+	err := _NFT.contract.Call(opts, &out, "paused")
 
 	if err != nil {
 		return *new(bool), err
@@ -633,23 +633,23 @@ func (_AircraftNFT *AircraftNFTCaller) Paused(opts *bind.CallOpts) (bool, error)
 // Paused is a free data retrieval call binding the contract method 0x5c975abb.
 //
 // Solidity: function paused() view returns(bool)
-func (_AircraftNFT *AircraftNFTSession) Paused() (bool, error) {
-	return _AircraftNFT.Contract.Paused(&_AircraftNFT.CallOpts)
+func (_NFT *NFTSession) Paused() (bool, error) {
+	return _NFT.Contract.Paused(&_NFT.CallOpts)
 }
 
 // Paused is a free data retrieval call binding the contract method 0x5c975abb.
 //
 // Solidity: function paused() view returns(bool)
-func (_AircraftNFT *AircraftNFTCallerSession) Paused() (bool, error) {
-	return _AircraftNFT.Contract.Paused(&_AircraftNFT.CallOpts)
+func (_NFT *NFTCallerSession) Paused() (bool, error) {
+	return _NFT.Contract.Paused(&_NFT.CallOpts)
 }
 
 // SupportsInterface is a free data retrieval call binding the contract method 0x01ffc9a7.
 //
 // Solidity: function supportsInterface(bytes4 interfaceId) view returns(bool)
-func (_AircraftNFT *AircraftNFTCaller) SupportsInterface(opts *bind.CallOpts, interfaceId [4]byte) (bool, error) {
+func (_NFT *NFTCaller) SupportsInterface(opts *bind.CallOpts, interfaceId [4]byte) (bool, error) {
 	var out []interface{}
-	err := _AircraftNFT.contract.Call(opts, &out, "supportsInterface", interfaceId)
+	err := _NFT.contract.Call(opts, &out, "supportsInterface", interfaceId)
 
 	if err != nil {
 		return *new(bool), err
@@ -664,23 +664,23 @@ func (_AircraftNFT *AircraftNFTCaller) SupportsInterface(opts *bind.CallOpts, in
 // SupportsInterface is a free data retrieval call binding the contract method 0x01ffc9a7.
 //
 // Solidity: function supportsInterface(bytes4 interfaceId) view returns(bool)
-func (_AircraftNFT *AircraftNFTSession) SupportsInterface(interfaceId [4]byte) (bool, error) {
-	return _AircraftNFT.Contract.SupportsInterface(&_AircraftNFT.CallOpts, interfaceId)
+func (_NFT *NFTSession) SupportsInterface(interfaceId [4]byte) (bool, error) {
+	return _NFT.Contract.SupportsInterface(&_NFT.CallOpts, interfaceId)
 }
 
 // SupportsInterface is a free data retrieval call binding the contract method 0x01ffc9a7.
 //
 // Solidity: function supportsInterface(bytes4 interfaceId) view returns(bool)
-func (_AircraftNFT *AircraftNFTCallerSession) SupportsInterface(interfaceId [4]byte) (bool, error) {
-	return _AircraftNFT.Contract.SupportsInterface(&_AircraftNFT.CallOpts, interfaceId)
+func (_NFT *NFTCallerSession) SupportsInterface(interfaceId [4]byte) (bool, error) {
+	return _NFT.Contract.SupportsInterface(&_NFT.CallOpts, interfaceId)
 }
 
 // Uri is a free data retrieval call binding the contract method 0x0e89341c.
 //
 // Solidity: function uri(uint256 ) view returns(string)
-func (_AircraftNFT *AircraftNFTCaller) Uri(opts *bind.CallOpts, arg0 *big.Int) (string, error) {
+func (_NFT *NFTCaller) Uri(opts *bind.CallOpts, arg0 *big.Int) (string, error) {
 	var out []interface{}
-	err := _AircraftNFT.contract.Call(opts, &out, "uri", arg0)
+	err := _NFT.contract.Call(opts, &out, "uri", arg0)
 
 	if err != nil {
 		return *new(string), err
@@ -695,293 +695,293 @@ func (_AircraftNFT *AircraftNFTCaller) Uri(opts *bind.CallOpts, arg0 *big.Int) (
 // Uri is a free data retrieval call binding the contract method 0x0e89341c.
 //
 // Solidity: function uri(uint256 ) view returns(string)
-func (_AircraftNFT *AircraftNFTSession) Uri(arg0 *big.Int) (string, error) {
-	return _AircraftNFT.Contract.Uri(&_AircraftNFT.CallOpts, arg0)
+func (_NFT *NFTSession) Uri(arg0 *big.Int) (string, error) {
+	return _NFT.Contract.Uri(&_NFT.CallOpts, arg0)
 }
 
 // Uri is a free data retrieval call binding the contract method 0x0e89341c.
 //
 // Solidity: function uri(uint256 ) view returns(string)
-func (_AircraftNFT *AircraftNFTCallerSession) Uri(arg0 *big.Int) (string, error) {
-	return _AircraftNFT.Contract.Uri(&_AircraftNFT.CallOpts, arg0)
+func (_NFT *NFTCallerSession) Uri(arg0 *big.Int) (string, error) {
+	return _NFT.Contract.Uri(&_NFT.CallOpts, arg0)
 }
 
 // AddMinter is a paid mutator transaction binding the contract method 0x983b2d56.
 //
 // Solidity: function addMinter(address minter) returns()
-func (_AircraftNFT *AircraftNFTTransactor) AddMinter(opts *bind.TransactOpts, minter common.Address) (*types.Transaction, error) {
-	return _AircraftNFT.contract.Transact(opts, "addMinter", minter)
+func (_NFT *NFTTransactor) AddMinter(opts *bind.TransactOpts, minter common.Address) (*types.Transaction, error) {
+	return _NFT.contract.Transact(opts, "addMinter", minter)
 }
 
 // AddMinter is a paid mutator transaction binding the contract method 0x983b2d56.
 //
 // Solidity: function addMinter(address minter) returns()
-func (_AircraftNFT *AircraftNFTSession) AddMinter(minter common.Address) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.AddMinter(&_AircraftNFT.TransactOpts, minter)
+func (_NFT *NFTSession) AddMinter(minter common.Address) (*types.Transaction, error) {
+	return _NFT.Contract.AddMinter(&_NFT.TransactOpts, minter)
 }
 
 // AddMinter is a paid mutator transaction binding the contract method 0x983b2d56.
 //
 // Solidity: function addMinter(address minter) returns()
-func (_AircraftNFT *AircraftNFTTransactorSession) AddMinter(minter common.Address) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.AddMinter(&_AircraftNFT.TransactOpts, minter)
+func (_NFT *NFTTransactorSession) AddMinter(minter common.Address) (*types.Transaction, error) {
+	return _NFT.Contract.AddMinter(&_NFT.TransactOpts, minter)
 }
 
 // GrantRole is a paid mutator transaction binding the contract method 0x2f2ff15d.
 //
 // Solidity: function grantRole(bytes32 role, address account) returns()
-func (_AircraftNFT *AircraftNFTTransactor) GrantRole(opts *bind.TransactOpts, role [32]byte, account common.Address) (*types.Transaction, error) {
-	return _AircraftNFT.contract.Transact(opts, "grantRole", role, account)
+func (_NFT *NFTTransactor) GrantRole(opts *bind.TransactOpts, role [32]byte, account common.Address) (*types.Transaction, error) {
+	return _NFT.contract.Transact(opts, "grantRole", role, account)
 }
 
 // GrantRole is a paid mutator transaction binding the contract method 0x2f2ff15d.
 //
 // Solidity: function grantRole(bytes32 role, address account) returns()
-func (_AircraftNFT *AircraftNFTSession) GrantRole(role [32]byte, account common.Address) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.GrantRole(&_AircraftNFT.TransactOpts, role, account)
+func (_NFT *NFTSession) GrantRole(role [32]byte, account common.Address) (*types.Transaction, error) {
+	return _NFT.Contract.GrantRole(&_NFT.TransactOpts, role, account)
 }
 
 // GrantRole is a paid mutator transaction binding the contract method 0x2f2ff15d.
 //
 // Solidity: function grantRole(bytes32 role, address account) returns()
-func (_AircraftNFT *AircraftNFTTransactorSession) GrantRole(role [32]byte, account common.Address) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.GrantRole(&_AircraftNFT.TransactOpts, role, account)
+func (_NFT *NFTTransactorSession) GrantRole(role [32]byte, account common.Address) (*types.Transaction, error) {
+	return _NFT.Contract.GrantRole(&_NFT.TransactOpts, role, account)
 }
 
 // MintAircraft is a paid mutator transaction binding the contract method 0x2c4a38ed.
 //
 // Solidity: function mintAircraft(address to, uint256 amount) returns()
-func (_AircraftNFT *AircraftNFTTransactor) MintAircraft(opts *bind.TransactOpts, to common.Address, amount *big.Int) (*types.Transaction, error) {
-	return _AircraftNFT.contract.Transact(opts, "mintAircraft", to, amount)
+func (_NFT *NFTTransactor) MintAircraft(opts *bind.TransactOpts, to common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _NFT.contract.Transact(opts, "mintAircraft", to, amount)
 }
 
 // MintAircraft is a paid mutator transaction binding the contract method 0x2c4a38ed.
 //
 // Solidity: function mintAircraft(address to, uint256 amount) returns()
-func (_AircraftNFT *AircraftNFTSession) MintAircraft(to common.Address, amount *big.Int) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.MintAircraft(&_AircraftNFT.TransactOpts, to, amount)
+func (_NFT *NFTSession) MintAircraft(to common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _NFT.Contract.MintAircraft(&_NFT.TransactOpts, to, amount)
 }
 
 // MintAircraft is a paid mutator transaction binding the contract method 0x2c4a38ed.
 //
 // Solidity: function mintAircraft(address to, uint256 amount) returns()
-func (_AircraftNFT *AircraftNFTTransactorSession) MintAircraft(to common.Address, amount *big.Int) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.MintAircraft(&_AircraftNFT.TransactOpts, to, amount)
+func (_NFT *NFTTransactorSession) MintAircraft(to common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _NFT.Contract.MintAircraft(&_NFT.TransactOpts, to, amount)
 }
 
 // MintComponent is a paid mutator transaction binding the contract method 0x43556cf0.
 //
 // Solidity: function mintComponent(address to, uint256 id) returns()
-func (_AircraftNFT *AircraftNFTTransactor) MintComponent(opts *bind.TransactOpts, to common.Address, id *big.Int) (*types.Transaction, error) {
-	return _AircraftNFT.contract.Transact(opts, "mintComponent", to, id)
+func (_NFT *NFTTransactor) MintComponent(opts *bind.TransactOpts, to common.Address, id *big.Int) (*types.Transaction, error) {
+	return _NFT.contract.Transact(opts, "mintComponent", to, id)
 }
 
 // MintComponent is a paid mutator transaction binding the contract method 0x43556cf0.
 //
 // Solidity: function mintComponent(address to, uint256 id) returns()
-func (_AircraftNFT *AircraftNFTSession) MintComponent(to common.Address, id *big.Int) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.MintComponent(&_AircraftNFT.TransactOpts, to, id)
+func (_NFT *NFTSession) MintComponent(to common.Address, id *big.Int) (*types.Transaction, error) {
+	return _NFT.Contract.MintComponent(&_NFT.TransactOpts, to, id)
 }
 
 // MintComponent is a paid mutator transaction binding the contract method 0x43556cf0.
 //
 // Solidity: function mintComponent(address to, uint256 id) returns()
-func (_AircraftNFT *AircraftNFTTransactorSession) MintComponent(to common.Address, id *big.Int) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.MintComponent(&_AircraftNFT.TransactOpts, to, id)
+func (_NFT *NFTTransactorSession) MintComponent(to common.Address, id *big.Int) (*types.Transaction, error) {
+	return _NFT.Contract.MintComponent(&_NFT.TransactOpts, to, id)
 }
 
 // MintLuckyBox is a paid mutator transaction binding the contract method 0xa3dd3720.
 //
 // Solidity: function mintLuckyBox(address to, uint256 amount) returns()
-func (_AircraftNFT *AircraftNFTTransactor) MintLuckyBox(opts *bind.TransactOpts, to common.Address, amount *big.Int) (*types.Transaction, error) {
-	return _AircraftNFT.contract.Transact(opts, "mintLuckyBox", to, amount)
+func (_NFT *NFTTransactor) MintLuckyBox(opts *bind.TransactOpts, to common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _NFT.contract.Transact(opts, "mintLuckyBox", to, amount)
 }
 
 // MintLuckyBox is a paid mutator transaction binding the contract method 0xa3dd3720.
 //
 // Solidity: function mintLuckyBox(address to, uint256 amount) returns()
-func (_AircraftNFT *AircraftNFTSession) MintLuckyBox(to common.Address, amount *big.Int) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.MintLuckyBox(&_AircraftNFT.TransactOpts, to, amount)
+func (_NFT *NFTSession) MintLuckyBox(to common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _NFT.Contract.MintLuckyBox(&_NFT.TransactOpts, to, amount)
 }
 
 // MintLuckyBox is a paid mutator transaction binding the contract method 0xa3dd3720.
 //
 // Solidity: function mintLuckyBox(address to, uint256 amount) returns()
-func (_AircraftNFT *AircraftNFTTransactorSession) MintLuckyBox(to common.Address, amount *big.Int) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.MintLuckyBox(&_AircraftNFT.TransactOpts, to, amount)
+func (_NFT *NFTTransactorSession) MintLuckyBox(to common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _NFT.Contract.MintLuckyBox(&_NFT.TransactOpts, to, amount)
 }
 
 // Pause is a paid mutator transaction binding the contract method 0x8456cb59.
 //
 // Solidity: function pause() returns()
-func (_AircraftNFT *AircraftNFTTransactor) Pause(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _AircraftNFT.contract.Transact(opts, "pause")
+func (_NFT *NFTTransactor) Pause(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _NFT.contract.Transact(opts, "pause")
 }
 
 // Pause is a paid mutator transaction binding the contract method 0x8456cb59.
 //
 // Solidity: function pause() returns()
-func (_AircraftNFT *AircraftNFTSession) Pause() (*types.Transaction, error) {
-	return _AircraftNFT.Contract.Pause(&_AircraftNFT.TransactOpts)
+func (_NFT *NFTSession) Pause() (*types.Transaction, error) {
+	return _NFT.Contract.Pause(&_NFT.TransactOpts)
 }
 
 // Pause is a paid mutator transaction binding the contract method 0x8456cb59.
 //
 // Solidity: function pause() returns()
-func (_AircraftNFT *AircraftNFTTransactorSession) Pause() (*types.Transaction, error) {
-	return _AircraftNFT.Contract.Pause(&_AircraftNFT.TransactOpts)
+func (_NFT *NFTTransactorSession) Pause() (*types.Transaction, error) {
+	return _NFT.Contract.Pause(&_NFT.TransactOpts)
 }
 
 // RenounceRole is a paid mutator transaction binding the contract method 0x36568abe.
 //
 // Solidity: function renounceRole(bytes32 role, address account) returns()
-func (_AircraftNFT *AircraftNFTTransactor) RenounceRole(opts *bind.TransactOpts, role [32]byte, account common.Address) (*types.Transaction, error) {
-	return _AircraftNFT.contract.Transact(opts, "renounceRole", role, account)
+func (_NFT *NFTTransactor) RenounceRole(opts *bind.TransactOpts, role [32]byte, account common.Address) (*types.Transaction, error) {
+	return _NFT.contract.Transact(opts, "renounceRole", role, account)
 }
 
 // RenounceRole is a paid mutator transaction binding the contract method 0x36568abe.
 //
 // Solidity: function renounceRole(bytes32 role, address account) returns()
-func (_AircraftNFT *AircraftNFTSession) RenounceRole(role [32]byte, account common.Address) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.RenounceRole(&_AircraftNFT.TransactOpts, role, account)
+func (_NFT *NFTSession) RenounceRole(role [32]byte, account common.Address) (*types.Transaction, error) {
+	return _NFT.Contract.RenounceRole(&_NFT.TransactOpts, role, account)
 }
 
 // RenounceRole is a paid mutator transaction binding the contract method 0x36568abe.
 //
 // Solidity: function renounceRole(bytes32 role, address account) returns()
-func (_AircraftNFT *AircraftNFTTransactorSession) RenounceRole(role [32]byte, account common.Address) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.RenounceRole(&_AircraftNFT.TransactOpts, role, account)
+func (_NFT *NFTTransactorSession) RenounceRole(role [32]byte, account common.Address) (*types.Transaction, error) {
+	return _NFT.Contract.RenounceRole(&_NFT.TransactOpts, role, account)
 }
 
 // RevokeRole is a paid mutator transaction binding the contract method 0xd547741f.
 //
 // Solidity: function revokeRole(bytes32 role, address account) returns()
-func (_AircraftNFT *AircraftNFTTransactor) RevokeRole(opts *bind.TransactOpts, role [32]byte, account common.Address) (*types.Transaction, error) {
-	return _AircraftNFT.contract.Transact(opts, "revokeRole", role, account)
+func (_NFT *NFTTransactor) RevokeRole(opts *bind.TransactOpts, role [32]byte, account common.Address) (*types.Transaction, error) {
+	return _NFT.contract.Transact(opts, "revokeRole", role, account)
 }
 
 // RevokeRole is a paid mutator transaction binding the contract method 0xd547741f.
 //
 // Solidity: function revokeRole(bytes32 role, address account) returns()
-func (_AircraftNFT *AircraftNFTSession) RevokeRole(role [32]byte, account common.Address) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.RevokeRole(&_AircraftNFT.TransactOpts, role, account)
+func (_NFT *NFTSession) RevokeRole(role [32]byte, account common.Address) (*types.Transaction, error) {
+	return _NFT.Contract.RevokeRole(&_NFT.TransactOpts, role, account)
 }
 
 // RevokeRole is a paid mutator transaction binding the contract method 0xd547741f.
 //
 // Solidity: function revokeRole(bytes32 role, address account) returns()
-func (_AircraftNFT *AircraftNFTTransactorSession) RevokeRole(role [32]byte, account common.Address) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.RevokeRole(&_AircraftNFT.TransactOpts, role, account)
+func (_NFT *NFTTransactorSession) RevokeRole(role [32]byte, account common.Address) (*types.Transaction, error) {
+	return _NFT.Contract.RevokeRole(&_NFT.TransactOpts, role, account)
 }
 
 // SafeBatchTransferFrom is a paid mutator transaction binding the contract method 0x2eb2c2d6.
 //
 // Solidity: function safeBatchTransferFrom(address from, address to, uint256[] ids, uint256[] amounts, bytes data) returns()
-func (_AircraftNFT *AircraftNFTTransactor) SafeBatchTransferFrom(opts *bind.TransactOpts, from common.Address, to common.Address, ids []*big.Int, amounts []*big.Int, data []byte) (*types.Transaction, error) {
-	return _AircraftNFT.contract.Transact(opts, "safeBatchTransferFrom", from, to, ids, amounts, data)
+func (_NFT *NFTTransactor) SafeBatchTransferFrom(opts *bind.TransactOpts, from common.Address, to common.Address, ids []*big.Int, amounts []*big.Int, data []byte) (*types.Transaction, error) {
+	return _NFT.contract.Transact(opts, "safeBatchTransferFrom", from, to, ids, amounts, data)
 }
 
 // SafeBatchTransferFrom is a paid mutator transaction binding the contract method 0x2eb2c2d6.
 //
 // Solidity: function safeBatchTransferFrom(address from, address to, uint256[] ids, uint256[] amounts, bytes data) returns()
-func (_AircraftNFT *AircraftNFTSession) SafeBatchTransferFrom(from common.Address, to common.Address, ids []*big.Int, amounts []*big.Int, data []byte) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.SafeBatchTransferFrom(&_AircraftNFT.TransactOpts, from, to, ids, amounts, data)
+func (_NFT *NFTSession) SafeBatchTransferFrom(from common.Address, to common.Address, ids []*big.Int, amounts []*big.Int, data []byte) (*types.Transaction, error) {
+	return _NFT.Contract.SafeBatchTransferFrom(&_NFT.TransactOpts, from, to, ids, amounts, data)
 }
 
 // SafeBatchTransferFrom is a paid mutator transaction binding the contract method 0x2eb2c2d6.
 //
 // Solidity: function safeBatchTransferFrom(address from, address to, uint256[] ids, uint256[] amounts, bytes data) returns()
-func (_AircraftNFT *AircraftNFTTransactorSession) SafeBatchTransferFrom(from common.Address, to common.Address, ids []*big.Int, amounts []*big.Int, data []byte) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.SafeBatchTransferFrom(&_AircraftNFT.TransactOpts, from, to, ids, amounts, data)
+func (_NFT *NFTTransactorSession) SafeBatchTransferFrom(from common.Address, to common.Address, ids []*big.Int, amounts []*big.Int, data []byte) (*types.Transaction, error) {
+	return _NFT.Contract.SafeBatchTransferFrom(&_NFT.TransactOpts, from, to, ids, amounts, data)
 }
 
 // SafeTransferFrom is a paid mutator transaction binding the contract method 0xf242432a.
 //
 // Solidity: function safeTransferFrom(address from, address to, uint256 id, uint256 amount, bytes data) returns()
-func (_AircraftNFT *AircraftNFTTransactor) SafeTransferFrom(opts *bind.TransactOpts, from common.Address, to common.Address, id *big.Int, amount *big.Int, data []byte) (*types.Transaction, error) {
-	return _AircraftNFT.contract.Transact(opts, "safeTransferFrom", from, to, id, amount, data)
+func (_NFT *NFTTransactor) SafeTransferFrom(opts *bind.TransactOpts, from common.Address, to common.Address, id *big.Int, amount *big.Int, data []byte) (*types.Transaction, error) {
+	return _NFT.contract.Transact(opts, "safeTransferFrom", from, to, id, amount, data)
 }
 
 // SafeTransferFrom is a paid mutator transaction binding the contract method 0xf242432a.
 //
 // Solidity: function safeTransferFrom(address from, address to, uint256 id, uint256 amount, bytes data) returns()
-func (_AircraftNFT *AircraftNFTSession) SafeTransferFrom(from common.Address, to common.Address, id *big.Int, amount *big.Int, data []byte) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.SafeTransferFrom(&_AircraftNFT.TransactOpts, from, to, id, amount, data)
+func (_NFT *NFTSession) SafeTransferFrom(from common.Address, to common.Address, id *big.Int, amount *big.Int, data []byte) (*types.Transaction, error) {
+	return _NFT.Contract.SafeTransferFrom(&_NFT.TransactOpts, from, to, id, amount, data)
 }
 
 // SafeTransferFrom is a paid mutator transaction binding the contract method 0xf242432a.
 //
 // Solidity: function safeTransferFrom(address from, address to, uint256 id, uint256 amount, bytes data) returns()
-func (_AircraftNFT *AircraftNFTTransactorSession) SafeTransferFrom(from common.Address, to common.Address, id *big.Int, amount *big.Int, data []byte) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.SafeTransferFrom(&_AircraftNFT.TransactOpts, from, to, id, amount, data)
+func (_NFT *NFTTransactorSession) SafeTransferFrom(from common.Address, to common.Address, id *big.Int, amount *big.Int, data []byte) (*types.Transaction, error) {
+	return _NFT.Contract.SafeTransferFrom(&_NFT.TransactOpts, from, to, id, amount, data)
 }
 
 // SetApprovalForAll is a paid mutator transaction binding the contract method 0xa22cb465.
 //
 // Solidity: function setApprovalForAll(address operator, bool approved) returns()
-func (_AircraftNFT *AircraftNFTTransactor) SetApprovalForAll(opts *bind.TransactOpts, operator common.Address, approved bool) (*types.Transaction, error) {
-	return _AircraftNFT.contract.Transact(opts, "setApprovalForAll", operator, approved)
+func (_NFT *NFTTransactor) SetApprovalForAll(opts *bind.TransactOpts, operator common.Address, approved bool) (*types.Transaction, error) {
+	return _NFT.contract.Transact(opts, "setApprovalForAll", operator, approved)
 }
 
 // SetApprovalForAll is a paid mutator transaction binding the contract method 0xa22cb465.
 //
 // Solidity: function setApprovalForAll(address operator, bool approved) returns()
-func (_AircraftNFT *AircraftNFTSession) SetApprovalForAll(operator common.Address, approved bool) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.SetApprovalForAll(&_AircraftNFT.TransactOpts, operator, approved)
+func (_NFT *NFTSession) SetApprovalForAll(operator common.Address, approved bool) (*types.Transaction, error) {
+	return _NFT.Contract.SetApprovalForAll(&_NFT.TransactOpts, operator, approved)
 }
 
 // SetApprovalForAll is a paid mutator transaction binding the contract method 0xa22cb465.
 //
 // Solidity: function setApprovalForAll(address operator, bool approved) returns()
-func (_AircraftNFT *AircraftNFTTransactorSession) SetApprovalForAll(operator common.Address, approved bool) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.SetApprovalForAll(&_AircraftNFT.TransactOpts, operator, approved)
+func (_NFT *NFTTransactorSession) SetApprovalForAll(operator common.Address, approved bool) (*types.Transaction, error) {
+	return _NFT.Contract.SetApprovalForAll(&_NFT.TransactOpts, operator, approved)
 }
 
 // Unpause is a paid mutator transaction binding the contract method 0x3f4ba83a.
 //
 // Solidity: function unpause() returns()
-func (_AircraftNFT *AircraftNFTTransactor) Unpause(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _AircraftNFT.contract.Transact(opts, "unpause")
+func (_NFT *NFTTransactor) Unpause(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _NFT.contract.Transact(opts, "unpause")
 }
 
 // Unpause is a paid mutator transaction binding the contract method 0x3f4ba83a.
 //
 // Solidity: function unpause() returns()
-func (_AircraftNFT *AircraftNFTSession) Unpause() (*types.Transaction, error) {
-	return _AircraftNFT.Contract.Unpause(&_AircraftNFT.TransactOpts)
+func (_NFT *NFTSession) Unpause() (*types.Transaction, error) {
+	return _NFT.Contract.Unpause(&_NFT.TransactOpts)
 }
 
 // Unpause is a paid mutator transaction binding the contract method 0x3f4ba83a.
 //
 // Solidity: function unpause() returns()
-func (_AircraftNFT *AircraftNFTTransactorSession) Unpause() (*types.Transaction, error) {
-	return _AircraftNFT.Contract.Unpause(&_AircraftNFT.TransactOpts)
+func (_NFT *NFTTransactorSession) Unpause() (*types.Transaction, error) {
+	return _NFT.Contract.Unpause(&_NFT.TransactOpts)
 }
 
 // Upgrade is a paid mutator transaction binding the contract method 0x50fa8942.
 //
 // Solidity: function upgrade(address to, uint256 aircraftId, uint256 componentId) returns()
-func (_AircraftNFT *AircraftNFTTransactor) Upgrade(opts *bind.TransactOpts, to common.Address, aircraftId *big.Int, componentId *big.Int) (*types.Transaction, error) {
-	return _AircraftNFT.contract.Transact(opts, "upgrade", to, aircraftId, componentId)
+func (_NFT *NFTTransactor) Upgrade(opts *bind.TransactOpts, to common.Address, aircraftId *big.Int, componentId *big.Int) (*types.Transaction, error) {
+	return _NFT.contract.Transact(opts, "upgrade", to, aircraftId, componentId)
 }
 
 // Upgrade is a paid mutator transaction binding the contract method 0x50fa8942.
 //
 // Solidity: function upgrade(address to, uint256 aircraftId, uint256 componentId) returns()
-func (_AircraftNFT *AircraftNFTSession) Upgrade(to common.Address, aircraftId *big.Int, componentId *big.Int) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.Upgrade(&_AircraftNFT.TransactOpts, to, aircraftId, componentId)
+func (_NFT *NFTSession) Upgrade(to common.Address, aircraftId *big.Int, componentId *big.Int) (*types.Transaction, error) {
+	return _NFT.Contract.Upgrade(&_NFT.TransactOpts, to, aircraftId, componentId)
 }
 
 // Upgrade is a paid mutator transaction binding the contract method 0x50fa8942.
 //
 // Solidity: function upgrade(address to, uint256 aircraftId, uint256 componentId) returns()
-func (_AircraftNFT *AircraftNFTTransactorSession) Upgrade(to common.Address, aircraftId *big.Int, componentId *big.Int) (*types.Transaction, error) {
-	return _AircraftNFT.Contract.Upgrade(&_AircraftNFT.TransactOpts, to, aircraftId, componentId)
+func (_NFT *NFTTransactorSession) Upgrade(to common.Address, aircraftId *big.Int, componentId *big.Int) (*types.Transaction, error) {
+	return _NFT.Contract.Upgrade(&_NFT.TransactOpts, to, aircraftId, componentId)
 }
 
-// AircraftNFTApprovalForAllIterator is returned from FilterApprovalForAll and is used to iterate over the raw logs and unpacked data for ApprovalForAll events raised by the AircraftNFT contract.
-type AircraftNFTApprovalForAllIterator struct {
-	Event *AircraftNFTApprovalForAll // Event containing the contract specifics and raw log
+// NFTApprovalForAllIterator is returned from FilterApprovalForAll and is used to iterate over the raw logs and unpacked data for ApprovalForAll events raised by the NFT contract.
+type NFTApprovalForAllIterator struct {
+	Event *NFTApprovalForAll // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -995,7 +995,7 @@ type AircraftNFTApprovalForAllIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AircraftNFTApprovalForAllIterator) Next() bool {
+func (it *NFTApprovalForAllIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1004,7 +1004,7 @@ func (it *AircraftNFTApprovalForAllIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AircraftNFTApprovalForAll)
+			it.Event = new(NFTApprovalForAll)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1019,7 +1019,7 @@ func (it *AircraftNFTApprovalForAllIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AircraftNFTApprovalForAll)
+		it.Event = new(NFTApprovalForAll)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1035,19 +1035,19 @@ func (it *AircraftNFTApprovalForAllIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AircraftNFTApprovalForAllIterator) Error() error {
+func (it *NFTApprovalForAllIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AircraftNFTApprovalForAllIterator) Close() error {
+func (it *NFTApprovalForAllIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AircraftNFTApprovalForAll represents a ApprovalForAll event raised by the AircraftNFT contract.
-type AircraftNFTApprovalForAll struct {
+// NFTApprovalForAll represents a ApprovalForAll event raised by the NFT contract.
+type NFTApprovalForAll struct {
 	Account  common.Address
 	Operator common.Address
 	Approved bool
@@ -1057,7 +1057,7 @@ type AircraftNFTApprovalForAll struct {
 // FilterApprovalForAll is a free log retrieval operation binding the contract event 0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31.
 //
 // Solidity: event ApprovalForAll(address indexed account, address indexed operator, bool approved)
-func (_AircraftNFT *AircraftNFTFilterer) FilterApprovalForAll(opts *bind.FilterOpts, account []common.Address, operator []common.Address) (*AircraftNFTApprovalForAllIterator, error) {
+func (_NFT *NFTFilterer) FilterApprovalForAll(opts *bind.FilterOpts, account []common.Address, operator []common.Address) (*NFTApprovalForAllIterator, error) {
 
 	var accountRule []interface{}
 	for _, accountItem := range account {
@@ -1068,17 +1068,17 @@ func (_AircraftNFT *AircraftNFTFilterer) FilterApprovalForAll(opts *bind.FilterO
 		operatorRule = append(operatorRule, operatorItem)
 	}
 
-	logs, sub, err := _AircraftNFT.contract.FilterLogs(opts, "ApprovalForAll", accountRule, operatorRule)
+	logs, sub, err := _NFT.contract.FilterLogs(opts, "ApprovalForAll", accountRule, operatorRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AircraftNFTApprovalForAllIterator{contract: _AircraftNFT.contract, event: "ApprovalForAll", logs: logs, sub: sub}, nil
+	return &NFTApprovalForAllIterator{contract: _NFT.contract, event: "ApprovalForAll", logs: logs, sub: sub}, nil
 }
 
 // WatchApprovalForAll is a free log subscription operation binding the contract event 0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31.
 //
 // Solidity: event ApprovalForAll(address indexed account, address indexed operator, bool approved)
-func (_AircraftNFT *AircraftNFTFilterer) WatchApprovalForAll(opts *bind.WatchOpts, sink chan<- *AircraftNFTApprovalForAll, account []common.Address, operator []common.Address) (event.Subscription, error) {
+func (_NFT *NFTFilterer) WatchApprovalForAll(opts *bind.WatchOpts, sink chan<- *NFTApprovalForAll, account []common.Address, operator []common.Address) (event.Subscription, error) {
 
 	var accountRule []interface{}
 	for _, accountItem := range account {
@@ -1089,7 +1089,7 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchApprovalForAll(opts *bind.WatchOpt
 		operatorRule = append(operatorRule, operatorItem)
 	}
 
-	logs, sub, err := _AircraftNFT.contract.WatchLogs(opts, "ApprovalForAll", accountRule, operatorRule)
+	logs, sub, err := _NFT.contract.WatchLogs(opts, "ApprovalForAll", accountRule, operatorRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1099,8 +1099,8 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchApprovalForAll(opts *bind.WatchOpt
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AircraftNFTApprovalForAll)
-				if err := _AircraftNFT.contract.UnpackLog(event, "ApprovalForAll", log); err != nil {
+				event := new(NFTApprovalForAll)
+				if err := _NFT.contract.UnpackLog(event, "ApprovalForAll", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1124,18 +1124,18 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchApprovalForAll(opts *bind.WatchOpt
 // ParseApprovalForAll is a log parse operation binding the contract event 0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31.
 //
 // Solidity: event ApprovalForAll(address indexed account, address indexed operator, bool approved)
-func (_AircraftNFT *AircraftNFTFilterer) ParseApprovalForAll(log types.Log) (*AircraftNFTApprovalForAll, error) {
-	event := new(AircraftNFTApprovalForAll)
-	if err := _AircraftNFT.contract.UnpackLog(event, "ApprovalForAll", log); err != nil {
+func (_NFT *NFTFilterer) ParseApprovalForAll(log types.Log) (*NFTApprovalForAll, error) {
+	event := new(NFTApprovalForAll)
+	if err := _NFT.contract.UnpackLog(event, "ApprovalForAll", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AircraftNFTPausedIterator is returned from FilterPaused and is used to iterate over the raw logs and unpacked data for Paused events raised by the AircraftNFT contract.
-type AircraftNFTPausedIterator struct {
-	Event *AircraftNFTPaused // Event containing the contract specifics and raw log
+// NFTPausedIterator is returned from FilterPaused and is used to iterate over the raw logs and unpacked data for Paused events raised by the NFT contract.
+type NFTPausedIterator struct {
+	Event *NFTPaused // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1149,7 +1149,7 @@ type AircraftNFTPausedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AircraftNFTPausedIterator) Next() bool {
+func (it *NFTPausedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1158,7 +1158,7 @@ func (it *AircraftNFTPausedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AircraftNFTPaused)
+			it.Event = new(NFTPaused)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1173,7 +1173,7 @@ func (it *AircraftNFTPausedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AircraftNFTPaused)
+		it.Event = new(NFTPaused)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1189,19 +1189,19 @@ func (it *AircraftNFTPausedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AircraftNFTPausedIterator) Error() error {
+func (it *NFTPausedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AircraftNFTPausedIterator) Close() error {
+func (it *NFTPausedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AircraftNFTPaused represents a Paused event raised by the AircraftNFT contract.
-type AircraftNFTPaused struct {
+// NFTPaused represents a Paused event raised by the NFT contract.
+type NFTPaused struct {
 	Account common.Address
 	Raw     types.Log // Blockchain specific contextual infos
 }
@@ -1209,21 +1209,21 @@ type AircraftNFTPaused struct {
 // FilterPaused is a free log retrieval operation binding the contract event 0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258.
 //
 // Solidity: event Paused(address account)
-func (_AircraftNFT *AircraftNFTFilterer) FilterPaused(opts *bind.FilterOpts) (*AircraftNFTPausedIterator, error) {
+func (_NFT *NFTFilterer) FilterPaused(opts *bind.FilterOpts) (*NFTPausedIterator, error) {
 
-	logs, sub, err := _AircraftNFT.contract.FilterLogs(opts, "Paused")
+	logs, sub, err := _NFT.contract.FilterLogs(opts, "Paused")
 	if err != nil {
 		return nil, err
 	}
-	return &AircraftNFTPausedIterator{contract: _AircraftNFT.contract, event: "Paused", logs: logs, sub: sub}, nil
+	return &NFTPausedIterator{contract: _NFT.contract, event: "Paused", logs: logs, sub: sub}, nil
 }
 
 // WatchPaused is a free log subscription operation binding the contract event 0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258.
 //
 // Solidity: event Paused(address account)
-func (_AircraftNFT *AircraftNFTFilterer) WatchPaused(opts *bind.WatchOpts, sink chan<- *AircraftNFTPaused) (event.Subscription, error) {
+func (_NFT *NFTFilterer) WatchPaused(opts *bind.WatchOpts, sink chan<- *NFTPaused) (event.Subscription, error) {
 
-	logs, sub, err := _AircraftNFT.contract.WatchLogs(opts, "Paused")
+	logs, sub, err := _NFT.contract.WatchLogs(opts, "Paused")
 	if err != nil {
 		return nil, err
 	}
@@ -1233,8 +1233,8 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchPaused(opts *bind.WatchOpts, sink 
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AircraftNFTPaused)
-				if err := _AircraftNFT.contract.UnpackLog(event, "Paused", log); err != nil {
+				event := new(NFTPaused)
+				if err := _NFT.contract.UnpackLog(event, "Paused", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1258,18 +1258,18 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchPaused(opts *bind.WatchOpts, sink 
 // ParsePaused is a log parse operation binding the contract event 0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258.
 //
 // Solidity: event Paused(address account)
-func (_AircraftNFT *AircraftNFTFilterer) ParsePaused(log types.Log) (*AircraftNFTPaused, error) {
-	event := new(AircraftNFTPaused)
-	if err := _AircraftNFT.contract.UnpackLog(event, "Paused", log); err != nil {
+func (_NFT *NFTFilterer) ParsePaused(log types.Log) (*NFTPaused, error) {
+	event := new(NFTPaused)
+	if err := _NFT.contract.UnpackLog(event, "Paused", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AircraftNFTRoleAdminChangedIterator is returned from FilterRoleAdminChanged and is used to iterate over the raw logs and unpacked data for RoleAdminChanged events raised by the AircraftNFT contract.
-type AircraftNFTRoleAdminChangedIterator struct {
-	Event *AircraftNFTRoleAdminChanged // Event containing the contract specifics and raw log
+// NFTRoleAdminChangedIterator is returned from FilterRoleAdminChanged and is used to iterate over the raw logs and unpacked data for RoleAdminChanged events raised by the NFT contract.
+type NFTRoleAdminChangedIterator struct {
+	Event *NFTRoleAdminChanged // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1283,7 +1283,7 @@ type AircraftNFTRoleAdminChangedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AircraftNFTRoleAdminChangedIterator) Next() bool {
+func (it *NFTRoleAdminChangedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1292,7 +1292,7 @@ func (it *AircraftNFTRoleAdminChangedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AircraftNFTRoleAdminChanged)
+			it.Event = new(NFTRoleAdminChanged)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1307,7 +1307,7 @@ func (it *AircraftNFTRoleAdminChangedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AircraftNFTRoleAdminChanged)
+		it.Event = new(NFTRoleAdminChanged)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1323,19 +1323,19 @@ func (it *AircraftNFTRoleAdminChangedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AircraftNFTRoleAdminChangedIterator) Error() error {
+func (it *NFTRoleAdminChangedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AircraftNFTRoleAdminChangedIterator) Close() error {
+func (it *NFTRoleAdminChangedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AircraftNFTRoleAdminChanged represents a RoleAdminChanged event raised by the AircraftNFT contract.
-type AircraftNFTRoleAdminChanged struct {
+// NFTRoleAdminChanged represents a RoleAdminChanged event raised by the NFT contract.
+type NFTRoleAdminChanged struct {
 	Role              [32]byte
 	PreviousAdminRole [32]byte
 	NewAdminRole      [32]byte
@@ -1345,7 +1345,7 @@ type AircraftNFTRoleAdminChanged struct {
 // FilterRoleAdminChanged is a free log retrieval operation binding the contract event 0xbd79b86ffe0ab8e8776151514217cd7cacd52c909f66475c3af44e129f0b00ff.
 //
 // Solidity: event RoleAdminChanged(bytes32 indexed role, bytes32 indexed previousAdminRole, bytes32 indexed newAdminRole)
-func (_AircraftNFT *AircraftNFTFilterer) FilterRoleAdminChanged(opts *bind.FilterOpts, role [][32]byte, previousAdminRole [][32]byte, newAdminRole [][32]byte) (*AircraftNFTRoleAdminChangedIterator, error) {
+func (_NFT *NFTFilterer) FilterRoleAdminChanged(opts *bind.FilterOpts, role [][32]byte, previousAdminRole [][32]byte, newAdminRole [][32]byte) (*NFTRoleAdminChangedIterator, error) {
 
 	var roleRule []interface{}
 	for _, roleItem := range role {
@@ -1360,17 +1360,17 @@ func (_AircraftNFT *AircraftNFTFilterer) FilterRoleAdminChanged(opts *bind.Filte
 		newAdminRoleRule = append(newAdminRoleRule, newAdminRoleItem)
 	}
 
-	logs, sub, err := _AircraftNFT.contract.FilterLogs(opts, "RoleAdminChanged", roleRule, previousAdminRoleRule, newAdminRoleRule)
+	logs, sub, err := _NFT.contract.FilterLogs(opts, "RoleAdminChanged", roleRule, previousAdminRoleRule, newAdminRoleRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AircraftNFTRoleAdminChangedIterator{contract: _AircraftNFT.contract, event: "RoleAdminChanged", logs: logs, sub: sub}, nil
+	return &NFTRoleAdminChangedIterator{contract: _NFT.contract, event: "RoleAdminChanged", logs: logs, sub: sub}, nil
 }
 
 // WatchRoleAdminChanged is a free log subscription operation binding the contract event 0xbd79b86ffe0ab8e8776151514217cd7cacd52c909f66475c3af44e129f0b00ff.
 //
 // Solidity: event RoleAdminChanged(bytes32 indexed role, bytes32 indexed previousAdminRole, bytes32 indexed newAdminRole)
-func (_AircraftNFT *AircraftNFTFilterer) WatchRoleAdminChanged(opts *bind.WatchOpts, sink chan<- *AircraftNFTRoleAdminChanged, role [][32]byte, previousAdminRole [][32]byte, newAdminRole [][32]byte) (event.Subscription, error) {
+func (_NFT *NFTFilterer) WatchRoleAdminChanged(opts *bind.WatchOpts, sink chan<- *NFTRoleAdminChanged, role [][32]byte, previousAdminRole [][32]byte, newAdminRole [][32]byte) (event.Subscription, error) {
 
 	var roleRule []interface{}
 	for _, roleItem := range role {
@@ -1385,7 +1385,7 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchRoleAdminChanged(opts *bind.WatchO
 		newAdminRoleRule = append(newAdminRoleRule, newAdminRoleItem)
 	}
 
-	logs, sub, err := _AircraftNFT.contract.WatchLogs(opts, "RoleAdminChanged", roleRule, previousAdminRoleRule, newAdminRoleRule)
+	logs, sub, err := _NFT.contract.WatchLogs(opts, "RoleAdminChanged", roleRule, previousAdminRoleRule, newAdminRoleRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1395,8 +1395,8 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchRoleAdminChanged(opts *bind.WatchO
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AircraftNFTRoleAdminChanged)
-				if err := _AircraftNFT.contract.UnpackLog(event, "RoleAdminChanged", log); err != nil {
+				event := new(NFTRoleAdminChanged)
+				if err := _NFT.contract.UnpackLog(event, "RoleAdminChanged", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1420,18 +1420,18 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchRoleAdminChanged(opts *bind.WatchO
 // ParseRoleAdminChanged is a log parse operation binding the contract event 0xbd79b86ffe0ab8e8776151514217cd7cacd52c909f66475c3af44e129f0b00ff.
 //
 // Solidity: event RoleAdminChanged(bytes32 indexed role, bytes32 indexed previousAdminRole, bytes32 indexed newAdminRole)
-func (_AircraftNFT *AircraftNFTFilterer) ParseRoleAdminChanged(log types.Log) (*AircraftNFTRoleAdminChanged, error) {
-	event := new(AircraftNFTRoleAdminChanged)
-	if err := _AircraftNFT.contract.UnpackLog(event, "RoleAdminChanged", log); err != nil {
+func (_NFT *NFTFilterer) ParseRoleAdminChanged(log types.Log) (*NFTRoleAdminChanged, error) {
+	event := new(NFTRoleAdminChanged)
+	if err := _NFT.contract.UnpackLog(event, "RoleAdminChanged", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AircraftNFTRoleGrantedIterator is returned from FilterRoleGranted and is used to iterate over the raw logs and unpacked data for RoleGranted events raised by the AircraftNFT contract.
-type AircraftNFTRoleGrantedIterator struct {
-	Event *AircraftNFTRoleGranted // Event containing the contract specifics and raw log
+// NFTRoleGrantedIterator is returned from FilterRoleGranted and is used to iterate over the raw logs and unpacked data for RoleGranted events raised by the NFT contract.
+type NFTRoleGrantedIterator struct {
+	Event *NFTRoleGranted // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1445,7 +1445,7 @@ type AircraftNFTRoleGrantedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AircraftNFTRoleGrantedIterator) Next() bool {
+func (it *NFTRoleGrantedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1454,7 +1454,7 @@ func (it *AircraftNFTRoleGrantedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AircraftNFTRoleGranted)
+			it.Event = new(NFTRoleGranted)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1469,7 +1469,7 @@ func (it *AircraftNFTRoleGrantedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AircraftNFTRoleGranted)
+		it.Event = new(NFTRoleGranted)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1485,19 +1485,19 @@ func (it *AircraftNFTRoleGrantedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AircraftNFTRoleGrantedIterator) Error() error {
+func (it *NFTRoleGrantedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AircraftNFTRoleGrantedIterator) Close() error {
+func (it *NFTRoleGrantedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AircraftNFTRoleGranted represents a RoleGranted event raised by the AircraftNFT contract.
-type AircraftNFTRoleGranted struct {
+// NFTRoleGranted represents a RoleGranted event raised by the NFT contract.
+type NFTRoleGranted struct {
 	Role    [32]byte
 	Account common.Address
 	Sender  common.Address
@@ -1507,7 +1507,7 @@ type AircraftNFTRoleGranted struct {
 // FilterRoleGranted is a free log retrieval operation binding the contract event 0x2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d.
 //
 // Solidity: event RoleGranted(bytes32 indexed role, address indexed account, address indexed sender)
-func (_AircraftNFT *AircraftNFTFilterer) FilterRoleGranted(opts *bind.FilterOpts, role [][32]byte, account []common.Address, sender []common.Address) (*AircraftNFTRoleGrantedIterator, error) {
+func (_NFT *NFTFilterer) FilterRoleGranted(opts *bind.FilterOpts, role [][32]byte, account []common.Address, sender []common.Address) (*NFTRoleGrantedIterator, error) {
 
 	var roleRule []interface{}
 	for _, roleItem := range role {
@@ -1522,17 +1522,17 @@ func (_AircraftNFT *AircraftNFTFilterer) FilterRoleGranted(opts *bind.FilterOpts
 		senderRule = append(senderRule, senderItem)
 	}
 
-	logs, sub, err := _AircraftNFT.contract.FilterLogs(opts, "RoleGranted", roleRule, accountRule, senderRule)
+	logs, sub, err := _NFT.contract.FilterLogs(opts, "RoleGranted", roleRule, accountRule, senderRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AircraftNFTRoleGrantedIterator{contract: _AircraftNFT.contract, event: "RoleGranted", logs: logs, sub: sub}, nil
+	return &NFTRoleGrantedIterator{contract: _NFT.contract, event: "RoleGranted", logs: logs, sub: sub}, nil
 }
 
 // WatchRoleGranted is a free log subscription operation binding the contract event 0x2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d.
 //
 // Solidity: event RoleGranted(bytes32 indexed role, address indexed account, address indexed sender)
-func (_AircraftNFT *AircraftNFTFilterer) WatchRoleGranted(opts *bind.WatchOpts, sink chan<- *AircraftNFTRoleGranted, role [][32]byte, account []common.Address, sender []common.Address) (event.Subscription, error) {
+func (_NFT *NFTFilterer) WatchRoleGranted(opts *bind.WatchOpts, sink chan<- *NFTRoleGranted, role [][32]byte, account []common.Address, sender []common.Address) (event.Subscription, error) {
 
 	var roleRule []interface{}
 	for _, roleItem := range role {
@@ -1547,7 +1547,7 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchRoleGranted(opts *bind.WatchOpts, 
 		senderRule = append(senderRule, senderItem)
 	}
 
-	logs, sub, err := _AircraftNFT.contract.WatchLogs(opts, "RoleGranted", roleRule, accountRule, senderRule)
+	logs, sub, err := _NFT.contract.WatchLogs(opts, "RoleGranted", roleRule, accountRule, senderRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1557,8 +1557,8 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchRoleGranted(opts *bind.WatchOpts, 
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AircraftNFTRoleGranted)
-				if err := _AircraftNFT.contract.UnpackLog(event, "RoleGranted", log); err != nil {
+				event := new(NFTRoleGranted)
+				if err := _NFT.contract.UnpackLog(event, "RoleGranted", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1582,18 +1582,18 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchRoleGranted(opts *bind.WatchOpts, 
 // ParseRoleGranted is a log parse operation binding the contract event 0x2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d.
 //
 // Solidity: event RoleGranted(bytes32 indexed role, address indexed account, address indexed sender)
-func (_AircraftNFT *AircraftNFTFilterer) ParseRoleGranted(log types.Log) (*AircraftNFTRoleGranted, error) {
-	event := new(AircraftNFTRoleGranted)
-	if err := _AircraftNFT.contract.UnpackLog(event, "RoleGranted", log); err != nil {
+func (_NFT *NFTFilterer) ParseRoleGranted(log types.Log) (*NFTRoleGranted, error) {
+	event := new(NFTRoleGranted)
+	if err := _NFT.contract.UnpackLog(event, "RoleGranted", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AircraftNFTRoleRevokedIterator is returned from FilterRoleRevoked and is used to iterate over the raw logs and unpacked data for RoleRevoked events raised by the AircraftNFT contract.
-type AircraftNFTRoleRevokedIterator struct {
-	Event *AircraftNFTRoleRevoked // Event containing the contract specifics and raw log
+// NFTRoleRevokedIterator is returned from FilterRoleRevoked and is used to iterate over the raw logs and unpacked data for RoleRevoked events raised by the NFT contract.
+type NFTRoleRevokedIterator struct {
+	Event *NFTRoleRevoked // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1607,7 +1607,7 @@ type AircraftNFTRoleRevokedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AircraftNFTRoleRevokedIterator) Next() bool {
+func (it *NFTRoleRevokedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1616,7 +1616,7 @@ func (it *AircraftNFTRoleRevokedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AircraftNFTRoleRevoked)
+			it.Event = new(NFTRoleRevoked)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1631,7 +1631,7 @@ func (it *AircraftNFTRoleRevokedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AircraftNFTRoleRevoked)
+		it.Event = new(NFTRoleRevoked)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1647,19 +1647,19 @@ func (it *AircraftNFTRoleRevokedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AircraftNFTRoleRevokedIterator) Error() error {
+func (it *NFTRoleRevokedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AircraftNFTRoleRevokedIterator) Close() error {
+func (it *NFTRoleRevokedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AircraftNFTRoleRevoked represents a RoleRevoked event raised by the AircraftNFT contract.
-type AircraftNFTRoleRevoked struct {
+// NFTRoleRevoked represents a RoleRevoked event raised by the NFT contract.
+type NFTRoleRevoked struct {
 	Role    [32]byte
 	Account common.Address
 	Sender  common.Address
@@ -1669,7 +1669,7 @@ type AircraftNFTRoleRevoked struct {
 // FilterRoleRevoked is a free log retrieval operation binding the contract event 0xf6391f5c32d9c69d2a47ea670b442974b53935d1edc7fd64eb21e047a839171b.
 //
 // Solidity: event RoleRevoked(bytes32 indexed role, address indexed account, address indexed sender)
-func (_AircraftNFT *AircraftNFTFilterer) FilterRoleRevoked(opts *bind.FilterOpts, role [][32]byte, account []common.Address, sender []common.Address) (*AircraftNFTRoleRevokedIterator, error) {
+func (_NFT *NFTFilterer) FilterRoleRevoked(opts *bind.FilterOpts, role [][32]byte, account []common.Address, sender []common.Address) (*NFTRoleRevokedIterator, error) {
 
 	var roleRule []interface{}
 	for _, roleItem := range role {
@@ -1684,17 +1684,17 @@ func (_AircraftNFT *AircraftNFTFilterer) FilterRoleRevoked(opts *bind.FilterOpts
 		senderRule = append(senderRule, senderItem)
 	}
 
-	logs, sub, err := _AircraftNFT.contract.FilterLogs(opts, "RoleRevoked", roleRule, accountRule, senderRule)
+	logs, sub, err := _NFT.contract.FilterLogs(opts, "RoleRevoked", roleRule, accountRule, senderRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AircraftNFTRoleRevokedIterator{contract: _AircraftNFT.contract, event: "RoleRevoked", logs: logs, sub: sub}, nil
+	return &NFTRoleRevokedIterator{contract: _NFT.contract, event: "RoleRevoked", logs: logs, sub: sub}, nil
 }
 
 // WatchRoleRevoked is a free log subscription operation binding the contract event 0xf6391f5c32d9c69d2a47ea670b442974b53935d1edc7fd64eb21e047a839171b.
 //
 // Solidity: event RoleRevoked(bytes32 indexed role, address indexed account, address indexed sender)
-func (_AircraftNFT *AircraftNFTFilterer) WatchRoleRevoked(opts *bind.WatchOpts, sink chan<- *AircraftNFTRoleRevoked, role [][32]byte, account []common.Address, sender []common.Address) (event.Subscription, error) {
+func (_NFT *NFTFilterer) WatchRoleRevoked(opts *bind.WatchOpts, sink chan<- *NFTRoleRevoked, role [][32]byte, account []common.Address, sender []common.Address) (event.Subscription, error) {
 
 	var roleRule []interface{}
 	for _, roleItem := range role {
@@ -1709,7 +1709,7 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchRoleRevoked(opts *bind.WatchOpts, 
 		senderRule = append(senderRule, senderItem)
 	}
 
-	logs, sub, err := _AircraftNFT.contract.WatchLogs(opts, "RoleRevoked", roleRule, accountRule, senderRule)
+	logs, sub, err := _NFT.contract.WatchLogs(opts, "RoleRevoked", roleRule, accountRule, senderRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1719,8 +1719,8 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchRoleRevoked(opts *bind.WatchOpts, 
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AircraftNFTRoleRevoked)
-				if err := _AircraftNFT.contract.UnpackLog(event, "RoleRevoked", log); err != nil {
+				event := new(NFTRoleRevoked)
+				if err := _NFT.contract.UnpackLog(event, "RoleRevoked", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1744,18 +1744,18 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchRoleRevoked(opts *bind.WatchOpts, 
 // ParseRoleRevoked is a log parse operation binding the contract event 0xf6391f5c32d9c69d2a47ea670b442974b53935d1edc7fd64eb21e047a839171b.
 //
 // Solidity: event RoleRevoked(bytes32 indexed role, address indexed account, address indexed sender)
-func (_AircraftNFT *AircraftNFTFilterer) ParseRoleRevoked(log types.Log) (*AircraftNFTRoleRevoked, error) {
-	event := new(AircraftNFTRoleRevoked)
-	if err := _AircraftNFT.contract.UnpackLog(event, "RoleRevoked", log); err != nil {
+func (_NFT *NFTFilterer) ParseRoleRevoked(log types.Log) (*NFTRoleRevoked, error) {
+	event := new(NFTRoleRevoked)
+	if err := _NFT.contract.UnpackLog(event, "RoleRevoked", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AircraftNFTTransferBatchIterator is returned from FilterTransferBatch and is used to iterate over the raw logs and unpacked data for TransferBatch events raised by the AircraftNFT contract.
-type AircraftNFTTransferBatchIterator struct {
-	Event *AircraftNFTTransferBatch // Event containing the contract specifics and raw log
+// NFTTransferBatchIterator is returned from FilterTransferBatch and is used to iterate over the raw logs and unpacked data for TransferBatch events raised by the NFT contract.
+type NFTTransferBatchIterator struct {
+	Event *NFTTransferBatch // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1769,7 +1769,7 @@ type AircraftNFTTransferBatchIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AircraftNFTTransferBatchIterator) Next() bool {
+func (it *NFTTransferBatchIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1778,7 +1778,7 @@ func (it *AircraftNFTTransferBatchIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AircraftNFTTransferBatch)
+			it.Event = new(NFTTransferBatch)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1793,7 +1793,7 @@ func (it *AircraftNFTTransferBatchIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AircraftNFTTransferBatch)
+		it.Event = new(NFTTransferBatch)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1809,19 +1809,19 @@ func (it *AircraftNFTTransferBatchIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AircraftNFTTransferBatchIterator) Error() error {
+func (it *NFTTransferBatchIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AircraftNFTTransferBatchIterator) Close() error {
+func (it *NFTTransferBatchIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AircraftNFTTransferBatch represents a TransferBatch event raised by the AircraftNFT contract.
-type AircraftNFTTransferBatch struct {
+// NFTTransferBatch represents a TransferBatch event raised by the NFT contract.
+type NFTTransferBatch struct {
 	Operator common.Address
 	From     common.Address
 	To       common.Address
@@ -1833,7 +1833,7 @@ type AircraftNFTTransferBatch struct {
 // FilterTransferBatch is a free log retrieval operation binding the contract event 0x4a39dc06d4c0dbc64b70af90fd698a233a518aa5d07e595d983b8c0526c8f7fb.
 //
 // Solidity: event TransferBatch(address indexed operator, address indexed from, address indexed to, uint256[] ids, uint256[] values)
-func (_AircraftNFT *AircraftNFTFilterer) FilterTransferBatch(opts *bind.FilterOpts, operator []common.Address, from []common.Address, to []common.Address) (*AircraftNFTTransferBatchIterator, error) {
+func (_NFT *NFTFilterer) FilterTransferBatch(opts *bind.FilterOpts, operator []common.Address, from []common.Address, to []common.Address) (*NFTTransferBatchIterator, error) {
 
 	var operatorRule []interface{}
 	for _, operatorItem := range operator {
@@ -1848,17 +1848,17 @@ func (_AircraftNFT *AircraftNFTFilterer) FilterTransferBatch(opts *bind.FilterOp
 		toRule = append(toRule, toItem)
 	}
 
-	logs, sub, err := _AircraftNFT.contract.FilterLogs(opts, "TransferBatch", operatorRule, fromRule, toRule)
+	logs, sub, err := _NFT.contract.FilterLogs(opts, "TransferBatch", operatorRule, fromRule, toRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AircraftNFTTransferBatchIterator{contract: _AircraftNFT.contract, event: "TransferBatch", logs: logs, sub: sub}, nil
+	return &NFTTransferBatchIterator{contract: _NFT.contract, event: "TransferBatch", logs: logs, sub: sub}, nil
 }
 
 // WatchTransferBatch is a free log subscription operation binding the contract event 0x4a39dc06d4c0dbc64b70af90fd698a233a518aa5d07e595d983b8c0526c8f7fb.
 //
 // Solidity: event TransferBatch(address indexed operator, address indexed from, address indexed to, uint256[] ids, uint256[] values)
-func (_AircraftNFT *AircraftNFTFilterer) WatchTransferBatch(opts *bind.WatchOpts, sink chan<- *AircraftNFTTransferBatch, operator []common.Address, from []common.Address, to []common.Address) (event.Subscription, error) {
+func (_NFT *NFTFilterer) WatchTransferBatch(opts *bind.WatchOpts, sink chan<- *NFTTransferBatch, operator []common.Address, from []common.Address, to []common.Address) (event.Subscription, error) {
 
 	var operatorRule []interface{}
 	for _, operatorItem := range operator {
@@ -1873,7 +1873,7 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchTransferBatch(opts *bind.WatchOpts
 		toRule = append(toRule, toItem)
 	}
 
-	logs, sub, err := _AircraftNFT.contract.WatchLogs(opts, "TransferBatch", operatorRule, fromRule, toRule)
+	logs, sub, err := _NFT.contract.WatchLogs(opts, "TransferBatch", operatorRule, fromRule, toRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1883,8 +1883,8 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchTransferBatch(opts *bind.WatchOpts
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AircraftNFTTransferBatch)
-				if err := _AircraftNFT.contract.UnpackLog(event, "TransferBatch", log); err != nil {
+				event := new(NFTTransferBatch)
+				if err := _NFT.contract.UnpackLog(event, "TransferBatch", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1908,18 +1908,18 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchTransferBatch(opts *bind.WatchOpts
 // ParseTransferBatch is a log parse operation binding the contract event 0x4a39dc06d4c0dbc64b70af90fd698a233a518aa5d07e595d983b8c0526c8f7fb.
 //
 // Solidity: event TransferBatch(address indexed operator, address indexed from, address indexed to, uint256[] ids, uint256[] values)
-func (_AircraftNFT *AircraftNFTFilterer) ParseTransferBatch(log types.Log) (*AircraftNFTTransferBatch, error) {
-	event := new(AircraftNFTTransferBatch)
-	if err := _AircraftNFT.contract.UnpackLog(event, "TransferBatch", log); err != nil {
+func (_NFT *NFTFilterer) ParseTransferBatch(log types.Log) (*NFTTransferBatch, error) {
+	event := new(NFTTransferBatch)
+	if err := _NFT.contract.UnpackLog(event, "TransferBatch", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AircraftNFTTransferSingleIterator is returned from FilterTransferSingle and is used to iterate over the raw logs and unpacked data for TransferSingle events raised by the AircraftNFT contract.
-type AircraftNFTTransferSingleIterator struct {
-	Event *AircraftNFTTransferSingle // Event containing the contract specifics and raw log
+// NFTTransferSingleIterator is returned from FilterTransferSingle and is used to iterate over the raw logs and unpacked data for TransferSingle events raised by the NFT contract.
+type NFTTransferSingleIterator struct {
+	Event *NFTTransferSingle // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1933,7 +1933,7 @@ type AircraftNFTTransferSingleIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AircraftNFTTransferSingleIterator) Next() bool {
+func (it *NFTTransferSingleIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1942,7 +1942,7 @@ func (it *AircraftNFTTransferSingleIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AircraftNFTTransferSingle)
+			it.Event = new(NFTTransferSingle)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1957,7 +1957,7 @@ func (it *AircraftNFTTransferSingleIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AircraftNFTTransferSingle)
+		it.Event = new(NFTTransferSingle)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1973,19 +1973,19 @@ func (it *AircraftNFTTransferSingleIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AircraftNFTTransferSingleIterator) Error() error {
+func (it *NFTTransferSingleIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AircraftNFTTransferSingleIterator) Close() error {
+func (it *NFTTransferSingleIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AircraftNFTTransferSingle represents a TransferSingle event raised by the AircraftNFT contract.
-type AircraftNFTTransferSingle struct {
+// NFTTransferSingle represents a TransferSingle event raised by the NFT contract.
+type NFTTransferSingle struct {
 	Operator common.Address
 	From     common.Address
 	To       common.Address
@@ -1997,7 +1997,7 @@ type AircraftNFTTransferSingle struct {
 // FilterTransferSingle is a free log retrieval operation binding the contract event 0xc3d58168c5ae7397731d063d5bbf3d657854427343f4c083240f7aacaa2d0f62.
 //
 // Solidity: event TransferSingle(address indexed operator, address indexed from, address indexed to, uint256 id, uint256 value)
-func (_AircraftNFT *AircraftNFTFilterer) FilterTransferSingle(opts *bind.FilterOpts, operator []common.Address, from []common.Address, to []common.Address) (*AircraftNFTTransferSingleIterator, error) {
+func (_NFT *NFTFilterer) FilterTransferSingle(opts *bind.FilterOpts, operator []common.Address, from []common.Address, to []common.Address) (*NFTTransferSingleIterator, error) {
 
 	var operatorRule []interface{}
 	for _, operatorItem := range operator {
@@ -2012,17 +2012,17 @@ func (_AircraftNFT *AircraftNFTFilterer) FilterTransferSingle(opts *bind.FilterO
 		toRule = append(toRule, toItem)
 	}
 
-	logs, sub, err := _AircraftNFT.contract.FilterLogs(opts, "TransferSingle", operatorRule, fromRule, toRule)
+	logs, sub, err := _NFT.contract.FilterLogs(opts, "TransferSingle", operatorRule, fromRule, toRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AircraftNFTTransferSingleIterator{contract: _AircraftNFT.contract, event: "TransferSingle", logs: logs, sub: sub}, nil
+	return &NFTTransferSingleIterator{contract: _NFT.contract, event: "TransferSingle", logs: logs, sub: sub}, nil
 }
 
 // WatchTransferSingle is a free log subscription operation binding the contract event 0xc3d58168c5ae7397731d063d5bbf3d657854427343f4c083240f7aacaa2d0f62.
 //
 // Solidity: event TransferSingle(address indexed operator, address indexed from, address indexed to, uint256 id, uint256 value)
-func (_AircraftNFT *AircraftNFTFilterer) WatchTransferSingle(opts *bind.WatchOpts, sink chan<- *AircraftNFTTransferSingle, operator []common.Address, from []common.Address, to []common.Address) (event.Subscription, error) {
+func (_NFT *NFTFilterer) WatchTransferSingle(opts *bind.WatchOpts, sink chan<- *NFTTransferSingle, operator []common.Address, from []common.Address, to []common.Address) (event.Subscription, error) {
 
 	var operatorRule []interface{}
 	for _, operatorItem := range operator {
@@ -2037,7 +2037,7 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchTransferSingle(opts *bind.WatchOpt
 		toRule = append(toRule, toItem)
 	}
 
-	logs, sub, err := _AircraftNFT.contract.WatchLogs(opts, "TransferSingle", operatorRule, fromRule, toRule)
+	logs, sub, err := _NFT.contract.WatchLogs(opts, "TransferSingle", operatorRule, fromRule, toRule)
 	if err != nil {
 		return nil, err
 	}
@@ -2047,8 +2047,8 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchTransferSingle(opts *bind.WatchOpt
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AircraftNFTTransferSingle)
-				if err := _AircraftNFT.contract.UnpackLog(event, "TransferSingle", log); err != nil {
+				event := new(NFTTransferSingle)
+				if err := _NFT.contract.UnpackLog(event, "TransferSingle", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -2072,18 +2072,18 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchTransferSingle(opts *bind.WatchOpt
 // ParseTransferSingle is a log parse operation binding the contract event 0xc3d58168c5ae7397731d063d5bbf3d657854427343f4c083240f7aacaa2d0f62.
 //
 // Solidity: event TransferSingle(address indexed operator, address indexed from, address indexed to, uint256 id, uint256 value)
-func (_AircraftNFT *AircraftNFTFilterer) ParseTransferSingle(log types.Log) (*AircraftNFTTransferSingle, error) {
-	event := new(AircraftNFTTransferSingle)
-	if err := _AircraftNFT.contract.UnpackLog(event, "TransferSingle", log); err != nil {
+func (_NFT *NFTFilterer) ParseTransferSingle(log types.Log) (*NFTTransferSingle, error) {
+	event := new(NFTTransferSingle)
+	if err := _NFT.contract.UnpackLog(event, "TransferSingle", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AircraftNFTURIIterator is returned from FilterURI and is used to iterate over the raw logs and unpacked data for URI events raised by the AircraftNFT contract.
-type AircraftNFTURIIterator struct {
-	Event *AircraftNFTURI // Event containing the contract specifics and raw log
+// NFTURIIterator is returned from FilterURI and is used to iterate over the raw logs and unpacked data for URI events raised by the NFT contract.
+type NFTURIIterator struct {
+	Event *NFTURI // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -2097,7 +2097,7 @@ type AircraftNFTURIIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AircraftNFTURIIterator) Next() bool {
+func (it *NFTURIIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -2106,7 +2106,7 @@ func (it *AircraftNFTURIIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AircraftNFTURI)
+			it.Event = new(NFTURI)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -2121,7 +2121,7 @@ func (it *AircraftNFTURIIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AircraftNFTURI)
+		it.Event = new(NFTURI)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -2137,19 +2137,19 @@ func (it *AircraftNFTURIIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AircraftNFTURIIterator) Error() error {
+func (it *NFTURIIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AircraftNFTURIIterator) Close() error {
+func (it *NFTURIIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AircraftNFTURI represents a URI event raised by the AircraftNFT contract.
-type AircraftNFTURI struct {
+// NFTURI represents a URI event raised by the NFT contract.
+type NFTURI struct {
 	Value string
 	Id    *big.Int
 	Raw   types.Log // Blockchain specific contextual infos
@@ -2158,31 +2158,31 @@ type AircraftNFTURI struct {
 // FilterURI is a free log retrieval operation binding the contract event 0x6bb7ff708619ba0610cba295a58592e0451dee2622938c8755667688daf3529b.
 //
 // Solidity: event URI(string value, uint256 indexed id)
-func (_AircraftNFT *AircraftNFTFilterer) FilterURI(opts *bind.FilterOpts, id []*big.Int) (*AircraftNFTURIIterator, error) {
+func (_NFT *NFTFilterer) FilterURI(opts *bind.FilterOpts, id []*big.Int) (*NFTURIIterator, error) {
 
 	var idRule []interface{}
 	for _, idItem := range id {
 		idRule = append(idRule, idItem)
 	}
 
-	logs, sub, err := _AircraftNFT.contract.FilterLogs(opts, "URI", idRule)
+	logs, sub, err := _NFT.contract.FilterLogs(opts, "URI", idRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AircraftNFTURIIterator{contract: _AircraftNFT.contract, event: "URI", logs: logs, sub: sub}, nil
+	return &NFTURIIterator{contract: _NFT.contract, event: "URI", logs: logs, sub: sub}, nil
 }
 
 // WatchURI is a free log subscription operation binding the contract event 0x6bb7ff708619ba0610cba295a58592e0451dee2622938c8755667688daf3529b.
 //
 // Solidity: event URI(string value, uint256 indexed id)
-func (_AircraftNFT *AircraftNFTFilterer) WatchURI(opts *bind.WatchOpts, sink chan<- *AircraftNFTURI, id []*big.Int) (event.Subscription, error) {
+func (_NFT *NFTFilterer) WatchURI(opts *bind.WatchOpts, sink chan<- *NFTURI, id []*big.Int) (event.Subscription, error) {
 
 	var idRule []interface{}
 	for _, idItem := range id {
 		idRule = append(idRule, idItem)
 	}
 
-	logs, sub, err := _AircraftNFT.contract.WatchLogs(opts, "URI", idRule)
+	logs, sub, err := _NFT.contract.WatchLogs(opts, "URI", idRule)
 	if err != nil {
 		return nil, err
 	}
@@ -2192,8 +2192,8 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchURI(opts *bind.WatchOpts, sink cha
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AircraftNFTURI)
-				if err := _AircraftNFT.contract.UnpackLog(event, "URI", log); err != nil {
+				event := new(NFTURI)
+				if err := _NFT.contract.UnpackLog(event, "URI", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -2217,18 +2217,18 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchURI(opts *bind.WatchOpts, sink cha
 // ParseURI is a log parse operation binding the contract event 0x6bb7ff708619ba0610cba295a58592e0451dee2622938c8755667688daf3529b.
 //
 // Solidity: event URI(string value, uint256 indexed id)
-func (_AircraftNFT *AircraftNFTFilterer) ParseURI(log types.Log) (*AircraftNFTURI, error) {
-	event := new(AircraftNFTURI)
-	if err := _AircraftNFT.contract.UnpackLog(event, "URI", log); err != nil {
+func (_NFT *NFTFilterer) ParseURI(log types.Log) (*NFTURI, error) {
+	event := new(NFTURI)
+	if err := _NFT.contract.UnpackLog(event, "URI", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AircraftNFTUnpausedIterator is returned from FilterUnpaused and is used to iterate over the raw logs and unpacked data for Unpaused events raised by the AircraftNFT contract.
-type AircraftNFTUnpausedIterator struct {
-	Event *AircraftNFTUnpaused // Event containing the contract specifics and raw log
+// NFTUnpausedIterator is returned from FilterUnpaused and is used to iterate over the raw logs and unpacked data for Unpaused events raised by the NFT contract.
+type NFTUnpausedIterator struct {
+	Event *NFTUnpaused // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -2242,7 +2242,7 @@ type AircraftNFTUnpausedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AircraftNFTUnpausedIterator) Next() bool {
+func (it *NFTUnpausedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -2251,7 +2251,7 @@ func (it *AircraftNFTUnpausedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AircraftNFTUnpaused)
+			it.Event = new(NFTUnpaused)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -2266,7 +2266,7 @@ func (it *AircraftNFTUnpausedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AircraftNFTUnpaused)
+		it.Event = new(NFTUnpaused)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -2282,19 +2282,19 @@ func (it *AircraftNFTUnpausedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AircraftNFTUnpausedIterator) Error() error {
+func (it *NFTUnpausedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AircraftNFTUnpausedIterator) Close() error {
+func (it *NFTUnpausedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AircraftNFTUnpaused represents a Unpaused event raised by the AircraftNFT contract.
-type AircraftNFTUnpaused struct {
+// NFTUnpaused represents a Unpaused event raised by the NFT contract.
+type NFTUnpaused struct {
 	Account common.Address
 	Raw     types.Log // Blockchain specific contextual infos
 }
@@ -2302,21 +2302,21 @@ type AircraftNFTUnpaused struct {
 // FilterUnpaused is a free log retrieval operation binding the contract event 0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa.
 //
 // Solidity: event Unpaused(address account)
-func (_AircraftNFT *AircraftNFTFilterer) FilterUnpaused(opts *bind.FilterOpts) (*AircraftNFTUnpausedIterator, error) {
+func (_NFT *NFTFilterer) FilterUnpaused(opts *bind.FilterOpts) (*NFTUnpausedIterator, error) {
 
-	logs, sub, err := _AircraftNFT.contract.FilterLogs(opts, "Unpaused")
+	logs, sub, err := _NFT.contract.FilterLogs(opts, "Unpaused")
 	if err != nil {
 		return nil, err
 	}
-	return &AircraftNFTUnpausedIterator{contract: _AircraftNFT.contract, event: "Unpaused", logs: logs, sub: sub}, nil
+	return &NFTUnpausedIterator{contract: _NFT.contract, event: "Unpaused", logs: logs, sub: sub}, nil
 }
 
 // WatchUnpaused is a free log subscription operation binding the contract event 0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa.
 //
 // Solidity: event Unpaused(address account)
-func (_AircraftNFT *AircraftNFTFilterer) WatchUnpaused(opts *bind.WatchOpts, sink chan<- *AircraftNFTUnpaused) (event.Subscription, error) {
+func (_NFT *NFTFilterer) WatchUnpaused(opts *bind.WatchOpts, sink chan<- *NFTUnpaused) (event.Subscription, error) {
 
-	logs, sub, err := _AircraftNFT.contract.WatchLogs(opts, "Unpaused")
+	logs, sub, err := _NFT.contract.WatchLogs(opts, "Unpaused")
 	if err != nil {
 		return nil, err
 	}
@@ -2326,8 +2326,8 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchUnpaused(opts *bind.WatchOpts, sin
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AircraftNFTUnpaused)
-				if err := _AircraftNFT.contract.UnpackLog(event, "Unpaused", log); err != nil {
+				event := new(NFTUnpaused)
+				if err := _NFT.contract.UnpackLog(event, "Unpaused", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -2351,18 +2351,18 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchUnpaused(opts *bind.WatchOpts, sin
 // ParseUnpaused is a log parse operation binding the contract event 0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa.
 //
 // Solidity: event Unpaused(address account)
-func (_AircraftNFT *AircraftNFTFilterer) ParseUnpaused(log types.Log) (*AircraftNFTUnpaused, error) {
-	event := new(AircraftNFTUnpaused)
-	if err := _AircraftNFT.contract.UnpackLog(event, "Unpaused", log); err != nil {
+func (_NFT *NFTFilterer) ParseUnpaused(log types.Log) (*NFTUnpaused, error) {
+	event := new(NFTUnpaused)
+	if err := _NFT.contract.UnpackLog(event, "Unpaused", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AircraftNFTUpgradeAircraftIterator is returned from FilterUpgradeAircraft and is used to iterate over the raw logs and unpacked data for UpgradeAircraft events raised by the AircraftNFT contract.
-type AircraftNFTUpgradeAircraftIterator struct {
-	Event *AircraftNFTUpgradeAircraft // Event containing the contract specifics and raw log
+// NFTUpgradeAircraftIterator is returned from FilterUpgradeAircraft and is used to iterate over the raw logs and unpacked data for UpgradeAircraft events raised by the NFT contract.
+type NFTUpgradeAircraftIterator struct {
+	Event *NFTUpgradeAircraft // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -2376,7 +2376,7 @@ type AircraftNFTUpgradeAircraftIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AircraftNFTUpgradeAircraftIterator) Next() bool {
+func (it *NFTUpgradeAircraftIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -2385,7 +2385,7 @@ func (it *AircraftNFTUpgradeAircraftIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AircraftNFTUpgradeAircraft)
+			it.Event = new(NFTUpgradeAircraft)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -2400,7 +2400,7 @@ func (it *AircraftNFTUpgradeAircraftIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AircraftNFTUpgradeAircraft)
+		it.Event = new(NFTUpgradeAircraft)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -2416,19 +2416,19 @@ func (it *AircraftNFTUpgradeAircraftIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AircraftNFTUpgradeAircraftIterator) Error() error {
+func (it *NFTUpgradeAircraftIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AircraftNFTUpgradeAircraftIterator) Close() error {
+func (it *NFTUpgradeAircraftIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AircraftNFTUpgradeAircraft represents a UpgradeAircraft event raised by the AircraftNFT contract.
-type AircraftNFTUpgradeAircraft struct {
+// NFTUpgradeAircraft represents a UpgradeAircraft event raised by the NFT contract.
+type NFTUpgradeAircraft struct {
 	Operator    common.Address
 	AircraftId  *big.Int
 	ComponentId *big.Int
@@ -2438,7 +2438,7 @@ type AircraftNFTUpgradeAircraft struct {
 // FilterUpgradeAircraft is a free log retrieval operation binding the contract event 0x386f8ebec58297b76dfa5d010bc797af0edeb58610b9d3a42160ff7592d7b933.
 //
 // Solidity: event UpgradeAircraft(address indexed operator, uint256 indexed aircraftId, uint256 indexed componentId)
-func (_AircraftNFT *AircraftNFTFilterer) FilterUpgradeAircraft(opts *bind.FilterOpts, operator []common.Address, aircraftId []*big.Int, componentId []*big.Int) (*AircraftNFTUpgradeAircraftIterator, error) {
+func (_NFT *NFTFilterer) FilterUpgradeAircraft(opts *bind.FilterOpts, operator []common.Address, aircraftId []*big.Int, componentId []*big.Int) (*NFTUpgradeAircraftIterator, error) {
 
 	var operatorRule []interface{}
 	for _, operatorItem := range operator {
@@ -2453,17 +2453,17 @@ func (_AircraftNFT *AircraftNFTFilterer) FilterUpgradeAircraft(opts *bind.Filter
 		componentIdRule = append(componentIdRule, componentIdItem)
 	}
 
-	logs, sub, err := _AircraftNFT.contract.FilterLogs(opts, "UpgradeAircraft", operatorRule, aircraftIdRule, componentIdRule)
+	logs, sub, err := _NFT.contract.FilterLogs(opts, "UpgradeAircraft", operatorRule, aircraftIdRule, componentIdRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AircraftNFTUpgradeAircraftIterator{contract: _AircraftNFT.contract, event: "UpgradeAircraft", logs: logs, sub: sub}, nil
+	return &NFTUpgradeAircraftIterator{contract: _NFT.contract, event: "UpgradeAircraft", logs: logs, sub: sub}, nil
 }
 
 // WatchUpgradeAircraft is a free log subscription operation binding the contract event 0x386f8ebec58297b76dfa5d010bc797af0edeb58610b9d3a42160ff7592d7b933.
 //
 // Solidity: event UpgradeAircraft(address indexed operator, uint256 indexed aircraftId, uint256 indexed componentId)
-func (_AircraftNFT *AircraftNFTFilterer) WatchUpgradeAircraft(opts *bind.WatchOpts, sink chan<- *AircraftNFTUpgradeAircraft, operator []common.Address, aircraftId []*big.Int, componentId []*big.Int) (event.Subscription, error) {
+func (_NFT *NFTFilterer) WatchUpgradeAircraft(opts *bind.WatchOpts, sink chan<- *NFTUpgradeAircraft, operator []common.Address, aircraftId []*big.Int, componentId []*big.Int) (event.Subscription, error) {
 
 	var operatorRule []interface{}
 	for _, operatorItem := range operator {
@@ -2478,7 +2478,7 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchUpgradeAircraft(opts *bind.WatchOp
 		componentIdRule = append(componentIdRule, componentIdItem)
 	}
 
-	logs, sub, err := _AircraftNFT.contract.WatchLogs(opts, "UpgradeAircraft", operatorRule, aircraftIdRule, componentIdRule)
+	logs, sub, err := _NFT.contract.WatchLogs(opts, "UpgradeAircraft", operatorRule, aircraftIdRule, componentIdRule)
 	if err != nil {
 		return nil, err
 	}
@@ -2488,8 +2488,8 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchUpgradeAircraft(opts *bind.WatchOp
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AircraftNFTUpgradeAircraft)
-				if err := _AircraftNFT.contract.UnpackLog(event, "UpgradeAircraft", log); err != nil {
+				event := new(NFTUpgradeAircraft)
+				if err := _NFT.contract.UnpackLog(event, "UpgradeAircraft", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -2513,18 +2513,18 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchUpgradeAircraft(opts *bind.WatchOp
 // ParseUpgradeAircraft is a log parse operation binding the contract event 0x386f8ebec58297b76dfa5d010bc797af0edeb58610b9d3a42160ff7592d7b933.
 //
 // Solidity: event UpgradeAircraft(address indexed operator, uint256 indexed aircraftId, uint256 indexed componentId)
-func (_AircraftNFT *AircraftNFTFilterer) ParseUpgradeAircraft(log types.Log) (*AircraftNFTUpgradeAircraft, error) {
-	event := new(AircraftNFTUpgradeAircraft)
-	if err := _AircraftNFT.contract.UnpackLog(event, "UpgradeAircraft", log); err != nil {
+func (_NFT *NFTFilterer) ParseUpgradeAircraft(log types.Log) (*NFTUpgradeAircraft, error) {
+	event := new(NFTUpgradeAircraft)
+	if err := _NFT.contract.UnpackLog(event, "UpgradeAircraft", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AircraftNFTEventMintedAircraftIterator is returned from FilterEventMintedAircraft and is used to iterate over the raw logs and unpacked data for EventMintedAircraft events raised by the AircraftNFT contract.
-type AircraftNFTEventMintedAircraftIterator struct {
-	Event *AircraftNFTEventMintedAircraft // Event containing the contract specifics and raw log
+// NFTEventMintedAircraftIterator is returned from FilterEventMintedAircraft and is used to iterate over the raw logs and unpacked data for EventMintedAircraft events raised by the NFT contract.
+type NFTEventMintedAircraftIterator struct {
+	Event *NFTEventMintedAircraft // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -2538,7 +2538,7 @@ type AircraftNFTEventMintedAircraftIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AircraftNFTEventMintedAircraftIterator) Next() bool {
+func (it *NFTEventMintedAircraftIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -2547,7 +2547,7 @@ func (it *AircraftNFTEventMintedAircraftIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AircraftNFTEventMintedAircraft)
+			it.Event = new(NFTEventMintedAircraft)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -2562,7 +2562,7 @@ func (it *AircraftNFTEventMintedAircraftIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AircraftNFTEventMintedAircraft)
+		it.Event = new(NFTEventMintedAircraft)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -2578,19 +2578,19 @@ func (it *AircraftNFTEventMintedAircraftIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AircraftNFTEventMintedAircraftIterator) Error() error {
+func (it *NFTEventMintedAircraftIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AircraftNFTEventMintedAircraftIterator) Close() error {
+func (it *NFTEventMintedAircraftIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AircraftNFTEventMintedAircraft represents a EventMintedAircraft event raised by the AircraftNFT contract.
-type AircraftNFTEventMintedAircraft struct {
+// NFTEventMintedAircraft represents a EventMintedAircraft event raised by the NFT contract.
+type NFTEventMintedAircraft struct {
 	Operator   common.Address
 	AircraftId *big.Int
 	Raw        types.Log // Blockchain specific contextual infos
@@ -2599,7 +2599,7 @@ type AircraftNFTEventMintedAircraft struct {
 // FilterEventMintedAircraft is a free log retrieval operation binding the contract event 0xf2b0a49cd859710f9fe79ae979f330607d532f61b1cd3942d11ca91dbda52af2.
 //
 // Solidity: event event_MintedAircraft(address indexed operator, uint256 indexed aircraftId)
-func (_AircraftNFT *AircraftNFTFilterer) FilterEventMintedAircraft(opts *bind.FilterOpts, operator []common.Address, aircraftId []*big.Int) (*AircraftNFTEventMintedAircraftIterator, error) {
+func (_NFT *NFTFilterer) FilterEventMintedAircraft(opts *bind.FilterOpts, operator []common.Address, aircraftId []*big.Int) (*NFTEventMintedAircraftIterator, error) {
 
 	var operatorRule []interface{}
 	for _, operatorItem := range operator {
@@ -2610,17 +2610,17 @@ func (_AircraftNFT *AircraftNFTFilterer) FilterEventMintedAircraft(opts *bind.Fi
 		aircraftIdRule = append(aircraftIdRule, aircraftIdItem)
 	}
 
-	logs, sub, err := _AircraftNFT.contract.FilterLogs(opts, "event_MintedAircraft", operatorRule, aircraftIdRule)
+	logs, sub, err := _NFT.contract.FilterLogs(opts, "event_MintedAircraft", operatorRule, aircraftIdRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AircraftNFTEventMintedAircraftIterator{contract: _AircraftNFT.contract, event: "event_MintedAircraft", logs: logs, sub: sub}, nil
+	return &NFTEventMintedAircraftIterator{contract: _NFT.contract, event: "event_MintedAircraft", logs: logs, sub: sub}, nil
 }
 
 // WatchEventMintedAircraft is a free log subscription operation binding the contract event 0xf2b0a49cd859710f9fe79ae979f330607d532f61b1cd3942d11ca91dbda52af2.
 //
 // Solidity: event event_MintedAircraft(address indexed operator, uint256 indexed aircraftId)
-func (_AircraftNFT *AircraftNFTFilterer) WatchEventMintedAircraft(opts *bind.WatchOpts, sink chan<- *AircraftNFTEventMintedAircraft, operator []common.Address, aircraftId []*big.Int) (event.Subscription, error) {
+func (_NFT *NFTFilterer) WatchEventMintedAircraft(opts *bind.WatchOpts, sink chan<- *NFTEventMintedAircraft, operator []common.Address, aircraftId []*big.Int) (event.Subscription, error) {
 
 	var operatorRule []interface{}
 	for _, operatorItem := range operator {
@@ -2631,7 +2631,7 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchEventMintedAircraft(opts *bind.Wat
 		aircraftIdRule = append(aircraftIdRule, aircraftIdItem)
 	}
 
-	logs, sub, err := _AircraftNFT.contract.WatchLogs(opts, "event_MintedAircraft", operatorRule, aircraftIdRule)
+	logs, sub, err := _NFT.contract.WatchLogs(opts, "event_MintedAircraft", operatorRule, aircraftIdRule)
 	if err != nil {
 		return nil, err
 	}
@@ -2641,8 +2641,8 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchEventMintedAircraft(opts *bind.Wat
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AircraftNFTEventMintedAircraft)
-				if err := _AircraftNFT.contract.UnpackLog(event, "event_MintedAircraft", log); err != nil {
+				event := new(NFTEventMintedAircraft)
+				if err := _NFT.contract.UnpackLog(event, "event_MintedAircraft", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -2666,9 +2666,9 @@ func (_AircraftNFT *AircraftNFTFilterer) WatchEventMintedAircraft(opts *bind.Wat
 // ParseEventMintedAircraft is a log parse operation binding the contract event 0xf2b0a49cd859710f9fe79ae979f330607d532f61b1cd3942d11ca91dbda52af2.
 //
 // Solidity: event event_MintedAircraft(address indexed operator, uint256 indexed aircraftId)
-func (_AircraftNFT *AircraftNFTFilterer) ParseEventMintedAircraft(log types.Log) (*AircraftNFTEventMintedAircraft, error) {
-	event := new(AircraftNFTEventMintedAircraft)
-	if err := _AircraftNFT.contract.UnpackLog(event, "event_MintedAircraft", log); err != nil {
+func (_NFT *NFTFilterer) ParseEventMintedAircraft(log types.Log) (*NFTEventMintedAircraft, error) {
+	event := new(NFTEventMintedAircraft)
+	if err := _NFT.contract.UnpackLog(event, "event_MintedAircraft", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log

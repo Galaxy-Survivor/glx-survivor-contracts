@@ -24,8 +24,8 @@ module.exports = {
         ganache: {
             url: "http://localhost:8545",
             accounts: [
-                '01bce67e184a9009d3da19f260f16a69f5a9733a746f81afd6dabdb991a812ea',
-                '7e3b88f484c531d2d10439ed24449f2e0eee3315869522dc6712e844cea2fd2e'
+                '6c20f08e5b8e9107266e905f3fad55ca0649c3815e43ea21618cc36f195b3802',
+                '93d2c579f2c98a12d964fe66f1acba209a79def145cd8768104c459d50996371'
             ]
         },
         rinkeby: {
