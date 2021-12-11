@@ -16,7 +16,7 @@ contract GLXShip is Context, AccessControl, ERC721 {
 
 	string private _baseTokenURI;
 
-	constructor(string memory baseURI) ERC721("Galaxy Ship", "Ship") {
+	constructor(string memory baseURI) ERC721("Galaxy Ship", "GLXShip") {
 		_baseTokenURI = baseURI;
 
 		_setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
@@ -39,6 +39,10 @@ contract GLXShip is Context, AccessControl, ERC721 {
 
 	function addMinter(address minter) external onlyAdmin {
 		grantRole(MINTER_ROLE, minter);
+	}
+
+	function removeMinter(address minter) external onlyAdmin {
+		revokeRole(MINTER_ROLE, minter);
 	}
 
 	function mint(address to) public onlyMinter {
