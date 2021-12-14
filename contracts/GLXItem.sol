@@ -2,10 +2,10 @@
 
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
-import "@openzeppelin/contracts/utils/Context.sol";
-import "@openzeppelin/contracts/utils/Strings.sol";
-import "@openzeppelin/contracts/access/AccessControl.sol";
+import "./ERC1155.sol";
+import "./Context.sol";
+import "./Strings.sol";
+import "./AccessControl.sol";
 
 contract GLXItem is Context, AccessControl, ERC1155 {
 	using Strings for uint256;
@@ -15,6 +15,8 @@ contract GLXItem is Context, AccessControl, ERC1155 {
 	uint256 public constant MAX_BOX_ID = 1000;
 
 	uint256 private _currentItemId = 1000;
+
+	event Unbox(address indexed operator, uint256 boxId, uint256 amount);
 
 	constructor(string memory baseURI) ERC1155(baseURI) {
 		_setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
@@ -54,14 +56,10 @@ contract GLXItem is Context, AccessControl, ERC1155 {
 		_mint(to, _currentItemId, 1, "");
 	}
 
-	function burnBox(address from, uint256 id, uint256 amount) public onlyMinter {
+	function unbox(uint256 id, uint256 amount) public {
 		require(id <= MAX_BOX_ID, "GLXItem: invalid box id");
-		_burn(from, id, amount);
-	}
-
-	function burnItem(address from, uint256 id) public onlyMinter {
-		require(id > MAX_BOX_ID, "GLXItem: invalid item id");
-		_burn(from, id, 1);
+		_burn(_msgSender(), id, amount);
+		emit Unbox(_msgSender(), id, amount);
 	}
 
 	function supportsInterface(bytes4 interfaceId)

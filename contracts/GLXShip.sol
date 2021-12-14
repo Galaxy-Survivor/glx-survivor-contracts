@@ -2,10 +2,10 @@
 
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
-import "@openzeppelin/contracts/utils/Context.sol";
-import "@openzeppelin/contracts/access/AccessControl.sol";
+import "./ERC721.sol";
+import "./Counters.sol";
+import "./Context.sol";
+import "./AccessControl.sol";
 
 contract GLXShip is Context, AccessControl, ERC721 {
 	using Counters for Counters.Counter;
@@ -47,7 +47,7 @@ contract GLXShip is Context, AccessControl, ERC721 {
 
 	function mint(address to) public onlyMinter {
 		_tokenIdTracker.increment();
-		_mint(to, _tokenIdTracker.current());
+		_safeMint(to, _tokenIdTracker.current());
 	}
 
 	function supportsInterface(bytes4 interfaceId)

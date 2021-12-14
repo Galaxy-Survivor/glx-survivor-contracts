@@ -2,8 +2,8 @@
 
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Capped.sol";
-import "@openzeppelin/contracts/access/AccessControl.sol";
+import "./ERC20Capped.sol";
+import "./AccessControl.sol";
 
 contract GLXToken is ERC20Capped, AccessControl {
 	bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
