@@ -2,23 +2,23 @@
 
 pragma solidity ^0.8.0;
 
-import "./ERC1155.sol";
+import "./ERC721.sol";
+import "./Counters.sol";
 import "./Context.sol";
-import "./Strings.sol";
 import "./AccessControl.sol";
 
-contract GLXItem is Context, AccessControl, ERC1155 {
-	using Strings for uint256;
+contract GLXItem is Context, AccessControl, ERC721 {
+	using Counters for Counters.Counter;
 
 	bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
-	uint256 public constant MAX_BOX_ID = 1000;
+	Counters.Counter private _tokenIdTracker;
 
-	uint256 private _currentItemId = 1000;
+	string private _baseTokenURI;
 
-	event Unbox(address indexed operator, uint256 boxId, uint256 amount);
+	constructor(string memory baseURI) ERC721("Galaxy Ship Item", "GLXItem") {
+		_baseTokenURI = baseURI;
 
-	constructor(string memory baseURI) ERC1155(baseURI) {
 		_setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
 		_setupRole(MINTER_ROLE, _msgSender());
 	}
@@ -33,6 +33,10 @@ contract GLXItem is Context, AccessControl, ERC1155 {
 		_;
 	}
 
+	function _baseURI() internal view override returns (string memory) {
+		return _baseTokenURI;
+	}
+
 	function addMinter(address minter) public onlyAdmin {
 		grantRole(MINTER_ROLE, minter);
 	}
@@ -41,31 +45,15 @@ contract GLXItem is Context, AccessControl, ERC1155 {
 		revokeRole(MINTER_ROLE, minter);
 	}
 
-	function uri(uint256 tokenId) public view override returns (string memory) {
-		string memory baseURI = super.uri(tokenId);
-		return string(abi.encodePacked(baseURI, tokenId.toString()));
-	}
-
-	function mintBox(address to, uint256 id, uint256 amount) public onlyMinter {
-		require(id <= MAX_BOX_ID, "GLXItem: invalid box id");
-		_mint(to, id, amount, "");
-	}
-
-	function mintItem(address to) public onlyMinter {
-		_currentItemId++;
-		_mint(to, _currentItemId, 1, "");
-	}
-
-	function unbox(uint256 id, uint256 amount) public {
-		require(id <= MAX_BOX_ID, "GLXItem: invalid box id");
-		_burn(_msgSender(), id, amount);
-		emit Unbox(_msgSender(), id, amount);
+	function mint(address to) public onlyMinter {
+		_tokenIdTracker.increment();
+		_mint(to, _tokenIdTracker.current());
 	}
 
 	function supportsInterface(bytes4 interfaceId)
 		public
 		view
-		override(AccessControl, ERC1155)
+		override(AccessControl, ERC721)
 		returns (bool)
 	{
 		return super.supportsInterface(interfaceId);
