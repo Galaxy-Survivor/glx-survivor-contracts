@@ -3,11 +3,12 @@
 pragma solidity ^0.8.0;
 
 import "./ERC721.sol";
+import "./ERC721Enumerable.sol";
 import "./Counters.sol";
 import "./Context.sol";
 import "./AccessControl.sol";
 
-contract GLXShip is Context, AccessControl, ERC721 {
+contract GLXShip is Context, AccessControl, ERC721Enumerable {
 	using Counters for Counters.Counter;
 
 	bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
@@ -53,7 +54,7 @@ contract GLXShip is Context, AccessControl, ERC721 {
 	function supportsInterface(bytes4 interfaceId)
 		public
 		view
-		override(AccessControl, ERC721)
+		override(AccessControl, ERC721Enumerable)
 		returns (bool)
 	{
 		return super.supportsInterface(interfaceId);
