@@ -46,7 +46,7 @@ contract GLXShip is Context, AccessControl, ERC721Enumerable {
 		revokeRole(MINTER_ROLE, minter);
 	}
 
-	function mint(address to) public onlyMinter {
+	function mint(address to) external onlyMinter {
 		_tokenIdTracker.increment();
 		_safeMint(to, _tokenIdTracker.current());
 	}
