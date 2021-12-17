@@ -24,19 +24,19 @@ contract GLXFungibleItem is Context, AccessControl, ERC1155 {
 		_;
 	}
 
-	function addMinter(address minter) public onlyAdmin {
+	function addMinter(address minter) external onlyAdmin {
 		grantRole(MINTER_ROLE, minter);
 	}
 
-	function removeMinter(address minter) public onlyAdmin {
+	function removeMinter(address minter) external onlyAdmin {
 		revokeRole(MINTER_ROLE, minter);
 	}
 
-	function mint(address to, uint256 id, uint256 amount) public onlyMinter {
+	function mint(address to, uint256 id, uint256 amount) external onlyMinter {
 		_mint(to, id, amount, "");
 	}
 
-	function burn(address from, uint256 id, uint256 amount) public onlyMinter {
+	function burn(address from, uint256 id, uint256 amount) external onlyMinter {
 		_burn(from, id, amount);
 	}
 
