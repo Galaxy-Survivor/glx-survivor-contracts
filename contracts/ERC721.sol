@@ -76,21 +76,21 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     /**
      * @dev See {IERC721Metadata-name}.
      */
-    function name() public view virtual override returns (string memory) {
+    function name() external view virtual override returns (string memory) {
         return _name;
     }
 
     /**
      * @dev See {IERC721Metadata-symbol}.
      */
-    function symbol() public view virtual override returns (string memory) {
+    function symbol() external view virtual override returns (string memory) {
         return _symbol;
     }
 
     /**
      * @dev See {IERC721Metadata-tokenURI}.
      */
-    function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
+    function tokenURI(uint256 tokenId) external view virtual override returns (string memory) {
         require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
 
         string memory baseURI = _baseURI();
@@ -109,7 +109,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     /**
      * @dev See {IERC721-approve}.
      */
-    function approve(address to, uint256 tokenId) public virtual override {
+    function approve(address to, uint256 tokenId) external virtual override {
         address owner = ERC721.ownerOf(tokenId);
         require(to != owner, "ERC721: approval to current owner");
 
@@ -133,7 +133,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     /**
      * @dev See {IERC721-setApprovalForAll}.
      */
-    function setApprovalForAll(address operator, bool approved) public virtual override {
+    function setApprovalForAll(address operator, bool approved) external virtual override {
         _setApprovalForAll(_msgSender(), operator, approved);
     }
 
@@ -151,7 +151,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
         address from,
         address to,
         uint256 tokenId
-    ) public virtual override {
+    ) external virtual override {
         //solhint-disable-next-line max-line-length
         require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: transfer caller is not owner nor approved");
 
@@ -165,7 +165,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
         address from,
         address to,
         uint256 tokenId
-    ) public virtual override {
+    ) external virtual override {
         safeTransferFrom(from, to, tokenId, "");
     }
 
@@ -176,10 +176,10 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
         address from,
         address to,
         uint256 tokenId,
-        bytes memory _data
+        bytes memory data
     ) public virtual override {
         require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: transfer caller is not owner nor approved");
-        _safeTransfer(from, to, tokenId, _data);
+        _safeTransfer(from, to, tokenId, data);
     }
 
     /**
@@ -287,30 +287,6 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
         _owners[tokenId] = to;
 
         emit Transfer(address(0), to, tokenId);
-    }
-
-    /**
-     * @dev Destroys `tokenId`.
-     * The approval is cleared when the token is burned.
-     *
-     * Requirements:
-     *
-     * - `tokenId` must exist.
-     *
-     * Emits a {Transfer} event.
-     */
-    function _burn(uint256 tokenId) internal virtual {
-        address owner = ERC721.ownerOf(tokenId);
-
-        _beforeTokenTransfer(owner, address(0), tokenId);
-
-        // Clear approvals
-        _approve(address(0), tokenId);
-
-        _balances[owner] -= 1;
-        delete _owners[tokenId];
-
-        emit Transfer(owner, address(0), tokenId);
     }
 
     /**
