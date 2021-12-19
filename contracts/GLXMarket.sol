@@ -10,6 +10,10 @@ import "./Context.sol";
 import "./Ownable.sol";
 import "./EnumerableSet.sol";
 
+/**
+ * @title Galaxy Survivor Marketplace.
+ * @dev Implement a contract for buying and selling ships and items.
+ */
 contract GLXMarket is Context, Ownable {
     using EnumerableSet for EnumerableSet.UintSet;
     using SafeERC20 for IERC20;
@@ -21,9 +25,22 @@ contract GLXMarket is Context, Ownable {
     }
 
     enum OrderSide {
-    	Buy, Sell
+    	Buy,
+	Sell
     }
 
+    /**
+     * @dev Data structure that contains information for an order.
+     * @param creator is the address of the order's creator.
+     * @param itemId is the id of item want to buy/sell.
+     * @param price is price for buying/selling one item.
+     * @param createdTime is timestamp when the order is created.
+     * @param expiredTime is the timestamp when the order will be expired.
+     * @param amount is the number of items want to buy/sell.
+     * @param remainAmount is the remaining amount can be bought/sold.
+     * @param itemType is the type of an item.
+     * @param side is whether buy or sell.
+     */
     struct Order {
     	address creator;
     	uint256 itemId;
@@ -51,9 +68,24 @@ contract GLXMarket is Context, Ownable {
     mapping(uint256 => Order) private orders;
     mapping(address => EnumerableSet.UintSet) userOrderIds;
 
+    /**
+     * @dev Emitted when a new fee is set.
+     */
     event SetFee(address indexed operator, uint256 oldFee, uint256 newFee);
+
+    /**
+     * @dev Emitted when an order is successfully created.
+     */
     event CreateOrder(address indexed operator, uint256 indexed orderId);
+
+    /**
+     * @dev Emitted when an order is successfully cancelled.
+     */
     event CancelOrder(address indexed operator, uint256 indexed orderId);
+
+    /**
+     * @dev Emitted when an order is taken.
+     */
     event TakeOrder(
     	address indexed seller,
     	address indexed buyer,
@@ -63,6 +95,9 @@ contract GLXMarket is Context, Ownable {
     	uint256 totalFee
     );
 
+    /**
+     * @dev Sets addresses for contracts GLXToken, GLXShip, GLXItem, and GLXFungibleItem.
+     */
     constructor(address token, address ship, address item, address fungibleItem) {
     	require(token != address(0x0), "token address is 0x0");
     	require(ship != address(0x0), "ship address is 0x0");
@@ -74,6 +109,11 @@ contract GLXMarket is Context, Ownable {
     	_fungibleItem = IERC1155(fungibleItem);
     }
 
+    /**
+     * @dev Sets a new fee value for market.
+     *
+     * The unit for fee value is 1/10000.
+     */ 
     function setFee(uint256 fee) external onlyOwner {
     	require(fee > 0, "zero fee");
     	uint256 oldFee = _baseFee;
@@ -81,10 +121,22 @@ contract GLXMarket is Context, Ownable {
     	emit SetFee(_msgSender(), oldFee, _baseFee);
     }
 
+    /**
+     * @dev Withdraws {amount} GLXToken to {to} address.
+     */
     function withdraw(address to, uint256 amount) external onlyOwner {
     	_token.safeTransfer(to, amount);
     }
 
+    /**
+     * @dev Creates a new order for buying/selling items.
+     * @param itemId is id of item want to buy/sell.
+     * @param itemType is the type of item.
+     * @param price is the price for an item.
+     * @param amount is the number of items want to buy/sell. This value is ignore for GLXShip and GLXItem.
+     * @param duration is the valid duration time in seconds of the order.
+     * @param side is whether buy or sell.
+     */
     function createOrder(
     	uint256 itemId,
     	ItemType itemType,
@@ -141,6 +193,9 @@ contract GLXMarket is Context, Ownable {
     	return orderId;
     }
 
+    /**
+     * @dev Cancels an existing order.
+     */
     function cancelOrder(uint256 orderId) external {
     	Order storage order = orders[orderId];
     	require(
@@ -153,6 +208,9 @@ contract GLXMarket is Context, Ownable {
     	emit CancelOrder(_msgSender(), orderId);
     }
 
+    /**
+     * @dev Take an amount of items from an order.
+     */
     function takeOrder(uint256 orderId, uint32 amount) external {
     	Order storage order = orders[orderId];
 
@@ -192,10 +250,16 @@ contract GLXMarket is Context, Ownable {
     	}
     }
 
+    /**
+     * @dev Returns order's information.
+     */
     function getOrder(uint256 orderId) external view returns (Order memory) {
     	return orders[orderId];
     }
 
+    /**
+     * @dev Returns a list of orders' information from {startIndex} to {endIndex}.
+     */
     function getOrders(
 	    uint256 startIndex,
 	    uint256 endIndex
