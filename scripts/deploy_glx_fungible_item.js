@@ -2,7 +2,7 @@ const hre = require("hardhat");
 
 async function main() {
   const GLXFungibleItem = await hre.ethers.getContractFactory("GLXFungibleItem");
-  const glxFungibleItem = await GLXFungibleItem.deploy();
+  const glxFungibleItem = await GLXFungibleItem.deploy("https://test.galaxysurvivor.io/api/consumable-items/");
 
   await glxFungibleItem.deployed();
 

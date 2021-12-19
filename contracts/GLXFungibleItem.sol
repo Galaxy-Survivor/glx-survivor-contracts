@@ -7,45 +7,41 @@ import "./Context.sol";
 import "./AccessControl.sol";
 
 contract GLXFungibleItem is Context, AccessControl, ERC1155 {
-	bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
+    using Strings for uint256;
 
-	constructor() ERC1155("") {
-		_setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
-		_setupRole(MINTER_ROLE, _msgSender());
-	}
+    bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
-	modifier onlyAdmin() {
-		require(hasRole(DEFAULT_ADMIN_ROLE, _msgSender()), "GLXBox: require admin role");
-		_;
-	}
+    constructor(string memory baseURI) ERC1155(baseURI) {
+    	_grantRole(DEFAULT_ADMIN_ROLE, _msgSender());
+    	_grantRole(MINTER_ROLE, _msgSender());
+    }
 
-	modifier onlyMinter() {
-		require(hasRole(MINTER_ROLE, _msgSender()), "GLXBox: require minter role");
-		_;
-	}
+    function addMinter(address minter) external onlyRole(DEFAULT_ADMIN_ROLE) {
+    	_grantRole(MINTER_ROLE, minter);
+    }
 
-	function addMinter(address minter) external onlyAdmin {
-		grantRole(MINTER_ROLE, minter);
-	}
+    function removeMinter(address minter) external onlyRole(DEFAULT_ADMIN_ROLE) {
+    	_revokeRole(MINTER_ROLE, minter);
+    }
 
-	function removeMinter(address minter) external onlyAdmin {
-		revokeRole(MINTER_ROLE, minter);
-	}
+    function mint(address to, uint256 id, uint256 amount) external onlyRole(MINTER_ROLE) {
+    	_mint(to, id, amount, "");
+    }
 
-	function mint(address to, uint256 id, uint256 amount) external onlyMinter {
-		_mint(to, id, amount, "");
-	}
+    function burn(address from, uint256 id, uint256 amount) external onlyRole(MINTER_ROLE) {
+    	_burn(from, id, amount);
+    }
 
-	function burn(address from, uint256 id, uint256 amount) external onlyMinter {
-		_burn(from, id, amount);
-	}
+    function uri(uint256 tokenId) public view override returns (string memory) {
+	    return string(abi.encodePacked(super.uri(tokenId), tokenId.toString()));
+    }
 
-	function supportsInterface(bytes4 interfaceId)
-		public
-		view
-		override(AccessControl, ERC1155)
-		returns (bool)
-	{
-		return super.supportsInterface(interfaceId);
-	}
+    function supportsInterface(bytes4 interfaceId)
+    	public
+    	view
+    	override(AccessControl, ERC1155)
+    	returns (bool)
+    {
+    	return super.supportsInterface(interfaceId);
+    }
 }

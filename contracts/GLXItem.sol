@@ -4,59 +4,43 @@ pragma solidity ^0.8.0;
 
 import "./ERC721.sol";
 import "./ERC721Enumerable.sol";
-import "./Counters.sol";
 import "./Context.sol";
 import "./AccessControl.sol";
 
 contract GLXItem is Context, AccessControl, ERC721Enumerable {
-	using Counters for Counters.Counter;
+    bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
-	bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
+    string private _baseTokenURI;
 
-	Counters.Counter private _tokenIdTracker;
+    constructor(string memory baseURI) ERC721("Galaxy Ship Item", "GLXItem") {
+    	_baseTokenURI = baseURI;
 
-	string private _baseTokenURI;
+    	_grantRole(DEFAULT_ADMIN_ROLE, _msgSender());
+    	_grantRole(MINTER_ROLE, _msgSender());
+    }
 
-	constructor(string memory baseURI) ERC721("Galaxy Ship Item", "GLXItem") {
-		_baseTokenURI = baseURI;
+    function _baseURI() internal view override returns (string memory) {
+    	return _baseTokenURI;
+    }
 
-		_setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
-		_setupRole(MINTER_ROLE, _msgSender());
-	}
+    function addMinter(address minter) external onlyRole(DEFAULT_ADMIN_ROLE) {
+    	_grantRole(MINTER_ROLE, minter);
+    }
 
-	modifier onlyAdmin() {
-		require(hasRole(DEFAULT_ADMIN_ROLE, _msgSender()), "GLXItem: require admin role");
-		_;
-	}
+    function removeMinter(address minter) external onlyRole(DEFAULT_ADMIN_ROLE) {
+    	_revokeRole(MINTER_ROLE, minter);
+    }
 
-	modifier onlyMinter() {
-		require(hasRole(MINTER_ROLE, _msgSender()), "GLXItem: require minter role");
-		_;
-	}
+    function mint(address to, uint256 id) external onlyRole(MINTER_ROLE) {
+        _safeMint(to, id);
+    }
 
-	function _baseURI() internal view override returns (string memory) {
-		return _baseTokenURI;
-	}
-
-	function addMinter(address minter) external onlyAdmin {
-		grantRole(MINTER_ROLE, minter);
-	}
-
-	function removeMinter(address minter) external onlyAdmin {
-		revokeRole(MINTER_ROLE, minter);
-	}
-
-	function mint(address to) external onlyMinter {
-		_tokenIdTracker.increment();
-		_mint(to, _tokenIdTracker.current());
-	}
-
-	function supportsInterface(bytes4 interfaceId)
-		public
-		view
-		override(AccessControl, ERC721Enumerable)
-		returns (bool)
-	{
-		return super.supportsInterface(interfaceId);
-	}
+    function supportsInterface(bytes4 interfaceId)
+    	public
+    	view
+    	override(AccessControl, ERC721Enumerable)
+    	returns (bool)
+    {
+    	return super.supportsInterface(interfaceId);
+    }
 }
