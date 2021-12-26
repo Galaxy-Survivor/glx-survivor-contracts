@@ -3,9 +3,9 @@ const hre = require("hardhat");
 async function main() {
   const GLXLogic = await hre.ethers.getContractFactory("GLXLogic");
   const glxLogic = await GLXLogic.deploy(
-	  "0xf49B1b3807876ed7EBFC73164D28eAE1A265b800",
-	  "0x4b09e73E2f2aA55a585eafD5D26410E19882e39f",
-	  "0x1D32E9F60CF0650Bd89f64BFCcc597fb0eE47107"
+	  "0x2d6A90ad19F658F0EF59226BAC0AE067364F9ee6",
+	  "0xb794f95e2C6cF686BF6656611B75a92C8D31d07C",
+	  "0xe44a252435Ad21b5aECBE5BDEAB648f668095d52"
   );
 
   await glxLogic.deployed();
