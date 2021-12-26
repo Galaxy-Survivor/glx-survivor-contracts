@@ -20,8 +20,8 @@ contract GLXMarket is Context, Ownable {
 
     enum ItemType {
     	GLXShip,
-    	GLXItem,
-    	GLXBox
+    	GLXEquipment,
+    	GLXItem
     }
 
     enum OrderSide {
@@ -58,8 +58,8 @@ contract GLXMarket is Context, Ownable {
 
     IERC20 private _token;
     IERC721 private _ship;
-    IERC721 private _item;
-    IERC1155 private _fungibleItem;
+    IERC721 private _equipment;
+    IERC1155 private _item;
 
     uint256 private _baseFee = 100;
 
@@ -96,17 +96,17 @@ contract GLXMarket is Context, Ownable {
     );
 
     /**
-     * @dev Sets addresses for contracts GLXToken, GLXShip, GLXItem, and GLXFungibleItem.
+     * @dev Sets addresses for contracts GLXToken, GLXShip, GLXEquipment, and GLXItem.
      */
-    constructor(address token, address ship, address item, address fungibleItem) {
+    constructor(address token, address ship, address equipment, address item) {
     	require(token != address(0x0), "token address is 0x0");
     	require(ship != address(0x0), "ship address is 0x0");
-    	require(item != address(0x0), "item address is 0x0");
-    	require(fungibleItem != address(0x00), "fungible item address is 0x0");
+    	require(equipment != address(0x0), "equipment address is 0x0");
+    	require(item != address(0x00), "item address is 0x0");
     	_token = IERC20(token);
     	_ship = IERC721(ship);
-    	_item = IERC721(item);
-    	_fungibleItem = IERC1155(fungibleItem);
+    	_equipment = IERC721(equipment);
+    	_item = IERC1155(item);
     }
 
     /**
@@ -148,7 +148,7 @@ contract GLXMarket is Context, Ownable {
     	require(price > 0, "zero price");
     	require(duration >= MIN_ORDER_DURATION, "duration too short");
 
-    	if (itemType == ItemType.GLXBox) {
+    	if (itemType == ItemType.GLXItem) {
     		require(amount > 0, "amount is zero");
     	} else {
     		amount = 1;
@@ -159,11 +159,11 @@ contract GLXMarket is Context, Ownable {
     		if (itemType == ItemType.GLXShip) {
     			address itemOwner = _ship.ownerOf(itemId);
     			isValidOwner = _msgSender() == itemOwner;
-    		} else if (itemType == ItemType.GLXItem) {
-    			address itemOwner = _item.ownerOf(itemId);
+    		} else if (itemType == ItemType.GLXEquipment) {
+    			address itemOwner = _equipment.ownerOf(itemId);
     			isValidOwner = _msgSender() == itemOwner;
-    		} else if (itemType == ItemType.GLXBox) {
-    			uint256 availableAmount = _fungibleItem.balanceOf(_msgSender(), itemId);
+    		} else if (itemType == ItemType.GLXItem) {
+    			uint256 availableAmount = _item.balanceOf(_msgSender(), itemId);
     			isValidOwner = availableAmount >= amount;
     		}
     		require(isValidOwner, "insufficient balance");
@@ -244,9 +244,9 @@ contract GLXMarket is Context, Ownable {
     	if (order.itemType == ItemType.GLXShip) {
     		_ship.safeTransferFrom(seller, buyer, order.itemId);
     	} else if (order.itemType == ItemType.GLXItem) {
-    		_item.safeTransferFrom(seller, buyer, order.itemId);
+    		_equipment.safeTransferFrom(seller, buyer, order.itemId);
     	} else {
-    		_fungibleItem.safeTransferFrom(seller, buyer, order.itemId, amount, "");
+    		_item.safeTransferFrom(seller, buyer, order.itemId, amount, "");
     	}
     }
 
