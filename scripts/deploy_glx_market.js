@@ -2,9 +2,7 @@ const hre = require("hardhat");
 
 async function main() {
   const GLXMarket = await hre.ethers.getContractFactory("GLXMarket");
-  const glxMarket = await GLXMarket.deploy(
-    ["0x0000000000000000000000000000000000000000", "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56"]
-  );
+  const glxMarket = await GLXMarket.deploy(["0x0000000000000000000000000000000000000000"]);
 
   await glxMarket.deployed();
 
