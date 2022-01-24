@@ -29,6 +29,14 @@ module.exports = {
     bsctestnet: {
       "url": "https://data-seed-prebsc-1-s1.binance.org:8545/",
       "accounts": [`0x8e94548d06a648da86dd3766ba28e768a5eca79c0f7e68a8e97914845ebfd27f`]
+    },
+    avaxtestnet: {
+      "url": "https://speedy-nodes-nyc.moralis.io/e354237b8b817e2043a26d0a/avalanche/testnet",
+      "accounts": [`0x8e94548d06a648da86dd3766ba28e768a5eca79c0f7e68a8e97914845ebfd27f`]
+    },
+    avaxmainnet: {
+      "url": "https://api.avax.network/ext/bc/C/rpc",
+      "accounts": []
     }
   }
 };
