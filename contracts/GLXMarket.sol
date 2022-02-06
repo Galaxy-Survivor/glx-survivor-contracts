@@ -25,14 +25,14 @@ contract AcceptedToken is Ownable {
         emit AddTokens(tokens);
     }
 
-    function removeAcceptedTokens(address[] memory tokens) public onlyOwner {
+    function removeAcceptedTokens(address[] memory tokens) external onlyOwner {
         for (uint256 i = 0; i < tokens.length; i++) {
             acceptedTokens.remove(tokens[i]);
         }
         emit RemoveTokens(tokens);
     }
 
-    function isAcceptedToken(address token) public view returns (bool) {
+    function isAcceptedToken(address token) external view returns (bool) {
         return acceptedTokens.contains(token);
     }
 
