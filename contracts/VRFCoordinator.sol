@@ -47,7 +47,7 @@ contract VRFCoordinator is
     address sender,
     bytes32 requestID
   );
-  event RandomnessRequestFulfilled(bytes32 requestId, uint256 output);
+  event RandomnessRequestFulfilled(bytes32 requestID, uint256 output);
 
   function addConsumer(address consumer) external onlyOwner {
     require(consumer != address(0), "consumer's address is zero");
