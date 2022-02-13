@@ -103,22 +103,23 @@ contract VRFCoordinator is
   /**
    * @notice Creates a request for randomness.
    * @param keyHash ID of the VRF public key against which to generate output.
-   * @param consumer address of consumer contract.
    *
    * @dev the requestID used to store the request data is constructed from the
    * @dev preSeed and keyHash.
    */
-  function randomnessRequest(bytes32 keyHash, address consumer) external returns (bytes32) {
+  function randomnessRequest(bytes32 keyHash) external returns (bytes32) {
+    address consumer = _msgSender();
+    require(acceptedConsumers.contains(consumer), "consumer not accepted");
     uint256 nonce = nonces[keyHash][consumer];
     uint256 preSeed = makeVRFInputSeed(keyHash, consumer, nonce);
-    bytes32 requestId = makeRequestId(keyHash, preSeed);
+    bytes32 requestID = makeRequestId(keyHash, preSeed);
     // Cryptographically guaranteed by preSeed including an increasing nonce.
-    assert(callbacks[requestId].consumer == address(0));
-    callbacks[requestId].consumer = consumer;
-    callbacks[requestId].seedAndBlockNum = keccak256(abi.encodePacked(preSeed, block.number));
+    assert(callbacks[requestID].consumer == address(0));
+    callbacks[requestID].consumer = consumer;
+    callbacks[requestID].seedAndBlockNum = keccak256(abi.encodePacked(preSeed, block.number));
     nonces[keyHash][consumer]++;
-    emit RandomnessRequest(keyHash, preSeed, consumer, requestId);
-    return requestId;
+    emit RandomnessRequest(keyHash, preSeed, consumer, requestID);
+    return requestID;
   }
 
   // Offset into fulfillRandomnessRequest's proof of various values
@@ -137,24 +138,24 @@ contract VRFCoordinator is
    * @dev in the node source code. I.e., it is a vrf.MarshaledProof with the
    * @dev seed replaced by preSeed, followed by the hash of the requesting block.
    */
-  function fulfillRandomnessRequest(bytes memory proof) external {
+  function fulfillRandomnessRequest(bytes memory proof, bytes32 requestBlockHash) external {
     bytes32 hashKey;
     Callback memory callback;
     uint256 randomness;
-    bytes32 requestId;
-    (hashKey, callback, requestId, randomness) = getRandomnessFromProof(proof);
+    bytes32 requestID;
+    (hashKey, callback, requestID, randomness) = getRandomnessFromProof(proof, requestBlockHash);
 
     // Forget request. Must precede callback (prevents reentrancy)
-    delete callbacks[requestId];
-    emit RandomnessRequestFulfilled(requestId, randomness);
-    callbackWithRandomness(callback.consumer, requestId, randomness);
+    delete callbacks[requestID];
+    emit RandomnessRequestFulfilled(requestID, randomness);
+    callbackWithRandomness(callback.consumer, requestID, randomness);
   }
 
-  function callbackWithRandomness(address consumer, bytes32 requestId, uint256 randomness) internal {
+  function callbackWithRandomness(address consumer, bytes32 requestID, uint256 randomness) internal {
     // Dummy variable; allows access to method selector in next line. See
     // https://github.com/ethereum/solidity/issues/3506#issuecomment-553727797
     VRFConsumerBase v;
-    bytes memory resp = abi.encodeWithSelector(v.rawFulfillRandomness.selector, requestId, randomness);
+    bytes memory resp = abi.encodeWithSelector(v.rawFulfillRandomness.selector, requestID, randomness);
     // The bound b here comes from https://eips.ethereum.org/EIPS/eip-150. The
     // actual gas available to the consuming contract will be b-floor(b/64).
     // This is chosen to leave the consuming contract ~200k gas, after the cost
@@ -174,14 +175,14 @@ contract VRFCoordinator is
     (success);
   }
 
-  function getRandomnessFromProof(bytes memory proof)
+  function getRandomnessFromProof(bytes memory proof, bytes32 requestBlockHash)
     internal
     view
     returns
   (
     bytes32 keyHash,
     Callback memory callback,
-    bytes32 requestId,
+    bytes32 requestID,
     uint256 randomness
   ) {
     // blocknum follows proof, which follows length word (only direct-number
@@ -199,8 +200,8 @@ contract VRFCoordinator is
       blockNum := mload(add(proof, BLOCKNUM_OFFSET))
     }
     keyHash = hashOfKey(publicKey);
-    requestId = makeRequestId(keyHash, preSeed);
-    callback = callbacks[requestId];
+    requestID = makeRequestId(keyHash, preSeed);
+    callback = callbacks[requestID];
     require(callback.consumer != address(0), "no such request");
     require(
       callback.seedAndBlockNum == keccak256(abi.encodePacked(preSeed, blockNum)),
@@ -208,7 +209,9 @@ contract VRFCoordinator is
     );
 
     bytes32 blockHash = blockhash(blockNum);
-    require(blockHash != bytes32(0), "please prove blockhash");
+    if (blockHash == bytes32(0)) {
+      blockHash = requestBlockHash;
+    }
     // The seed actually used by the VRF machinery, mixing in the blockhash
     uint256 actualSeed = uint256(keccak256(abi.encodePacked(preSeed, blockHash)));
     // solhint-disable-next-line no-inline-assembly
