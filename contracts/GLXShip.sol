@@ -20,11 +20,12 @@ contract GLXShip is VRFConsumerBase, Context, AccessControl, ERC721Enumerable {
 
     string private _baseTokenURI;
     bytes32 private _keyHash;
+    uint256 private _currentID;
     mapping(uint256 => Ship) internal ships;
     mapping(bytes32 => uint256) private _randomnessRequests;
 
-    event ShipCreated(uint256 indexed shipID, uint64 rarity, uint64 durability);
-    event ShipRepaired(uint256 indexed shipID);
+    event ShipCreated(address indexed owner, uint256 indexed shipID, uint256 rarity, uint256 durability);
+    event ShipRepaired(uint256 indexed shipID, uint256 durability);
 
     constructor(
         string memory baseURI,
@@ -32,10 +33,10 @@ contract GLXShip is VRFConsumerBase, Context, AccessControl, ERC721Enumerable {
         bytes32 keyHash
     )
         ERC721("Galaxy Ship", "GLXShip")
-    VRFConsumerBase(vrfCoordinator)
+        VRFConsumerBase(vrfCoordinator)
     {
         _baseTokenURI = baseURI;
-    _keyHash = keyHash;
+        _keyHash = keyHash;
 
         _grantRole(DEFAULT_ADMIN_ROLE, _msgSender());
         _grantRole(MINTER_ROLE, _msgSender());
@@ -53,28 +54,40 @@ contract GLXShip is VRFConsumerBase, Context, AccessControl, ERC721Enumerable {
         _revokeRole(MINTER_ROLE, minter);
     }
 
-    function mint(address to, uint256 id) external onlyRole(MINTER_ROLE) {
-        _safeMint(to, id);
+    function mint(address to) external onlyRole(MINTER_ROLE) {
+        _currentID++;
+        _safeMint(to, _currentID);
+	ships[_currentID].durability = uint64(DEFAULT_DURABILITY);
         bytes32 requestID = requestRandomness(_keyHash);
-        _randomnessRequests[requestID] = id;
+        _randomnessRequests[requestID] = _currentID;
     }
 
     function fulfillRandomness(bytes32 requestID, uint256 randomness) internal override {
         uint256 shipID = _randomnessRequests[requestID];
         Ship storage ship = ships[shipID];
-        if (ship.rarity == 0 && ship.durability == 0) {
-            ship.rarity = uint64(randomness % MAX_RARITY + 1);
-	    ship.durability = uint64(DEFAULT_DURABILITY);
-	    emit ShipCreated(shipID, ship.rarity, ship.durability);
+        if (ship.rarity == 0) {
+            uint256 rarity = randomness % MAX_RARITY + 1;
+            ship.rarity = uint64(rarity);
+            emit ShipCreated(ownerOf(shipID), shipID, rarity, ship.durability);
         }
     }
 
     function repair(uint256 shipID) external {
-      Ship storage ship = ships[shipID];
-      require(ship.rarity > 0, "ship not found");
-      require(ship.durability > 0, "ship run out of durability");
-      ship.durability--;
-      emit ShipRepaired(shipID);
+        address owner = ownerOf(shipID);
+        require(_msgSender() == owner, "only ship's owner");
+
+        Ship storage ship = ships[shipID];
+        require(ship.durability > 0, "ship run out of durability");
+        ship.durability--;
+        emit ShipRepaired(shipID, ship.durability);
+    }
+
+    function getRarity(uint256 shipID) external view returns (uint256) {
+        return ships[shipID].rarity;
+    }
+
+    function getDurability(uint256 shipID) external view returns (uint256) {
+        return ships[shipID].durability;
     }
 
     function supportsInterface(bytes4 interfaceID)

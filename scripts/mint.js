@@ -11,10 +11,21 @@ async function main() {
   //const tx = await glxToken.mint(account, amount);
   //console.log("Token minted:", tx.hash);
 
-  const GLXShip = await hre.ethers.getContractFactory("GLXShip");
-  const glxShip = await GLXShip.attach("0xCe79242434c3101bd8d0ae302134f332dC05a18f");
-  const tx = await glxShip.mint("0x6Aea400CC30498A7C758071029122cC94A448ffd", 3);
-  console.log("Ship minted:", tx.hash);
+  //const GLXShip = await hre.ethers.getContractFactory("GLXShip");
+  //const glxShip = await GLXShip.attach("0x5226AE7C172f99B090fA7c6D76B604bf20e0c2c7");
+  //const tx = await glxShip.mint("0x6Aea400CC30498A7C758071029122cC94A448ffd");
+  //console.log("Ship minted:", tx.hash);
+  //const rarity = await glxShip.getRarity(1);
+  //const durability = await glxShip.getDurability(1);
+  //console.log("Ship rarity:", rarity, ", Ship durability:", durability);
+
+  const GLXEquipment = await hre.ethers.getContractFactory("GLXEquipment");
+  const glxEquipment = await GLXEquipment.attach("0x43348F0803D2BC9251F2A338F15A1eF74B0A3D64");
+  //const tx = await glxEquipment.mint("0x6Aea400CC30498A7C758071029122cC94A448ffd");
+  //console.log("Equipment minted:", tx.hash);
+  const rarity = await glxEquipment.getRarity(1);
+  const durability = await glxEquipment.getDurability(1);
+  console.log("Equipment rarity:", rarity, ", Equipment durability:", durability);
 }
 
 main()
