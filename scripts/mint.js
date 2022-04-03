@@ -19,13 +19,19 @@ async function main() {
   //const durability = await glxShip.getDurability(1);
   //console.log("Ship rarity:", rarity, ", Ship durability:", durability);
 
-  const GLXEquipment = await hre.ethers.getContractFactory("GLXEquipment");
-  const glxEquipment = await GLXEquipment.attach("0x43348F0803D2BC9251F2A338F15A1eF74B0A3D64");
+  //const GLXEquipment = await hre.ethers.getContractFactory("GLXEquipment");
+  //const glxEquipment = await GLXEquipment.attach("0x43348F0803D2BC9251F2A338F15A1eF74B0A3D64");
   //const tx = await glxEquipment.mint("0x6Aea400CC30498A7C758071029122cC94A448ffd");
   //console.log("Equipment minted:", tx.hash);
-  const rarity = await glxEquipment.getRarity(1);
-  const durability = await glxEquipment.getDurability(1);
-  console.log("Equipment rarity:", rarity, ", Equipment durability:", durability);
+  //const rarity = await glxEquipment.getRarity(1);
+  //const durability = await glxEquipment.getDurability(1);
+  //console.log("Equipment rarity:", rarity, ", Equipment durability:", durability);
+
+  const GLXLogic = await hre.ethers.getContractFactory("GLXLogic");
+  const glxLogic = await GLXLogic.attach("0xe44a252435Ad21b5aECBE5BDEAB648f668095d52");
+  //const tx = await glxLogic.craftBox("0x6Aea400CC30498A7C758071029122cC94A448ffd", 1, 10);
+  const tx = await glxLogic.unbox(1, 1);
+  console.log("Transaction hash:", tx.hash);
 }
 
 main()

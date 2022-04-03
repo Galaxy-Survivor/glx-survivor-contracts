@@ -135,7 +135,7 @@ contract GLXMarket is Context, Ownable, AcceptedToken {
         uint256 indexed orderId,
         address indexed seller,
         address indexed buyer,
-        uint256 amount,
+        uint32 amount,
         uint256 totalPrice,
         uint256 totalFee
     );
