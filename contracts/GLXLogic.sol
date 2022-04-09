@@ -6,7 +6,7 @@ import "./Context.sol";
 import "./Ownable.sol";
 
 interface IERC721Mint {
-    function mint(address to) external;
+    function mint(address to, uint64 rarity) external;
 }
 
 interface IERC1155Mint {
@@ -15,10 +15,6 @@ interface IERC1155Mint {
 }
 
 contract GLXLogic is Context, Ownable {
-    uint256 public constant BOX_SHIP = 0;
-    uint256 public constant BOX_EQUIPMENT = 1;
-    uint256 public constant BOX_SKILL = 2;
-
     IERC721Mint private _ship;
     IERC721Mint private _equipment;
     IERC1155Mint private _item;
@@ -47,20 +43,7 @@ contract GLXLogic is Context, Ownable {
     function unbox(uint256 boxId, uint256 amount)
         external
     {
-        require(
-            boxId == BOX_SHIP || boxId == BOX_EQUIPMENT,
-            "unbox an unsupported box"
-        );
         emit BoxOpened(_msgSender(), boxId, amount);
         _item.burn(_msgSender(), boxId, amount);
-        if (boxId == BOX_SHIP) {
-            for (uint256 i = 0; i < amount; i++) {
-                _ship.mint(_msgSender());
-            }
-        } else {
-            for (uint256 i = 0; i < amount; i++) {
-                _equipment.mint(_msgSender());
-            }
-        }
     }
 }

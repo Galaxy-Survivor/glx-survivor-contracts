@@ -6,12 +6,10 @@ import "./ERC721.sol";
 import "./ERC721Enumerable.sol";
 import "./Context.sol";
 import "./AccessControl.sol";
-import "./VRFConsumerBase.sol";
 
-contract GLXEquipment is VRFConsumerBase, Context, AccessControl, ERC721Enumerable {
+contract GLXEquipment is Context, AccessControl, ERC721Enumerable {
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     uint256 public constant DEFAULT_DURABILITY = 7;
-    uint256 public constant MAX_RARITY = 1000000;
 
     struct Equipment {
         uint64 rarity;
@@ -19,24 +17,14 @@ contract GLXEquipment is VRFConsumerBase, Context, AccessControl, ERC721Enumerab
     }
 
     string private _baseTokenURI;
-    bytes32 private _keyHash;
     uint256 private _currentID;
     mapping(uint256 => Equipment) internal equipments;
-    mapping(bytes32 => uint256) private _randomnessRequests;
 
-    event EquipmentCreated(address indexed owner, uint256 indexed equipmentID, uint256 rarity, uint256 durability);
-    event EquipmentRepaired(uint256 indexed equipmentID, uint256 durability);
+    event EquipmentCreated(address indexed owner, uint256 indexed equipmentID, uint64 rarity, uint64 durability);
+    event EquipmentRepaired(uint256 indexed equipmentID, uint64 durability);
 
-    constructor(
-        string memory baseURI,
-        address vrfCoordinator,
-        bytes32 keyHash
-    )
-        ERC721("Galaxy Ship Equipment", "GLXEquipment")
-        VRFConsumerBase(vrfCoordinator)
-    {
+    constructor(string memory baseURI) ERC721("Galaxy Ship Equipment", "GLXEquipment") {
         _baseTokenURI = baseURI;
-        _keyHash = keyHash;
 
         _grantRole(DEFAULT_ADMIN_ROLE, _msgSender());
         _grantRole(MINTER_ROLE, _msgSender());
@@ -54,22 +42,14 @@ contract GLXEquipment is VRFConsumerBase, Context, AccessControl, ERC721Enumerab
         _revokeRole(MINTER_ROLE, minter);
     }
 
-    function mint(address to) external onlyRole(MINTER_ROLE) {
+    function mint(address to, uint64 rarity) external onlyRole(MINTER_ROLE) {
         _currentID++;
-        _safeMint(to, _currentID);
         equipments[_currentID].durability = uint64(DEFAULT_DURABILITY);
-        bytes32 requestID = requestRandomness(_keyHash);
-        _randomnessRequests[requestID] = _currentID;
-    }
+        equipments[_currentID].rarity = rarity;
 
-    function fulfillRandomness(bytes32 requestID, uint256 randomness) internal override {
-        uint256 equipmentID = _randomnessRequests[requestID];
-        Equipment storage equipment = equipments[equipmentID];
-        if (equipment.rarity == 0) {
-            uint256 rarity = randomness % MAX_RARITY + 1;
-            equipment.rarity = uint64(rarity);
-            emit EquipmentCreated(ownerOf(equipmentID), equipmentID, rarity, equipment.durability);
-        }
+        emit EquipmentCreated(to, _currentID, equipments[_currentID].rarity, equipments[_currentID].durability);
+
+        _safeMint(to, _currentID);
     }
 
     function repair(uint256 equipmentID) external {
