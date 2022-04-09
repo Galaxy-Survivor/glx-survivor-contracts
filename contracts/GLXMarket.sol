@@ -15,21 +15,21 @@ contract AcceptedToken is Ownable {
 
     EnumerableSet.AddressSet internal acceptedTokens;
 
-    event AddTokens(address[] tokens);
-    event RemoveTokens(address[] tokens);
+    event TokensAdded(address[] tokens);
+    event TokensRemoved(address[] tokens);
 
     function addAcceptedTokens(address[] memory tokens) public onlyOwner {
         for (uint256 i = 0; i < tokens.length; i++) {
             acceptedTokens.add(tokens[i]);
         }
-        emit AddTokens(tokens);
+        emit TokensAdded(tokens);
     }
 
     function removeAcceptedTokens(address[] memory tokens) external onlyOwner {
         for (uint256 i = 0; i < tokens.length; i++) {
             acceptedTokens.remove(tokens[i]);
         }
-        emit RemoveTokens(tokens);
+        emit TokensRemoved(tokens);
     }
 
     function isAcceptedToken(address token) external view returns (bool) {
@@ -104,12 +104,12 @@ contract GLXMarket is Context, Ownable, AcceptedToken {
     /**
     * @dev Emitted when a new fee is set.
     */
-    event SetFee(address indexed operator, uint256 oldFee, uint256 newFee);
+    event FeeSet(address indexed operator, uint256 oldFee, uint256 newFee);
 
     /**
     * @dev Emitted when an order is successfully created.
     */
-    event CreateOrder(
+    event OrderCreated(
         uint256 indexed orderId,
         address indexed maker,
         address token,
@@ -126,12 +126,12 @@ contract GLXMarket is Context, Ownable, AcceptedToken {
     /**
     * @dev Emitted when an order is successfully cancelled.
     */
-    event CancelOrder(address indexed operator, uint256 indexed orderId);
+    event OrderCancelled(address indexed operator, uint256 indexed orderId);
 
     /**
     * @dev Emitted when an order is taken.
     */
-    event TakeOrder(
+    event OrderTaken(
         uint256 indexed orderId,
         address indexed seller,
         address indexed buyer,
@@ -156,7 +156,7 @@ contract GLXMarket is Context, Ownable, AcceptedToken {
         require(fee > 0, "zero fee");
         uint256 oldFee = _baseFee;
         _baseFee = fee;
-        emit SetFee(_msgSender(), oldFee, _baseFee);
+        emit FeeSet(_msgSender(), oldFee, _baseFee);
     }
 
     receive() external payable {}
@@ -231,7 +231,7 @@ contract GLXMarket is Context, Ownable, AcceptedToken {
         });
         userOrderIds[_msgSender()].add(orderId);
 
-        emit CreateOrder(
+        emit OrderCreated(
             orderId,
             _msgSender(),
             token,
@@ -260,7 +260,7 @@ contract GLXMarket is Context, Ownable, AcceptedToken {
         require(order.remainAmount > 0, "sold out");
         userOrderIds[order.maker].remove(orderId);
         delete orders[orderId];
-        emit CancelOrder(_msgSender(), orderId);
+        emit OrderCancelled(_msgSender(), orderId);
     }
 
     /**
@@ -292,7 +292,7 @@ contract GLXMarket is Context, Ownable, AcceptedToken {
             seller = _msgSender();
             buyer = order.maker;
         }
-        emit TakeOrder(orderId, seller, buyer, amount, totalPrice, totalFee);
+        emit OrderTaken(orderId, seller, buyer, amount, totalPrice, totalFee);
 
         if (order.token == address(0x0)) {
             require(msg.value >= totalPrice, "insufficient amount");

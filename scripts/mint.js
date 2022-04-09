@@ -1,15 +1,17 @@
 const hre = require("hardhat");
 
 async function main() {
-  //const tokenAddress = "0x8bE9209D1f3d51C59D5BB3c5Cc30d8c266652B3f";
-  //const account = "0x6Aea400CC30498A7C758071029122cC94A448ffd";
-  //const amount = "10000000000000000000000";
+  const tokenAddress = "0x37dC11fA655B837A5411E30795d64805F5EE15D8";
+  const account = "0x07a35a5ddA7F50f471eDfaB96666a6b70a154403";
+  const amount = "1000000000000";
 
   //const GLXToken = await hre.ethers.getContractFactory("GLXToken");
-  //const glxToken = await GLXToken.attach(tokenAddress);
+  const USDCToken = await hre.ethers.getContractFactory("USDC");
+  const token = await USDCToken.attach(tokenAddress);
 
-  //const tx = await glxToken.mint(account, amount);
-  //console.log("Token minted:", tx.hash);
+  const tx = await token.mint(account, amount);
+  console.log("Token minted:", tx.hash);
+
 
   //const GLXShip = await hre.ethers.getContractFactory("GLXShip");
   //const glxShip = await GLXShip.attach("0x5226AE7C172f99B090fA7c6D76B604bf20e0c2c7");
@@ -27,11 +29,11 @@ async function main() {
   //const durability = await glxEquipment.getDurability(1);
   //console.log("Equipment rarity:", rarity, ", Equipment durability:", durability);
 
-  const GLXLogic = await hre.ethers.getContractFactory("GLXLogic");
-  const glxLogic = await GLXLogic.attach("0xe44a252435Ad21b5aECBE5BDEAB648f668095d52");
+  //const GLXLogic = await hre.ethers.getContractFactory("GLXLogic");
+  //const glxLogic = await GLXLogic.attach("0xe44a252435Ad21b5aECBE5BDEAB648f668095d52");
   //const tx = await glxLogic.craftBox("0x6Aea400CC30498A7C758071029122cC94A448ffd", 1, 10);
-  const tx = await glxLogic.unbox(1, 1);
-  console.log("Transaction hash:", tx.hash);
+  //const tx = await glxLogic.unbox(1, 1);
+  //console.log("Transaction hash:", tx.hash);
 }
 
 main()
