@@ -1,7 +1,7 @@
 const hre = require("hardhat");
 
 async function main() {
-  const vrfAddress = "0x5935BDb591e53E532744bD74dA9D69FfFf49049d";
+  const vrfAddress = "0x4a90A4A470e588223ffCaC128a47E6D51f9732A6";
   const keyHash = "0xe3062de5196e3ff957141d1c314bcd776d4d08288ddb8370aaeccdc17733b74e";
 
   const glxItem = "0x7f99494ca31951c523301b1B613ED144852521C4";

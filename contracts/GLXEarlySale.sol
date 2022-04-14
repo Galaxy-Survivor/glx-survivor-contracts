@@ -140,4 +140,8 @@ contract GLXEarlySale is VRFConsumerBase, Context, Ownable {
     function withdraw(address to, uint256 amount) external onlyOwner {
         _token.safeTransfer(to, amount);
     }
+
+    function getSoldBoxes() external view returns (uint256) {
+        return soldBoxes;
+    }
 }
