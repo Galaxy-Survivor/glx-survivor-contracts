@@ -9,9 +9,9 @@ import "./AccessControl.sol";
 
 contract GLXEquipment is Context, AccessControl, ERC721Enumerable {
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
-    uint256 public constant DEFAULT_DURABILITY = 7;
 
     struct Equipment {
+        uint32 empire;
         uint64 rarity;
         uint64 durability;
     }
@@ -20,7 +20,7 @@ contract GLXEquipment is Context, AccessControl, ERC721Enumerable {
     uint256 private _currentID;
     mapping(uint256 => Equipment) internal equipments;
 
-    event EquipmentCreated(address indexed owner, uint256 indexed equipmentID, uint64 rarity, uint64 durability);
+    event EquipmentCreated(address indexed owner, uint256 indexed equipmentID, uint32 empire, uint64 rarity, uint64 durability);
     event EquipmentRepaired(uint256 indexed equipmentID, uint64 durability);
 
     constructor(string memory baseURI) ERC721("Galaxy Ship Equipment", "GLXEquipment") {
@@ -42,12 +42,15 @@ contract GLXEquipment is Context, AccessControl, ERC721Enumerable {
         _revokeRole(MINTER_ROLE, minter);
     }
 
-    function mint(address to, uint64 rarity) external onlyRole(MINTER_ROLE) {
+    function mint(address to, uint32 empire, uint64 rarity) external onlyRole(MINTER_ROLE) {
         _currentID++;
-        equipments[_currentID].durability = uint64(DEFAULT_DURABILITY);
-        equipments[_currentID].rarity = rarity;
 
-        emit EquipmentCreated(to, _currentID, equipments[_currentID].rarity, equipments[_currentID].durability);
+	Equipment storage equipment = equipments[_currentID];
+	equipment.empire = empire;
+	equipment.rarity = rarity;
+	equipment.durability = _getDurabilityFromRarity(rarity);
+
+        emit EquipmentCreated(to, _currentID, equipment.empire, equipment.rarity, equipment.durability);
 
         _safeMint(to, _currentID);
     }
@@ -68,6 +71,22 @@ contract GLXEquipment is Context, AccessControl, ERC721Enumerable {
 
     function getDurability(uint256 equipmentID) external view returns (uint256) {
         return equipments[equipmentID].durability;
+    }
+
+    function _getDurabilityFromRarity(uint64 rarity) internal pure returns (uint64) {
+        if (rarity == 1) {
+            return 650;
+	} else if (rarity == 2) {
+            return 683;
+	} else if (rarity == 3) {
+            return 715;
+	} else if (rarity == 4) {
+            return 748;
+	} else if (rarity == 5) {
+            return 780;
+	} else {
+            return 0;
+	}
     }
 
     function supportsInterface(bytes4 interfaceId)

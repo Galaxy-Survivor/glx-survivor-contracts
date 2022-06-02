@@ -9,9 +9,9 @@ import "./AccessControl.sol";
 
 contract GLXShip is Context, AccessControl, ERC721Enumerable {
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
-    uint256 public constant DEFAULT_DURABILITY = 7;
 
     struct Ship {
+        uint32 empire;
         uint64 rarity;
         uint64 durability;
     }
@@ -20,7 +20,7 @@ contract GLXShip is Context, AccessControl, ERC721Enumerable {
     uint256 private _currentID;
     mapping(uint256 => Ship) internal ships;
 
-    event ShipCreated(address indexed owner, uint256 indexed shipID, uint64 rarity, uint64 durability);
+    event ShipCreated(address indexed owner, uint256 indexed shipID, uint32 empire, uint64 rarity, uint64 durability);
     event ShipRepaired(uint256 indexed shipID, uint64 durability);
 
     constructor(string memory baseURI) ERC721("Galaxy Ship", "GLXShip") {
@@ -42,12 +42,15 @@ contract GLXShip is Context, AccessControl, ERC721Enumerable {
         _revokeRole(MINTER_ROLE, minter);
     }
 
-    function mint(address to, uint64 rarity) external onlyRole(MINTER_ROLE) {
+    function mint(address to, uint32 empire, uint64 rarity) external onlyRole(MINTER_ROLE) {
         _currentID++;
-        ships[_currentID].durability = uint64(DEFAULT_DURABILITY);
-        ships[_currentID].rarity = rarity;
 
-        emit ShipCreated(to, _currentID, ships[_currentID].rarity, ships[_currentID].durability);
+	Ship storage ship = ships[_currentID];
+        ship.empire = empire;
+        ship.rarity = rarity;
+        ship.durability = _getDurabilityFromRarity(rarity);
+
+        emit ShipCreated(to, _currentID, ship.empire, ship.rarity, ship.durability);
 
         _safeMint(to, _currentID);
     }
@@ -68,6 +71,22 @@ contract GLXShip is Context, AccessControl, ERC721Enumerable {
 
     function getDurability(uint256 shipID) external view returns (uint256) {
         return ships[shipID].durability;
+    }
+
+    function _getDurabilityFromRarity(uint64 rarity) internal pure returns (uint64) {
+        if (rarity == 1) {
+            return 650;
+	} else if (rarity == 2) {
+            return 683;
+	} else if (rarity == 3) {
+            return 715;
+	} else if (rarity == 4) {
+            return 748;
+	} else if (rarity == 5) {
+            return 780;
+	} else {
+            return 0;
+	}
     }
 
     function supportsInterface(bytes4 interfaceID)
