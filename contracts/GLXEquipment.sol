@@ -9,6 +9,7 @@ import "./AccessControl.sol";
 
 contract GLXEquipment is Context, AccessControl, ERC721Enumerable {
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
+    uint256 public constant DEFAULT_DURABILITY = 3;
 
     struct Equipment {
         uint32 empire;
@@ -48,7 +49,7 @@ contract GLXEquipment is Context, AccessControl, ERC721Enumerable {
 	Equipment storage equipment = equipments[_currentID];
 	equipment.empire = empire;
 	equipment.rarity = rarity;
-	equipment.durability = _getDurabilityFromRarity(rarity);
+	equipment.durability = DEFAULT_DURABILITY;
 
         emit EquipmentCreated(to, _currentID, equipment.empire, equipment.rarity, equipment.durability);
 
@@ -71,22 +72,6 @@ contract GLXEquipment is Context, AccessControl, ERC721Enumerable {
 
     function getDurability(uint256 equipmentID) external view returns (uint256) {
         return equipments[equipmentID].durability;
-    }
-
-    function _getDurabilityFromRarity(uint64 rarity) internal pure returns (uint64) {
-        if (rarity == 1) {
-            return 650;
-	} else if (rarity == 2) {
-            return 683;
-	} else if (rarity == 3) {
-            return 715;
-	} else if (rarity == 4) {
-            return 748;
-	} else if (rarity == 5) {
-            return 780;
-	} else {
-            return 0;
-	}
     }
 
     function supportsInterface(bytes4 interfaceId)

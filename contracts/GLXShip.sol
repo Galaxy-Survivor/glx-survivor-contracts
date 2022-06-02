@@ -9,6 +9,7 @@ import "./AccessControl.sol";
 
 contract GLXShip is Context, AccessControl, ERC721Enumerable {
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
+    uint256 public constant DEFAULT_DURABILITY = 3;
 
     struct Ship {
         uint32 empire;
@@ -48,7 +49,7 @@ contract GLXShip is Context, AccessControl, ERC721Enumerable {
 	Ship storage ship = ships[_currentID];
         ship.empire = empire;
         ship.rarity = rarity;
-        ship.durability = _getDurabilityFromRarity(rarity);
+        ship.durability = DEFAULT_DURABILITY;
 
         emit ShipCreated(to, _currentID, ship.empire, ship.rarity, ship.durability);
 
@@ -71,22 +72,6 @@ contract GLXShip is Context, AccessControl, ERC721Enumerable {
 
     function getDurability(uint256 shipID) external view returns (uint256) {
         return ships[shipID].durability;
-    }
-
-    function _getDurabilityFromRarity(uint64 rarity) internal pure returns (uint64) {
-        if (rarity == 1) {
-            return 650;
-	} else if (rarity == 2) {
-            return 683;
-	} else if (rarity == 3) {
-            return 715;
-	} else if (rarity == 4) {
-            return 748;
-	} else if (rarity == 5) {
-            return 780;
-	} else {
-            return 0;
-	}
     }
 
     function supportsInterface(bytes4 interfaceID)
