@@ -13,16 +13,16 @@ contract GLXShip is Context, AccessControl, ERC721Enumerable {
 
     struct Ship {
         uint32 empire;
-        uint64 rarity;
-        uint64 durability;
+        uint32 rarity;
+        uint32 durability;
     }
 
     string private _baseTokenURI;
     uint256 private _currentID;
     mapping(uint256 => Ship) internal ships;
 
-    event ShipCreated(address indexed owner, uint256 indexed shipID, uint32 empire, uint64 rarity, uint64 durability);
-    event ShipRepaired(uint256 indexed shipID, uint64 durability);
+    event ShipCreated(address indexed owner, uint256 indexed shipID, uint32 empire, uint32 rarity, uint32 durability);
+    event ShipRepaired(uint256 indexed shipID, uint32 durability);
 
     constructor(string memory baseURI) ERC721("Galaxy Ship", "GLXShip") {
         _baseTokenURI = baseURI;
@@ -43,13 +43,13 @@ contract GLXShip is Context, AccessControl, ERC721Enumerable {
         _revokeRole(MINTER_ROLE, minter);
     }
 
-    function mint(address to, uint32 empire, uint64 rarity) external onlyRole(MINTER_ROLE) {
+    function mint(address to, uint32 empire, uint32 rarity) external onlyRole(MINTER_ROLE) {
         _currentID++;
 
 	Ship storage ship = ships[_currentID];
         ship.empire = empire;
         ship.rarity = rarity;
-        ship.durability = DEFAULT_DURABILITY;
+        ship.durability = uint32(DEFAULT_DURABILITY);
 
         emit ShipCreated(to, _currentID, ship.empire, ship.rarity, ship.durability);
 
@@ -66,11 +66,11 @@ contract GLXShip is Context, AccessControl, ERC721Enumerable {
         emit ShipRepaired(shipID, ship.durability);
     }
 
-    function getRarity(uint256 shipID) external view returns (uint256) {
+    function getRarity(uint256 shipID) external view returns (uint32) {
         return ships[shipID].rarity;
     }
 
-    function getDurability(uint256 shipID) external view returns (uint256) {
+    function getDurability(uint256 shipID) external view returns (uint32) {
         return ships[shipID].durability;
     }
 
