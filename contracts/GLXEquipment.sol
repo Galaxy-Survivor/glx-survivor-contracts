@@ -13,16 +13,16 @@ contract GLXEquipment is Context, AccessControl, ERC721Enumerable {
 
     struct Equipment {
         uint32 empire;
-        uint64 rarity;
-        uint64 durability;
+        uint32 rarity;
+        uint32 durability;
     }
 
     string private _baseTokenURI;
     uint256 private _currentID;
     mapping(uint256 => Equipment) internal equipments;
 
-    event EquipmentCreated(address indexed owner, uint256 indexed equipmentID, uint32 empire, uint64 rarity, uint64 durability);
-    event EquipmentRepaired(uint256 indexed equipmentID, uint64 durability);
+    event EquipmentCreated(address indexed owner, uint256 indexed equipmentID, uint32 empire, uint32 rarity, uint32 durability);
+    event EquipmentRepaired(uint256 indexed equipmentID, uint32 durability);
 
     constructor(string memory baseURI) ERC721("Galaxy Ship Equipment", "GLXEquipment") {
         _baseTokenURI = baseURI;
@@ -43,13 +43,13 @@ contract GLXEquipment is Context, AccessControl, ERC721Enumerable {
         _revokeRole(MINTER_ROLE, minter);
     }
 
-    function mint(address to, uint32 empire, uint64 rarity) external onlyRole(MINTER_ROLE) {
+    function mint(address to, uint32 empire, uint32 rarity) external onlyRole(MINTER_ROLE) {
         _currentID++;
 
 	Equipment storage equipment = equipments[_currentID];
 	equipment.empire = empire;
 	equipment.rarity = rarity;
-	equipment.durability = DEFAULT_DURABILITY;
+	equipment.durability = uint32(DEFAULT_DURABILITY);
 
         emit EquipmentCreated(to, _currentID, equipment.empire, equipment.rarity, equipment.durability);
 
@@ -66,11 +66,11 @@ contract GLXEquipment is Context, AccessControl, ERC721Enumerable {
         emit EquipmentRepaired(equipmentID, equipment.durability);
     }
 
-    function getRarity(uint256 equipmentID) external view returns (uint256) {
+    function getRarity(uint256 equipmentID) external view returns (uint32) {
         return equipments[equipmentID].rarity;
     }
 
-    function getDurability(uint256 equipmentID) external view returns (uint256) {
+    function getDurability(uint256 equipmentID) external view returns (uint32) {
         return equipments[equipmentID].durability;
     }
 
