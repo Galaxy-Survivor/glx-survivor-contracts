@@ -8,7 +8,7 @@ function toHexString(byteArray) {
 
 async function main() {
   const oracle = "0x6Aea400CC30498A7C758071029122cC94A448ffd";
-  const vrfAddress = "0x5935BDb591e53E532744bD74dA9D69FfFf49049d";
+  const vrfAddress = "0xE541244c550B28DAa48AcEA38b6942c530fdf1e6";
 
   const VRFCoordinator = await hre.ethers.getContractFactory("VRFCoordinator");
   const vrfCoordinator = await VRFCoordinator.attach(vrfAddress);
@@ -28,7 +28,7 @@ async function main() {
   //])
   //console.log("Public key hash:", keyHash);
 
-  const tx = await vrfCoordinator.addConsumer("0xe63d9E6869A28F4838832803f944C9723a61E618");
+  const tx = await vrfCoordinator.addConsumer("0x1dc3e7A755249d4af4E171d187f6A75D7256367E");
   console.log("Successfully added consumer:", tx.hash)
 }
 
