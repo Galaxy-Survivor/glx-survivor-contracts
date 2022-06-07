@@ -1,8 +1,9 @@
 const hre = require("hardhat");
 
 async function main() {
-  const vrfAddress = "0xE541244c550B28DAa48AcEA38b6942c530fdf1e6";
-  const keyHash = "0xe3062de5196e3ff957141d1c314bcd776d4d08288ddb8370aaeccdc17733b74e";
+  const vrfAddress = "0x2eD832Ba664535e5886b75D64C46EB9a228C2610";
+  const subscriptionID = 131;
+  const keyHash = "0x354d2f95da55398f44b7cff77da56283d9c6c829a4bdf1bbcaf2ad6a4d081f61";
 
   const glxItem = "0x7f99494ca31951c523301b1B613ED144852521C4";
   const glxShip = "0xD3faF99b7C4D03459D9b08dFaae2B15666ccFCee";
@@ -21,6 +22,7 @@ async function main() {
     ticket,
     vrfAddress,
     keyHash,
+    subscriptionID,
     startTime,
     endWhitelistTime,
     endTime

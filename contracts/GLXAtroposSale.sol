@@ -6,7 +6,8 @@ import "./Context.sol";
 import "./Ownable.sol";
 import "./IERC20.sol";
 import "./SafeERC20.sol";
-import "./VRFConsumerBase.sol";
+import "./VRFConsumerBaseV2.sol";
+import "./VRFCoordinatorV2Interface.sol";
 
 interface IERC721Mint {
     function mint(address to, uint32 empire, uint32 rarity) external;
@@ -19,7 +20,7 @@ interface IERC1155Mint {
 }
 
 
-contract GLXAtroposSale is VRFConsumerBase, Context, Ownable {
+contract GLXAtroposSale is VRFConsumerBaseV2, Context, Ownable {
     using SafeERC20 for IERC20;
 
     uint256 public constant MAX_TOTAL_NORMAL_BPS = 644;
@@ -65,7 +66,12 @@ contract GLXAtroposSale is VRFConsumerBase, Context, Ownable {
     }
 
     bytes32 private _keyHash;
-    mapping(bytes32 => RandomnessRequest) private _randomnessRequests;
+    VRFCoordinatorV2Interface private _vrfCoordinator;
+    mapping(uint256 => RandomnessRequest) private _randomnessRequests;
+    uint32 private _callbackGasLimit = 200000;
+    uint16 private _requestConfirmations = 1;
+    uint64 private _subscriptionId;
+
     uint256 public startTime;
     uint256 public endWhitelistTime;
     uint256 public endTime;
@@ -83,15 +89,19 @@ contract GLXAtroposSale is VRFConsumerBase, Context, Ownable {
         address glxShip,
         address token,
         address ticket,
-        address vrfCoordinatorAddr,
+        address vrfCoordinator,
         bytes32 keyHash,
+        uint64 subscriptionId,
         uint256 stime,
         uint256 eWhitelistTime,
         uint256 etime
     )
-        VRFConsumerBase(vrfCoordinatorAddr)
+        VRFConsumerBaseV2(vrfCoordinator)
     {
+        _vrfCoordinator = VRFCoordinatorV2Interface(vrfCoordinator);
         _keyHash = keyHash;
+        _subscriptionId = subscriptionId;
+
         startTime = stime;
         endWhitelistTime = eWhitelistTime;
         endTime = etime;
@@ -232,7 +242,13 @@ contract GLXAtroposSale is VRFConsumerBase, Context, Ownable {
         }
 
         for (uint256 i = 0; i < amount; i++) {
-            bytes32 requestID = requestRandomness(_keyHash);
+            uint256 requestID = _vrfCoordinator.requestRandomWords(
+                _keyHash,
+                _subscriptionId,
+                _requestConfirmations,
+                _callbackGasLimit,
+                1
+            );
             RandomnessRequest storage req = _randomnessRequests[requestID];
             req.sender = _msgSender();
             req.blueprintId = blueprintId;
@@ -243,14 +259,16 @@ contract GLXAtroposSale is VRFConsumerBase, Context, Ownable {
         emit BlueprintOpened(_msgSender(), blueprintId, amount);
     }
 
-    function fulfillRandomness(bytes32 requestID, uint256 randomness) internal override {
+    function fulfillRandomWords(uint256 requestID, uint256[] memory randomWords) internal override {
         RandomnessRequest memory req = _randomnessRequests[requestID];
         require(req.sender != address(0x0), "GLXAtroposSale: invalid request id");
+        require(randomWords.length >= 1, "GLXAtroposSale: no random words provided");
         require(remainShips > 0, "GLXAtroposSale: all blueprint opened");
 
         delete _randomnessRequests[requestID];
         remainShips -= 1;
 
+        uint256 randomness = randomWords[0];
         if (req.blueprintId == NORMAL_BP_ID) {
             randomness = randomness % remainNormalBps + 1;
             remainNormalBps -= 1;
