@@ -10,7 +10,7 @@ import "./VRFConsumerBaseV2.sol";
 import "./VRFCoordinatorV2Interface.sol";
 
 interface IERC721Mint {
-    function mint(address to, uint32 empire, uint32 rarity) external;
+    function mint(address to, uint32 empire, uint32 rarity, uint32 unlockTime) external;
 }
 
 interface IERC1155Mint {
@@ -18,7 +18,6 @@ interface IERC1155Mint {
     function burn(address from, uint256 id, uint256 amount) external;
     function balanceOf(address owner, uint256 id) external view returns (uint256);
 }
-
 
 contract GLXAtroposSale is VRFConsumerBaseV2, Context, Ownable {
     using SafeERC20 for IERC20;
@@ -68,12 +67,11 @@ contract GLXAtroposSale is VRFConsumerBaseV2, Context, Ownable {
     bytes32 private _keyHash;
     VRFCoordinatorV2Interface private _vrfCoordinator;
     mapping(uint256 => RandomnessRequest) private _randomnessRequests;
-    uint32 private _callbackGasLimit = 200000;
-    uint16 private _requestConfirmations = 1;
+    uint32 private _callbackGasLimit = 500000;
+    uint16 private _requestConfirmations = 3;
     uint64 private _subscriptionId;
 
     uint256 public startTime;
-    uint256 public endWhitelistTime;
     uint256 public endTime;
 
     IERC1155Mint private _item;
@@ -93,7 +91,6 @@ contract GLXAtroposSale is VRFConsumerBaseV2, Context, Ownable {
         bytes32 keyHash,
         uint64 subscriptionId,
         uint256 stime,
-        uint256 eWhitelistTime,
         uint256 etime
     )
         VRFConsumerBaseV2(vrfCoordinator)
@@ -103,7 +100,6 @@ contract GLXAtroposSale is VRFConsumerBaseV2, Context, Ownable {
         _subscriptionId = subscriptionId;
 
         startTime = stime;
-        endWhitelistTime = eWhitelistTime;
         endTime = etime;
 
         _item = IERC1155Mint(glxItem);
@@ -118,19 +114,14 @@ contract GLXAtroposSale is VRFConsumerBaseV2, Context, Ownable {
         _;
     }
 
-    modifier onlyValidNormalTime() {
-        require(block.timestamp >= endWhitelistTime, "GLXAtroposSale: sale not start yet");
-        require(block.timestamp <= endTime, "GLXAtroposSale: sale ended");
-        _;
-    }
-
-    function buyNormalWithTicket(uint256 amount, uint256 ticketId) external onlyValidTime {
+    function buyNormal(uint256 amount, uint256 ticketId) external onlyValidTime {
+        require(ticketId == 1 || ticketId == 2 || ticketId == 3, "GLXAtroposSale: invalid ticket");
         require(soldNormalBps + amount <= MAX_TOTAL_NORMAL_BPS, "GLXAtroposSale: amount exceed limit");
 
         uint256 ticketBalance = _ticket.balanceOf(_msgSender(), ticketId);
         require(ticketBalance >= amount, "GLXAtroposSale: not enough ticket");
 
-        uint256 totalPrice = amount * NORMAL_BP_PRICE * _getDiscountByTicketId(ticketId) / 100;
+        uint256 totalPrice = amount * (NORMAL_BP_PRICE - _getDiscountByTicketId(ticketId));
         uint256 balance = _token.balanceOf(_msgSender());
         require(totalPrice <= balance, "insufficient balance");
 
@@ -143,28 +134,14 @@ contract GLXAtroposSale is VRFConsumerBaseV2, Context, Ownable {
         emit BlueprintMinted(_msgSender(), NORMAL_BP_ID, amount);
     }
 
-    function buyNormal(uint256 amount) external onlyValidNormalTime {
-        require(soldNormalBps + amount <= MAX_TOTAL_NORMAL_BPS, "GLXAtroposSale: amount exceed limit");
-
-        uint256 totalPrice = amount * NORMAL_BP_PRICE;
-        uint256 balance = _token.balanceOf(_msgSender());
-        require(totalPrice <= balance, "insufficient balance");
-
-        soldNormalBps += amount;
-
-        _token.safeTransferFrom(_msgSender(), address(this), totalPrice);
-        _item.mint(_msgSender(), NORMAL_BP_ID, amount);
-
-        emit BlueprintMinted(_msgSender(), NORMAL_BP_ID, amount);
-    }
-
-    function buyRareWithTicket(uint256 amount, uint256 ticketId) external onlyValidTime {
+    function buyRare(uint256 amount, uint256 ticketId) external onlyValidTime {
+        require(ticketId == 2 || ticketId == 3, "GLXAtroposSale: invalid ticket");
         require(soldRareBps + amount <= MAX_TOTAL_RARE_BPS, "GLXAtroposSale: amount exceed limit");
 
         uint256 ticketBalance = _ticket.balanceOf(_msgSender(), ticketId);
         require(ticketBalance >= amount, "GLXAtroposSale: not enough ticket");
 
-        uint256 totalPrice = amount * RARE_BP_PRICE * _getDiscountByTicketId(ticketId) / 100;
+        uint256 totalPrice = amount * (RARE_BP_PRICE - _getDiscountByTicketId(ticketId));
         uint256 balance = _token.balanceOf(_msgSender());
         require(totalPrice <= balance, "insufficient balance");
 
@@ -177,49 +154,20 @@ contract GLXAtroposSale is VRFConsumerBaseV2, Context, Ownable {
         emit BlueprintMinted(_msgSender(), RARE_BP_ID, amount);
     }
 
-    function buyRare(uint256 amount) external onlyValidNormalTime {
-        require(soldRareBps + amount <= MAX_TOTAL_RARE_BPS, "GLXAtroposSale: amount exceed limit");
-
-        uint256 totalPrice = amount * RARE_BP_PRICE;
-        uint256 balance = _token.balanceOf(_msgSender());
-        require(totalPrice <= balance, "insufficient balance");
-
-        soldRareBps += amount;
-
-        _token.safeTransferFrom(_msgSender(), address(this), totalPrice);
-        _item.mint(_msgSender(), RARE_BP_ID, amount);
-
-        emit BlueprintMinted(_msgSender(), RARE_BP_ID, amount);
-    }
-
-    function buyMythicalWithTicket(uint256 amount, uint256 ticketId) external onlyValidTime {
+    function buyMythical(uint256 amount, uint256 ticketId) external onlyValidTime {
+        require(ticketId == 3, "GLXAtroposSale: invalid ticket");
         require(soldMythicalBps + amount <= MAX_TOTAL_MYTHICAL_BPS, "GLXAtroposSale: amount exceed limit");
 
         uint256 ticketBalance = _ticket.balanceOf(_msgSender(), ticketId);
         require(ticketBalance >= amount, "GLXAtroposSale: not enough ticket");
 
-        uint256 totalPrice = amount * MYTHICAL_BP_PRICE * _getDiscountByTicketId(ticketId) / 100;
+        uint256 totalPrice = amount * (MYTHICAL_BP_PRICE - _getDiscountByTicketId(ticketId));
         uint256 balance = _token.balanceOf(_msgSender());
         require(totalPrice <= balance, "insufficient balance");
 
         soldMythicalBps += amount;
 
         _ticket.burn(_msgSender(), ticketId, amount);
-        _token.safeTransferFrom(_msgSender(), address(this), totalPrice);
-        _item.mint(_msgSender(), MYTHICAL_BP_ID, amount);
-
-        emit BlueprintMinted(_msgSender(), MYTHICAL_BP_ID, amount);
-    }
-
-    function buyMythical(uint256 amount) external onlyValidNormalTime {
-        require(soldMythicalBps + amount <= MAX_TOTAL_MYTHICAL_BPS, "GLXAtroposSale: amount exceed limit");
-
-        uint256 totalPrice = amount * MYTHICAL_BP_PRICE;
-        uint256 balance = _token.balanceOf(_msgSender());
-        require(totalPrice <= balance, "insufficient balance");
-
-        soldMythicalBps += amount;
-
         _token.safeTransferFrom(_msgSender(), address(this), totalPrice);
         _item.mint(_msgSender(), MYTHICAL_BP_ID, amount);
 
@@ -274,57 +222,57 @@ contract GLXAtroposSale is VRFConsumerBaseV2, Context, Ownable {
             remainNormalBps -= 1;
             if (randomness <= remainNN) {
                 remainNN -= 1;
-                _ship.mint(req.sender, 2, 1);
+                _ship.mint(req.sender, 2, 1, 0);
                 return;
             }
 
             randomness -= remainNN;
             if (randomness <= remainNR) {
                 remainNR -= 1;
-                _ship.mint(req.sender, 2, 2);
+                _ship.mint(req.sender, 2, 2, 0);
                 return;
             }
 
             remainNSR -= 1;
-            _ship.mint(req.sender, 2, 3);
+            _ship.mint(req.sender, 2, 3, 0);
             return;
         } else if (req.blueprintId == RARE_BP_ID) {
             randomness = randomness % remainRareBps + 1;
             remainRareBps -= 1;
             if (randomness <= remainRR) {
                 remainRR -= 1;
-                _ship.mint(req.sender, 2, 2);
+                _ship.mint(req.sender, 2, 2, 0);
                 return;
             }
 
             randomness -= remainRR;
             if (randomness <= remainRSR) {
                 remainRSR -= 1;
-                _ship.mint(req.sender, 2, 3);
+                _ship.mint(req.sender, 2, 3, 0);
                 return;
             }
 
             remainRSSR -= 1;
-            _ship.mint(req.sender, 2, 4);
+            _ship.mint(req.sender, 2, 4, 0);
             return;
         } else {
             randomness = randomness % remainMythicalBps + 1;
             remainMythicalBps -= 1;
             if (randomness <= remainMSR) {
                 remainMSR -= 1;
-                _ship.mint(req.sender, 2, 3);
+                _ship.mint(req.sender, 2, 3, 0);
                 return;
             }
 
             randomness -= remainMSR;
             if (randomness <= remainMSSR) {
                 remainMSSR -= 1;
-                _ship.mint(req.sender, 2, 4);
+                _ship.mint(req.sender, 2, 4, 0);
                 return;
             }
 
             remainMUR -= 1;
-            _ship.mint(req.sender, 2, 5);
+            _ship.mint(req.sender, 2, 5, 0);
             return;
         }
     }
@@ -347,14 +295,14 @@ contract GLXAtroposSale is VRFConsumerBaseV2, Context, Ownable {
 
     function _getDiscountByTicketId(uint256 ticketId) private pure returns (uint256) {
         if (ticketId == 1) {
-            return 95;
+            return 10**6;
         }
         if (ticketId == 2) {
-            return 90;
+            return 5*10**6;
         }
         if (ticketId == 3) {
-            return 85;
+            return 10*10**6;
         }
-        return 100;
+        return 0;
     }
 }

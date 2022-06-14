@@ -15,6 +15,7 @@ contract GLXShip is Context, AccessControl, ERC721Enumerable {
         uint32 empire;
         uint32 rarity;
         uint32 durability;
+        uint32 unlockTime;
     }
 
     string private _baseTokenURI;
@@ -43,13 +44,14 @@ contract GLXShip is Context, AccessControl, ERC721Enumerable {
         _revokeRole(MINTER_ROLE, minter);
     }
 
-    function mint(address to, uint32 empire, uint32 rarity) external onlyRole(MINTER_ROLE) {
+    function mint(address to, uint32 empire, uint32 rarity, uint32 unlockTime) external onlyRole(MINTER_ROLE) {
         _currentID++;
 
-	Ship storage ship = ships[_currentID];
+        Ship storage ship = ships[_currentID];
         ship.empire = empire;
         ship.rarity = rarity;
         ship.durability = uint32(DEFAULT_DURABILITY);
+        ship.unlockTime = unlockTime;
 
         emit ShipCreated(to, _currentID, ship.empire, ship.rarity, ship.durability);
 
@@ -72,6 +74,22 @@ contract GLXShip is Context, AccessControl, ERC721Enumerable {
 
     function getDurability(uint256 shipID) external view returns (uint32) {
         return ships[shipID].durability;
+    }
+
+    function getUnlockTime(uint256 shipID) external view returns (uint32) {
+        return ships[shipID].unlockTime;
+    }
+
+    function _beforeTokenTransfer(
+        address,
+        address,
+        uint256 tokenId
+    ) internal override {
+        require(ships[tokenId].unlockTime <= _getBlockTimestamp(), "GLXShip: lock transfer");
+    }
+
+    function _getBlockTimestamp() private view returns (uint32) {
+        return uint32(block.timestamp);
     }
 
     function supportsInterface(bytes4 interfaceID)
