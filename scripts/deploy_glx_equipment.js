@@ -2,7 +2,7 @@ const hre = require("hardhat");
 
 async function main() {
   const GLXEquipment = await hre.ethers.getContractFactory("GLXEquipment");
-  const glxEquipment = await GLXEquipment.deploy("https://test.galaxysurvivor.io/api/equipments/");
+  const glxEquipment = await GLXEquipment.deploy("https://nft.galaxysurvivor.xyz/equipments/");
 
   await glxEquipment.deployed();
 

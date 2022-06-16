@@ -1,7 +1,7 @@
 const hre = require("hardhat");
 
 async function main() {
-  const glxTicket = "0x03a827263b2C65317091e08DB90892e9722eB949";
+  const glxTicket = "0xF9A4acF2d891E8C7b6D567F65acdF87CCb23D733";
   const token = "0x37dC11fA655B837A5411E30795d64805F5EE15D8";
 
   var startTime = Math.trunc(new Date().getTime() / 1000) + 3600;

@@ -2,7 +2,7 @@ const hre = require("hardhat");
 
 async function main() {
   const GLXTicket = await hre.ethers.getContractFactory("GLXTicket");
-  const glxTicket = await GLXTicket.deploy("https://test.galaxysurvivor.io/api/tickets/");
+  const glxTicket = await GLXTicket.deploy("https://nft.galaxysurvivor.xyz/tickets/");
 
   await glxTicket.deployed();
 

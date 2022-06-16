@@ -17,15 +17,15 @@ contract GLXTicketSale is Context, Ownable {
 
     uint256 public constant TICKET_ID_1 = 1;
     uint256 public constant TICKET_PRICE_1 = 1 * 10**6;
-    uint256 public constant TOTAL_TICKET_1 = 3000;
+    uint256 public constant TOTAL_TICKET_1 = 10000;
 
     uint256 public constant TICKET_ID_5 = 2;
     uint256 public constant TICKET_PRICE_5 = 5 * 10**6;
-    uint256 public constant TOTAL_TICKET_5 = 3000;
+    uint256 public constant TOTAL_TICKET_5 = 2000;
 
     uint256 public constant TICKET_ID_10 = 3;
     uint256 public constant TICKET_PRICE_10 = 10 * 10**6;
-    uint256 public constant TOTAL_TICKET_10 = 3000;
+    uint256 public constant TOTAL_TICKET_10 = 1000;
 
     uint256 public soldTicket1 = 0;
     uint256 public soldTicket5 = 0;
