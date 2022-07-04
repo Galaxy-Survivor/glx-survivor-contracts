@@ -306,7 +306,46 @@ contract GLXMarket is Context, Ownable, AcceptedToken {
 
     function getOrderByMaker(address maker, uint256 i) external view returns (Order memory) {
         uint256 orderId = userOrderIds[maker].at(i);
-	return orders[orderId];
+        return orders[orderId];
+    }
+
+    function isOrderValid(uint256 orderId) external view returns (bool) {
+        Order memory order = orders[orderId];
+        if (order.maker == address(0x0)) {
+            return false;
+        }
+
+        if (order.side == OrderSide.Buy) {
+            uint256 balance = IERC20(order.token).balanceOf(order.maker);
+            if (balance < order.price * order.amount) {
+                return false;
+            }
+
+            uint256 allowance = IERC20(order.token).allowance(order.maker, address(this));
+            if (allowance < order.price * order.amount) {
+                return false;
+            }
+        } else {
+            if (order.targetType == TargetType.ERC721) {
+                address tokenOwner = IERC721(order.target).ownerOf(order.tokenId);
+                if (tokenOwner != order.maker) {
+                    return false;
+                }
+                if (!IERC721(order.target).isApprovedForAll(order.maker, address(this))) {
+                    return false;
+                }
+            } else {
+                uint256 balance = IERC1155(order.target).balanceOf(order.maker, order.tokenId);
+                if (balance < order.amount) {
+                    return false;
+                }
+                if (!IERC1155(order.target).isApprovedForAll(order.maker, address(this))) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     function _tokenTransfer(address token, address to, uint256 amount) internal {
