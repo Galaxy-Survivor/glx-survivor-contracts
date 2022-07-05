@@ -311,7 +311,7 @@ contract GLXMarket is Context, Ownable, AcceptedToken {
 
     function isOrderValid(uint256 orderId) external view returns (bool) {
         Order memory order = orders[orderId];
-        if (order.maker == address(0x0)) {
+        if (order.maker == address(0x0) || order.expiredTime < _getBlockTimestamp() || order.remainAmount == 0) {
             return false;
         }
 
