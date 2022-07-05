@@ -317,12 +317,12 @@ contract GLXMarket is Context, Ownable, AcceptedToken {
 
         if (order.side == OrderSide.Buy) {
             uint256 balance = IERC20(order.token).balanceOf(order.maker);
-            if (balance < order.price * order.amount) {
+            if (balance < order.price * order.remainAmount) {
                 return false;
             }
 
             uint256 allowance = IERC20(order.token).allowance(order.maker, address(this));
-            if (allowance < order.price * order.amount) {
+            if (allowance < order.price * order.remainAmount) {
                 return false;
             }
         } else {
@@ -336,7 +336,7 @@ contract GLXMarket is Context, Ownable, AcceptedToken {
                 }
             } else {
                 uint256 balance = IERC1155(order.target).balanceOf(order.maker, order.tokenId);
-                if (balance < order.amount) {
+                if (balance < order.remainAmount) {
                     return false;
                 }
                 if (!IERC1155(order.target).isApprovedForAll(order.maker, address(this))) {
