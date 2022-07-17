@@ -1,4 +1,5 @@
-require("@nomiclabs/hardhat-waffle");
+require("@nomiclabs/hardhat-ethers");
+require('@openzeppelin/hardhat-upgrades');
 
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   const accounts = await hre.ethers.getSigners();
@@ -31,7 +32,7 @@ module.exports = {
       "accounts": [`0x8e94548d06a648da86dd3766ba28e768a5eca79c0f7e68a8e97914845ebfd27f`]
     },
     avaxtestnet: {
-      "url": "https://speedy-nodes-nyc.moralis.io/e354237b8b817e2043a26d0a/avalanche/testnet",
+      "url": "https://api.avax-test.network/ext/bc/C/rpc",
       "accounts": [`0x8e94548d06a648da86dd3766ba28e768a5eca79c0f7e68a8e97914845ebfd27f`]
     },
     avaxmainnet: {

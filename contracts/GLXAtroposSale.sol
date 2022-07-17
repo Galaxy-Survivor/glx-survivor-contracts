@@ -79,8 +79,8 @@ contract GLXAtroposSale is VRFConsumerBaseV2, Context, Ownable {
     IERC20 private _token;
     IERC1155Mint private _ticket;
 
-    event BlueprintMinted(address owner, uint256 blueprintId, uint256 amount);
-    event BlueprintOpened(address owner, uint256 blueprintId, uint256 amount);
+    event BlueprintMinted(address indexed owner, uint256 blueprintId, uint256 amount);
+    event BlueprintOpened(address indexed owner, uint256 blueprintId, uint256 amount);
 
     constructor(
         address glxItem,
