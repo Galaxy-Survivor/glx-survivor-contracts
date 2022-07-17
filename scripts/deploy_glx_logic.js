@@ -1,16 +1,20 @@
-const hre = require("hardhat");
+const { ethers, upgrades } = require("hardhat");
 
 async function main() {
-  const GLXLogic = await hre.ethers.getContractFactory("GLXLogic");
-  const glxLogic = await GLXLogic.deploy(
-    "0x5226AE7C172f99B090fA7c6D76B604bf20e0c2c7",
-    "0x43348F0803D2BC9251F2A338F15A1eF74B0A3D64",
-    "0xcC96d690B4D029E605C0B8aC517fb719911a6719"
-  );
+  const vrfAddress = "0x2eD832Ba664535e5886b75D64C46EB9a228C2610";
+  const subscriptionID = 131;
+  const keyHash = "0x354d2f95da55398f44b7cff77da56283d9c6c829a4bdf1bbcaf2ad6a4d081f61";
 
-  await glxLogic.deployed();
+  const glxItem = "0x1C0cEc88c8baFDE3e7818c10e553F54844F197C5";
+  const glxShip = "0x33adE2bE7D41aF792eCD251C456f62526E718e5a";
+  const glxEquipment = "0x040Bf32d79FE8A46788Bdc0005832627dc5AE381";
 
-  console.log("GLXLogic deployed to:", glxLogic.address);
+  const GLXLogic = await ethers.getContractFactory("GLXLogic");
+
+  const logic = await upgrades.deployProxy(GLXLogic, [glxShip, glxEquipment, glxItem, vrfAddress, keyHash, subscriptionID], { initializer: '__GLXLogic_init' });
+
+  await logic.deployed();
+  console.log("GLXLogic deployed to:", logic.address);
 }
 
 main()
