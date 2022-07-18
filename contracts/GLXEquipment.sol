@@ -19,13 +19,18 @@ contract GLXEquipment is Context, AccessControl, ERC721Enumerable {
 
     string private _baseTokenURI;
     uint256 private _currentID;
+    uint256 private immutable _startID;
+    uint256 private immutable _endID;
     mapping(uint256 => Equipment) internal equipments;
 
     event EquipmentCreated(address indexed owner, uint256 indexed equipmentID, uint32 empire, uint32 rarity, uint32 durability);
     event EquipmentRepaired(uint256 indexed equipmentID, uint32 durability);
 
-    constructor(string memory baseURI) ERC721("Galaxy Ship Equipment", "GLXEquipment") {
+    constructor(string memory baseURI, uint256 startID) ERC721("Galaxy Ship Equipment", "GLXEquipment") {
         _baseTokenURI = baseURI;
+        _startID = startID;
+        _endID = _startID + 1000000;
+        _currentID = _startID;
 
         _grantRole(DEFAULT_ADMIN_ROLE, _msgSender());
         _grantRole(MINTER_ROLE, _msgSender());
@@ -45,13 +50,25 @@ contract GLXEquipment is Context, AccessControl, ERC721Enumerable {
 
     function mint(address to, uint32 empire, uint32 rarity) external onlyRole(MINTER_ROLE) {
         _currentID++;
+        require(_currentID <= _endID, "limit exceed");
 
-	Equipment storage equipment = equipments[_currentID];
-	equipment.empire = empire;
-	equipment.rarity = rarity;
-	equipment.durability = uint32(DEFAULT_DURABILITY);
+        Equipment storage equipment = equipments[_currentID];
+        equipment.empire = empire;
+        equipment.rarity = rarity;
+        equipment.durability = uint32(DEFAULT_DURABILITY);
 
         emit EquipmentCreated(to, _currentID, equipment.empire, equipment.rarity, equipment.durability);
+
+        _safeMint(to, _currentID);
+    }
+
+    function mint(address to, uint256 id, uint32 empire, uint32 rarity, uint32 durability) external onlyRole(MINTER_ROLE) {
+        require(ownerOf(id) == address(0x0), "equipment already exists");
+
+        Equipment storage equipment = equipments[id];
+        equipment.empire = empire;
+        equipment.rarity = rarity;
+        equipment.durability = durability;
 
         _safeMint(to, _currentID);
     }
