@@ -20,13 +20,18 @@ contract GLXShip is Context, AccessControl, ERC721Enumerable {
 
     string private _baseTokenURI;
     uint256 private _currentID;
+    uint256 private immutable _startID;
+    uint256 private immutable _endID;
     mapping(uint256 => Ship) internal ships;
 
     event ShipCreated(address indexed owner, uint256 indexed shipID, uint32 empire, uint32 rarity, uint32 durability);
     event ShipRepaired(uint256 indexed shipID, uint32 durability);
 
-    constructor(string memory baseURI) ERC721("Galaxy Ship", "GLXShip") {
+    constructor(string memory baseURI, uint256 startID) ERC721("Galaxy Ship", "GLXShip") {
         _baseTokenURI = baseURI;
+        _startID = startID;
+        _endID = _startID + 1000000;
+        _currentID = _startID;
 
         _grantRole(DEFAULT_ADMIN_ROLE, _msgSender());
         _grantRole(MINTER_ROLE, _msgSender());
@@ -46,6 +51,7 @@ contract GLXShip is Context, AccessControl, ERC721Enumerable {
 
     function mint(address to, uint32 empire, uint32 rarity, uint32 unlockTime) external onlyRole(MINTER_ROLE) {
         _currentID++;
+        require(_currentID <= _endID, "limit exceed");
 
         Ship storage ship = ships[_currentID];
         ship.empire = empire;
@@ -54,6 +60,18 @@ contract GLXShip is Context, AccessControl, ERC721Enumerable {
         ship.unlockTime = unlockTime;
 
         emit ShipCreated(to, _currentID, ship.empire, ship.rarity, ship.durability);
+
+        _safeMint(to, _currentID);
+    }
+
+    function mint(address to, uint256 id, uint32 empire, uint32 rarity, uint32 durability, uint32 unlockTime) external onlyRole(MINTER_ROLE) {
+        require(ownerOf(id) == address(0x0), "ship already exists");
+
+        Ship storage ship = ships[id];
+        ship.empire = empire;
+        ship.rarity = rarity;
+        ship.durability = durability;
+        ship.unlockTime = unlockTime;
 
         _safeMint(to, _currentID);
     }
