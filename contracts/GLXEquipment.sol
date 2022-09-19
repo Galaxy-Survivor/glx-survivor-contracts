@@ -70,7 +70,7 @@ contract GLXEquipment is Context, AccessControl, ERC721Enumerable {
         equipment.rarity = rarity;
         equipment.durability = durability;
 
-        _safeMint(to, _currentID);
+        _safeMint(to, id);
     }
 
     function repair(uint256 equipmentID) external {

@@ -73,7 +73,7 @@ contract GLXShip is Context, AccessControl, ERC721Enumerable {
         ship.durability = durability;
         ship.unlockTime = unlockTime;
 
-        _safeMint(to, _currentID);
+        _safeMint(to, id);
     }
 
     function repair(uint256 shipID) external {
